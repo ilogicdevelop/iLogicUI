@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns="">
+<head>
+<title>Untitled Document</title>
+<meta http-equiv='Pragma' content='no-cache'>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+<body bgcolor=#FFFFFF leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+<form action='doc_list' method=post name=form1>
+<center>
+<ibreadcrumb>您现在的位置:&gt;&gt;<a href='proj_list' class=title_navigator>内容中心</a>&gt;&gt;<a href='tmpl_list?--key--=jk9.rjxIUlQ-nSRTC1sDOzjS7TL2cQouyD9MlQMdLQrmkHiJN5YtkJNnLRdN8hudvC9RWRd8KyYh9eGSb7SL7rvqqkhKSy9ppU--' class=title_navigator>信租会官网</a>&gt;&gt;新闻内容模板</ibreadcrumb>
+
+<br>
+<imainframe title="文档列表">
+
+<input type=hidden name='p_id' value=210>
+<input type=hidden name='p_cname' value='信租会官网'>
+<input type=hidden name='t_id' value=3>
+<input type=hidden name='fieldvalues' value=''>
+<input type=hidden name='refervalues' value=''>
+<input type=hidden name='page' value=1>
+<script LANGUAGE='JavaScript'>
+function SelectUnSelectAll( flag, my_form, field_name)
+{
+        len=my_form.elements.length;
+		if(len>2000)
+		{
+			alert('wait for some minitues, ervery 1000 check you can continue or break...');
+		}
+		var evCheckLen=0;
+        var index;
+        for( index=0; index < len; index++ )
+        {
+                if( my_form.elements[index].name == field_name)
+                {
+                        my_form.elements[index].checked=flag;
+
+						if(evCheckLen>=1000) 
+						{
+							if(!window.confirm('you have check 1000 OK, continue?')) return false;
+							evCheckLen=0;
+						}
+						evCheckLen++;
+                }
+        }
+        return true;
+}
+
+function SelectNoPublished(flag, my_form, field_name)
+{
+	SelectUnSelectAll(false, my_form, field_name);
+	var len=my_form.elements.length;
+	var index = 0;
+	var published_obj;
+	if(len>2000)
+	{
+		alert('wait for some minitues, ervery 1000 check you can continue or break...');
+	}
+	var evCheckLen=0;
+
+	for(index=0; index < len - 1; index++)
+	{
+		if(my_form.elements[index].name == field_name)
+		{
+			published_obj = my_form.elements[index + 1];
+			if(published_obj.name == 'published' && published_obj.value !='y')
+			{
+				my_form.elements[index].checked=flag;
+
+				if(evCheckLen>=1000) 
+				{
+					if(!window.confirm('you have check 1000 OK, continue?')) return false;
+					evCheckLen=0;
+				}
+				evCheckLen++;
+			}
+		}
+	}
+	
+	return true;
+}
+
+function actionclick(my_form,_action)
+{
+	my_form.action=_action;
+	var len=my_form.elements.length;
+	var	index=0;
+	var ele_checked=false;
+	
+	for(index=0;index<len;index++)
+	{
+		if(my_form.elements[index].name =='d_id' && my_form.elements[index].checked==true)
+		{
+			ele_checked=true;
+			break;
+		}
+	}
+	
+	if(!ele_checked)
+	{
+		alert('请先选择一个文档！');
+		return false;
+	}
+	else
+	{
+		my_form.show_level.value=document.myform.show_level1.value;
+		my_form.submit();
+		return true;
+	}
+}
+function add_action(my_form)
+{
+	my_form.action='doc_new_face';
+	my_form.submit();
+	return true;
+}
+
+function movePage(my_form, to_page)
+{
+	my_form.page.value=to_page;
+	my_form.submit();
+	return false;
+}
+
+function del_action1(cgi)
+{
+	var cgiurl=cgi;
+	var op=window.prompt('请选用快速覆盖-rsync_fastwrite、直接删除-rsnyc_delete、异步删除-xsync_delete、全部清除-xsync_clear?','no');
+
+	if(op)
+	{
+		if(op.indexOf('rsync_fastwrite')==0 || op.indexOf('rsync_delete')==0 || op.indexOf('xsync_delete')==0 || op.indexOf('xsync_clear')==0) 
+		{	
+			cgiurl=cgiurl+'&op='+op;
+			window.location.href=cgiurl;
+		}
+		else
+		{
+			alert('输入操作错误！');
+		}
+	}
+
+	return false;
+}
+
+function del_action(my_did)
+{
+	document.myform.action='doc_delete';
+	document.myform.delete_d_id.value=my_did;
+	var op=window.prompt('请选用快速覆盖-rsync_fastwrite、直接删除-rsnyc_delete、异步删除-xsync_delete、全部清除-xsync_clear?','xsync_delete');
+	if(op){
+		if(op.indexOf('rsync_fastwrite')==0 || op.indexOf('rsync_delete')==0 || op.indexOf('xsync_delete')==0 || op.indexOf('xsync_clear')==0) 
+		{	
+			document.myform.delete_mode.value=op;
+			document.myform.submit();
+		}
+		else
+		{
+			alert('输入操作错误！');
+			return false;
+		}
+	}else{
+		return false;
+	}
+}
+
+</SCRIPT>
+<script>
+var sl=new Array();
+sl[0]=0;sl[1]=0;sl[2]=0;sl[3]=0;sl[4]=0;sl[5]=0;sl[6]=0;sl[7]=0;sl[8]=0;sl[9]=0;sl[10]=0;sl[11]=0;sl[12]=0;
+</script>
+<ibuttongroups clsname="sel" width="640" align="center">
+<select name='field' style=width:80 onClick='form1.search_relation.selectedIndex=sl[this.selectedIndex];'><option value="" selected></option>
+<option value="d_id" >序号</option>
+<option value="creator;创建者" >创建者</option>
+<option value="mender;修改者" >修改者</option>
+<option value="published" >是否发布</option>
+<option value="CONCAT(createdate, ' ', createtime)" >创建时间</option>
+<option value="CONCAT(savedate, ' ', savetime)" >保存时间</option>
+<option value="url_1" >URL</option>
+<option value='newstitle;标题' >标题</option>
+<option value='newstype;分类' >分类</option>
+<option value='coverimg_1;封面图片' >封面图片</option>
+<option value='abstract;摘要' >摘要</option>
+<option value='newscontent;新闻内容' >新闻内容</option>
+</select><select name='search_relation'><option value='0' selected>==</option><option value='1'>∽</option><option value='2'>≈</option><option value='3'>≌</option></select>
+<input type=text  name=field_val value="" class=input_field_search size=10 onKeyDown='if(window.event.keyCode==13){document.form1.page.value=1;document.form1.submit();}'>
+<select name='poly'>
+<option value='1' selected>gb</option>
+</select>
+按<select name=sort_field>
+<option value='d_id' selected>文档序号</option>
+<option value='createdatetime' >创建时间</option>
+<option value='savedatetime' >修改时间</option>
+<option value='url_1' >URL</option>
+<option value='' >文档标志域</option>
+</select>
+<select name=audit_flag onchange="if(this.options[this.selectedIndex].value==''){this.options[this.selectedIndex].value=window.prompt('指定工作流阶段值:','-4');}">
+<option value='-100' selected>所有文档</option>
+<option value='-99' >流转中文档</option>
+<option value='' title='该值为-(taskid)-2'>指定阶段值</option>
+<option value='-3' >审核不通过</option>
+<option value='0' >尚未审核</option>
+<option value='1' >通过一级审核</option>
+<option value='2' >通过二级审核</option>
+<option value='3' >通过全部审核</option>
+</select>
+
+<input type=hidden name=sort_desc value='yes'> 
+<input type=checkbox name=check_desc value='yes' checked onClick="if(document.form1.check_desc.checked) document.form1.sort_desc.value='yes'; else document.form1.sort_desc.value='no';" >倒,页<input type=text name=num_per_page class=btn_page size=5 value='25'>
+<input type=button value='  显示' class=butnadd onClick='document.form1.page.value=1;document.form1.submit();'>
+
+</ibuttongroups>
+
+</form>
+<form method=post action='' name=myform>
+<hr width=640>
+<ibuttongroups clsname="sel" width="640" align="center">
+<input type=button value='  添加'  class=butnadd onclick=window.open('doc_new_face?--key--=m49qxHrDlAc-9z832hh7GWpMxLAuhzo8tcg.aq.I9tkwlBLtwzKi-t90lhWK9nIIX-UW-VbRZYnBZdtkMumVdeYmWBQFhgKuHwIyidlR-dgHoXYO57Is3xG9F6zaCgei44SI9E4uNCf.gLyj8sWhQh3apjNbh8lnOcvNKAX-Sg5ge.ZpfAWUDQsOK4jpeVTDBiI2DrOf7EcRY2e.vtERJvY1mwTi0P4iHxG5Gjiw4MeVuhYSIuHx7nMhkKHmejIzcFY3iRKHQurW3CWFH0yR1.XWxbVHF9RLshXy-EES3Th4RgWFFfCb87s8zFe3hFpVCGZ4ZjRMDjXerZkHycLB0QcTMBTHkUV8YlrdjctBUZlMSjrrst7UhfNIrCJhPwZKg4oV-v8fnGRTSZYMM4a8lxvwaWSo-2a-bIkgs7Vs8VaarFF2tBRqMYC6MmD4PssSQhjLbRYQ3QCcZNk71pI3m6sGgvUZQGPhUbZFRFodPX.r','_self')>
+<select name=show_level1 class=flo_left>
+<option value='0' >不显示发布提示信息</option>
+<option value='1' selected>以圆点显示发布进度</option>
+<option value='2' >显示处理组件的名称</option>
+<option value='4' >显示组件名称和取值</option>
+</select>
+
+<input type=button  value='  合成' class=butnadd onclick=actionclick(self.document.myform,'doc_makeup')>
+<input type=text name=quickmode class=butnmode size=1 value=0 title='快速发布模式如独立汇总等设置'>
+<input type=button  value='  发布' class=butnadd  onclick=actionclick(self.document.myform,'doc_publish')>
+<input type=button  value='  撤单' class=butnadd  onclick=actionclick(self.document.myform,'doc_rewind')>
+<input type=button  value='  补选' class=butnadd  onClick=SelectNoPublished(true,self.document.myform,'d_id')>
+<input type=button  value='  全选' class=butnadd onClick=SelectUnSelectAll(true,self.document.myform,'d_id')>
+<input type=button  value='  消选' class=butnadd onClick=SelectUnSelectAll(false,self.document.myform,'d_id')>
+
+</ibuttongroups>
+
+<input type=hidden name='p_id' value=210>
+<input type=hidden name='t_id' value=3>
+<input type=hidden name='p_cname' value='信租会官网'>
+<input type=hidden name='t_name' value='newscontent_t'>
+<input type=hidden name='t_cname' value='新闻内容模板'>
+<input type=hidden name='op_flag' value='0'>
+<input type=hidden name='audit_level' value=0>
+<input type=hidden name='show_level' value=1>
+<input type=hidden name='p_uri' value='http://wx.xinzuhui.com:9000/cgi-bin/publish/doc_list?--key--=tzrGlmCnXSc-q-jZRAwyxUqgL4FO7UKQ7xMOMI.z6fD7iZodz7psJ0KL5jnSm5eG-ZV.jXjmTZxO7WZvaUixGI3fYH70CEvU0Tf5iGJ3qquYhkXHtgt-YuvPuH2eZrqhcSSt5MC74qJMCAm5wU4G.TmDoenfJEIbvE--'>
+<input type=hidden name='fieldvalues' value=''>
+<input type=hidden name='refervalues' value=''>
+<input type=hidden name='delete_d_id' value=0>
+<input type=hidden name='delete_mode' value=''>
+
+<br>
+<ipaggrid width="640" :rows="pagdatas" :columns="pagcolumns" :colnames="pagcolnames">
+<script id="igridheader" type="text/html"><th width=10 height=25 id=thcheck>&nbsp;</th><th width=50 id=thaudit>审核</th><th width=90 id=thopcmd>&nbsp;</th><th width=90 id=thurl>URL</th><th width=30 id=thid>ID</th><th width=90 id=thcreator>创建者</th><th width=90 id=thsavedatetime>保存时间</th><th width=90 id=thcreatedatetime>创建时间</th></script>
+<!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=152><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=rAxoiKYFjbo-zoyZQqAj7xHfsieRpfid1qvAj54ryQRe0jzyD1e9fznebSzffVIesrE8sBznedpRBMhLl.rmBbt4eBR2lzWpwKzbFh9W6dKuSCVJl5cjY.gkbF9S2GLis33YS9jPv2Ya2bMlVhjopz4Gy3-fDoZCzTWwyqfFWil6KmmBop7y8N9cDpZpD8249k--'>查看</a>&nbsp;<a href='this_doc?--key--=3wP8YBrzCdM-5.-R-YsxYPU4F-r1xhCJMhHd3zgrFv.dnLHWrFSNTMB6S9vysJY80yCtZgSLPvPY7Es7yfcl-gaV.ReG3xFCHKvBnA5JUYxhWglbCPsYjzPdXyGq-IMK7e1vU6uahU2bwA6DQ.rdNqJ0.DV-8zlbl6jRnlmh40LIXihgHO2.M71MxJ1kJh7y4heoUxpHR28OAXezjaLdYL5lzrmtYaSEHDW81QvalF4Ctbbuia2Guix9Z4DF7uT9cdgspbZPEMLMto-LUgcepDy2suw.bQRq9SbKifqU5o1agJURLShcYv53Hcs2h2asbJQxuPlUHZjzry1lvCjg-PKwaRbB4AeEucxndlvJL42w5a4sm0YI69MBVKBZ-9tZq4rnEexysGn3K9DejJoaX7QifK21tgiXBaLZv2Esah0w3XMufWaJ0Iz8fwmPRXK9kwLi5oIR8ujzdvFGqFs5EcEVT1OmA.YlGm0a1Ku8LIdwrA4ykE1eLFE-'>修改</a>&nbsp;<span onclick=del_action(152)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/152.shtml' target=_blank>/newscontent/152.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/152.shtml' target=_blank>152</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-08-15 11:48:29</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-08-15 11:48:29</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=151><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=M-Gcw0bpu2E-WvAtPxiLNyDXGAwp6iw9HIwv3naNK27EifU3RrgS7MJvS46DxVCJp.z1w5JZ07CEl3Y7mU6n82LElyZ-JfGTTYNMEn5xmNbmfM88KeoztuK-fdMCtXXWuFVg5VCLcS3alAfHyKPTIy4TtElw9lWQb0bA9--lLrXp-nwn1a33CkQGV1Ag7-2bHU--'>查看</a>&nbsp;<a href='this_doc?--key--=jv9dlSj1YqI-jG9hRztxIWIorXgS7-YC5S0ZuAsmyNKCY1HQQBcB3axINtg4JVUy0sswrG3m48s3vXUMF.UkD1zJtPI377TykvHLtXydGhw35hr-MvXwMaaACrLhxHOriWhajcc.Uf0T.DdIOCXjhWHLinzJb7.5sAqjJg7Zem7vOiLQl84uoaqTaoUgA6OMDZFJnI4VtR0IrcYO8gMa3JZsQ7TJJMyFZNNCNlgWDjJ97gD9qHtBpkwlsOXbMrn.ymG4cT9AGhHAnv0.SH8QzK2hBfcIy3d5M93SsOAgMlEztz0D8aIiAWB7pYR7wO-LHsnjizYw8o-ZlR6b9JkFL694NRWL2ifakjSxqfO4fpVScIPTQReLPVZhimXJ.y5MqjyS8MDiArQ2VzLkQhqZkKj0HDUJHYYh7UB4ad6.DOrOUYouG94SdQDRnGSRQ6Yzie2i-tCazNX2VAamul8.wBm.MvH4vflHjjci3Tdhchz7TVsNUCTEGV--'>修改</a>&nbsp;<span onclick=del_action(151)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/151.shtml' target=_blank>/newscontent/151.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/151.shtml' target=_blank>151</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-08-15 11:46:52</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-08-15 11:46:52</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=150><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=KKGojz.irUk-WaxRQbOC8bhJCYUuFes18kqo7SusCPGZkkVrpsn7BxZ26rQQLt9cOibgI-B6y7jpykMvydckYqHdistAg9khfX9MpS4OV3mXGJPXnM94Mu2lfFDlrZsePjVARbytKHUyOzy2jdkdlOxcNh-6fwzW4BJY2dH8AJgNBVRy9kskDOorNnBucoRr8U--'>查看</a>&nbsp;<a href='this_doc?--key--=80xLPcQ8Uvo-G1SUkhg9n.7wJynyhK8yLN771I3Ocg6w2qVYJfApRFei6hCUZF24NEYDVd5wBRhCtf-Gh..HYF0InFWLbXksFHaccvqNMtdmw2LTRPRgonBl1T5o0DAB1zvzf5XiM4VYpwJ7KEjz6Wd3ppq2Xmd7FrcOx7MbNrbjM-sjTqykt73AaJVbjRNhxOviycxJv.N7jDrNw3YKvlk.WcKJBY276dXNgHxf0E21dYOGGsSG0PaXZqw5xTf7g6TQXTgGyZnCXW4vgM5ALv-8ifd56fifWYVrgj-5DuhDnJTvFZ-0WTjei4U3cUzRngMTX8onFXP6OzRO5itd4PHYJJv8eZAg1-9vA.wjCvykaKvCRcuzPNLTIMjgq5vcb4r2f2LrEPqN.y7B7J3gQUXvqOhzkjNNCXIujx6SBDNEOCgWlEVTt.kSQ6o4awVI58bf3kAPLyS-V-B3CT1aiFEeJHNiSV4iWVeln.HXJuG4ZVZyu5TZm8s-'>修改</a>&nbsp;<span onclick=del_action(150)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/150.shtml' target=_blank>/newscontent/150.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/150.shtml' target=_blank>150</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-08-15 11:45:12</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-08-15 11:45:12</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=149><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=.4LpbRjdfBk-wE3Pmx-Kdc--nJYwx4ItSg1-2mwOlMS0UaNpNVkKOu9Nkcvz7PqonYWCNo4-GyTNBY7B7tAIjzh8UhaTwZ.JAulE0Q0BZUVINHceWUklJBK8qQSAfK4L3-NKMQuYlu7xQh6HuPp1S6.4KTnUpzoHs7hc6yegcyK9d6MSzoD1W6VVvVooI5U6Bk--'>查看</a>&nbsp;<a href='this_doc?--key--=HyyrhF46NwQ-i-HJlwJMGr4ANbGdIeCdrx5MPfrPcqoACKqmgpLPRvuDh8dSUUZ4UE7NDalA0tOWBQ7Z5WPYYcK9hpOl2ubmzg0HWcc5ALf0o5m3JIGO4adq64nKisC0ZXW7A.Ko817ZzzrXq5H0sOOI1socq.ChaYzLZY6OlmF5emQN11k8V019Be5DLM7iFVkvv4-6a6lyjdpxXqCXpwLSkIxD7FKWOJKIPzTWPaZnyC1x7aw15H.8zr4qqCwENgE9cmuuP-F6bP-CUAJz.AoE.-IUJfdlKvDaNWZJL8RbWEKCNnwuyLvVxymiFcay5Jqv71zqWrx347bi3c6eB9vVyddG3XzJ93tj4jhddHGgo3r8sWkDSC03DG.vqQBg7hkiBxLS.fbyY7bKtlZxljXB1F-NlHOAFqVGbv0OSDYdkJm6W.P22Wgt5B9luWWmOon.0Z5AwZJYqSVEJlIXr8VSxi5KtSlAnXII8wVAm8PMOEw1hUboiSI-'>修改</a>&nbsp;<span onclick=del_action(149)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/149.shtml' target=_blank>/newscontent/149.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/149.shtml' target=_blank>149</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-08-15 11:41:07</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-08-15 11:41:07</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=148><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=Aju7pLQo58A-eW5J.xJoCtPfvU7PAJq4RcXKh5mcOv0OyINEBzOb-apVAKPNsiwhwjclxxlPrhQ.mhz0UsC2xzn8J0F2EsaQUYEU30zTLkmhPVbIgA.4zubh7T3EJmD4TllAnHsAT2rhjKn-t-D1lrmw9FiX9OM0YNePFa0kFAd5qNk.UC8DA4QawHdZZtBaxE--'>查看</a>&nbsp;<a href='this_doc?--key--=BFNari8BIu6-RA1MeXKVZueJyonjx1sMTs7G96pTE4V553GgRikLjaAIw81sojVfVRWHYwgYTsHEra7LUl-vfS24OiAKAkfC3fTFazUHTlWaxQSuBIe3ycAq3COYn-DcQZQd3ne6V.X4eXilxk2eLB-v8mtt9OiFxIHTgN80hg9asneslH2j3kZOMDOTxKVbRo7VVBc19ZtQp6BiHHP87pRlbgE2tJswD3o5-qset0NBk5z5RP8iSJ.qZKsqqJFUnn23KOs7gopjeADu8qtrgNxfIIJbHtUx7TMhaM8oCMjZ5hNzsicOaFkiiUnnMw-KQKnwCazc4TxvSMcl5dlkbM-WRHNlmMBVGgW-tbJK7ExhofdnchqyJwMBina8SP9kHy8WYW44W5HLM2dQqgxM-z-v88d38XNoHUas6mdNQr9Aja-8wg08avfP0MXEBQJDB2kX82lvqNbAJcovJxiqFiyUP31Rqs8vgnnFUWK-lqw6N4S9YDEaMFA-'>修改</a>&nbsp;<span onclick=del_action(148)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/148.shtml' target=_blank>/newscontent/148.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/148.shtml' target=_blank>148</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-07-21 15:32:46</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-07-21 15:32:46</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=147><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=7.xY39RhQ6--TEPn.3IcCA0G3xbWwXhTwoObjrt3lQCrVygBuYVMDYtRYPsQV4eCEVlROdapnI7fflSx0Ghsqif8migccKSVBsAHWxCRopwEF83FNXGB0GLKJo3fawaSPn0I6ClI3lX2VGL21oIdy9EbV4InAMiyQrNkiN3JkbClzDx687g.ikOAkKcYCyhIs---'>查看</a>&nbsp;<a href='this_doc?--key--=X-eySENR8UA-6LOJUPwZkNG96ND0RsdRDQ1OfFhcOG2Ab9SUH8NYBqbAW9eiNuIFFokMHqdvsyd0VQKWj4.zSd1tufZXwMTg-XYmehxGVxxSE4JIDLk6HbfzjAdHztpBZkNJJ0jSNRrOIqif7-e5fTXceepDvIwdC3PIax1C3hJjCJxv03qSwbBDgb46CklpgdhuJYJR57cjWeaqT63DzMRpjPcY7SOOUWCUgI.VQ4IMMZ.us7P14uHrmkGlQNCL8a-JeSo2GwyoB.YxjCkhE3KdBqSB1VvFYjKy.mwiqhzsiUk0v.G96iGw4F72X6bqI84P2QGThKeZxuURgjxAXHA.EzyKXLUXItCRQY9p1FbVLyXsiYvf2QHiCwoBOL3VXEPVUiD4RyMrEfd.R1xeIB4uul0E.xuu9bWg3zojtu0JefTGnZkbIAKD98M9wUxFIZ4kzdUoPzHSWzEEu1wVyEe6eV7uB4mRyVe1iMKYmcgwvt4Tk-aIAEg-'>修改</a>&nbsp;<span onclick=del_action(147)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/147.shtml' target=_blank>/newscontent/147.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/147.shtml' target=_blank>147</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-07-21 15:28:05</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-07-21 15:28:05</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=146><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=6zsek4GNgLc-YGt4SqQNThcrAkl9b.sq4wHFMWn-8Do2yifDIo3cP86LrMOtuJDNWW1hJVdiQsY4RXuakMQ8ERVh75adrZHD86Ub18ZMYJu0cDv-JhTPkPotUs3l7RWrQ6o1nbfz8fw4BwxyiA2AUVV5ptpuDdlDuwbaaLEkBc016yRnFayjQEilysEfGlWVM---'>查看</a>&nbsp;<a href='this_doc?--key--=v4wNrku8sdE-RmEeMGN1oB7OOAaXrum4M5vRqWausu4XwT9PnwCKoOK5qbxNQmn7fPviamQ-4qt8HqqnKIq0EFrRRIfWFpI732fpmnDK0a1depvbGZt801za3k4idNr05U9v7Oyh8AVLjDpRTqrx7PTSpDQx5yZz-gJ2vihINSguXxhda9Cnznnf4Vr0Ve17ATC99xcyjXUdAUB5hg6PNmZigNtAXHdZ8830wYOjAE45-CqQv6QcwDE-5I291-y61wudcQ9uzAkRsH2VHVlUKVEDI17BE4bPKfvylKV7vqeQsGl2s47SklhXEHEo0RaokvnbpC.1ITbKcXNKrnCd4webAG.f84U.-CW9Vmd5ujnw3btxorLz.puqZTUuqd9QqCITudnFRHlgM7rzm.Xcxrq.2FjcJapjHjskORUe1Nhi8Qn5DLg5oF-CGsTTaGk11k9W2PfV35lHu2Vp2zi1nGx5bNiHNk2mMwfQqeDSj8FmCiQSPW3Mwik-'>修改</a>&nbsp;<span onclick=del_action(146)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/146.shtml' target=_blank>/newscontent/146.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/146.shtml' target=_blank>146</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-07-21 15:19:32</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-07-21 15:19:32</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=145><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=CCYXQgq0W0M-oA9rTedvMtFALKS0ifdZBy6sZHyjTZmIHaUs8RfZSCai-uwC87oFlIM9EmB0rOv96SK2SHbS0sjAGtYadWtk.yvzSITbrl4XUFT2LAaN5BeWT08sJBLrczVdSUT2waFW8gyKJeh.ZLaZgIRfP26w.-gVLroSTKnnxKBrWHYE6-aiNIeeKnOeSE--'>查看</a>&nbsp;<a href='this_doc?--key--=xjaBlnGbZxo-j9xuYOkqde1P-M1d9M5gDOzUlaYT2PK7XP1y3MROwHITO9HVjxEllVa4qjnsK1CIqK7-JqisA36zPofOgl.qPt1uY7EizsO0uznQGvO6LP3pGPuWqMLg7olptfj05XNAIH2eIj6KqEbcGlVjhqPkcEwRSj0IyUgOAn4hftz59bWFHcpJ32LwOzMpWQSl-kCF39nXyWM7nvXtS44CZvxEo1grijoml9ufPMjrpxFPWtln3nViLrmvfYYT-JWYvofMGOhMV556JMvYQKn.zPTYHSePeG-MQFYuXB.ZFhO1Ok3VvqaM2MSZPUlE6XH5YwZWoWOTGn9aAlFVFzZ40gNzTXMlBwnrHHg8pQSZrnWkcR1ktRrQRMD-IVy1ocU0kUtNHLBFoibcxrrgcMXk4N-pYCemb7Xh6sk-14InPHuxJU6weu6UxBUYwWXPYtJXpqmWR9HN47ExO8pBiIShVC0BZbYdCVRGyvx9U3Ii5qlVjYA-'>修改</a>&nbsp;<span onclick=del_action(145)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/145.shtml' target=_blank>/newscontent/145.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/145.shtml' target=_blank>145</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-07-21 11:32:39</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-07-21 11:32:39</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=144><input type=hidden name=published value=n></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=GT7-7ybUpFw-hyo10rheuCJ8whhxwj0rEUqlxsyzYyOcTDGyD3nlHO0.hcoJnHGP1oZgRaKaSmM-N7nDBZCZjQ2MqBdGr54kLBe3-Bp1gwlMQyjoLIraOgeMv1QQtIzqUfzAbMBOfNpeg-.0XN2Eqs4En1YJg9fK01W2qQeuT6ej-ErlowQZMQTqE1xAuLmQ0---'>查看</a>&nbsp;<a href='this_doc?--key--=xXXLeU4PJ-M-qRYSxZ1c6F8-aVuEX7bqjPWNtnvePEsAuE9AUe9gXXpQte6J.13c60WphRzvEFgI.zb4LTDmo6kufoOZeV1dEQhic33-GuyA0V8W49eVDAXtIS0ycqdCF7QyWr2T6s5DrgxheXydrTVUaAeTwirXdctwljoViyTTQLT7l-50gY8CO9kAUVRLZgEXRphZ93MX2lVnwPvgVBZ8oU2OJt6OJNF7b91ji9EcAK9XaprmHvs2o7XXptBghFwBjmfXTYF7iosHagUuJ2T0Q8fjzONPCtWrcocEwDyxH5nn6Wn2PVm3sN1MaFOJrP0m70ayYZl9YM4rn9W1QoBQMPTdNUFSYW.9cVbds1qkaPd18verEF7mdSVCfuDzGGMcTpVA1GQGfa3vPvN3cinIhdEyRnLwPlRnARBZQ-LczEAFWlLJolu4I-cLF1jMAeZVWHDIdQfC-Q3xUR89F6nIEFbAti0ARC47lVge611SkWTVRWkAd8I-'>修改</a>&nbsp;<span onclick=del_action(144)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 >/newscontent/144.shtml</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/144.shtml' target=_blank>144</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-07-11 09:16:33</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-07-11 09:16:33</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=139><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=NV2e21vDKIk-PfzAaNwHf8Q4mf46koJkU5wL7ChF76uYa.Q1S-Dj2TyFQmQu35FBF1VBq1DpMutU4.sf51obALL586I1quDKKT--BZAz0Qv-oAg0AqwG1ghPG-jaJyFevCE.tnLqBq9m7QKKVs7ZChibc8j2tDBzsTp4PTc7hd6WOKI-Zqc0VVKO0ujP.0Iua---'>查看</a>&nbsp;<a href='this_doc?--key--=1I4aQp0dyXI-OjgqSzTnoWdGR0D.HMUfhdyg-ofdtb5RErl0FfK9wY7OuT4Ih9mWbzIxJZpX5dHr3etIKR69GJ73YYGCvvxInpeW6HB972Y19Zn2X2s.DP23VCNfp17FPQAmaAvHkDJ8JaRMPEANoN40QlT5PuZrp6RsGK3JYkqSAfC2QFfS9zwI7e2w4nsiNtSJnT6SpFx6tglczuE-syt409bwFZY4yaoa.CUXU1sBdhnMwfo9wjFQkm04.fLI6jABJPqb-tJNX21KQnfn9mxrP.vGNDGQnMwNP4hN85nZ3BZ5dIQwR9B16mgcgd7mpVmd8yipNrtubfkDz21kk0imN1fDuvRyblqIcwptfoflGM7d6aVONOpWYas2u9Fw.SB7sFsgYDp2nVLG7.aHER8pZk.3jIQvu4fF97Wl4j2o8eaZptuAp6u4AuoLd.Tc2x2qD6HDlYGRl3s27Pv2ScRU1OEImfg4oJRI9JrQSCFCrdEf2Pb8NJY-'>修改</a>&nbsp;<span onclick=del_action(139)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/139.shtml' target=_blank>/newscontent/139.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/139.shtml' target=_blank>139</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-30 09:57:02</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-30 09:57:02</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=136><input type=hidden name=published value=n></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=xkklS3KASf--2YSLVk3iKf7jjJyNq7RXiUR41zp.spDiUG24IjPEUymgAggVHDOf64TdYg7vziPKjSWQVQ0Qkr4qYf5F9SRrUxOCqqtZ.f5cqX0iNw-hdbhbGtfzUJ.QjRXUVcHC5.xKIzQ.Ce21ifAYs.yeMZtGeI86fsxQhiq2-VE7i.U2Rvl.rcEtavAj-k--'>查看</a>&nbsp;<a href='this_doc?--key--=yrYBE44uElw-l706gFQit4mRA.81RRaWnPnh8wo0iFb6OOPAM47pqkffkspA3o2rvCYt5t6A2aI0YzT-TW2RP6CTDOomZA2sy1XhIKwjf82AQVkFsqAHBTqTHT3wl-PGO3ZUPSR06bb0bKs7ZAqjRgfEcTczKjYhNJ4OCzo8ijtY9ldORzv72QvOXYkRLMvn292yy8himaeOTrK5K3iymEEAJIpn1qRmPl1E8r7Ad8hRhvtzaVfIKODp-4T.Mk7UbEISWOkEUKtZ7D2n1QHf6gGmfW8NdrEumrRc.Q1Ot-7nFTu.zjKIzbwsqafY5qRfC29wNkQmT4OG1kDliGmzYV6t93plq8dMrMayNEgG18j2c0DJLismLs52MpmV7bL2N7vABnKTtsN-3XgzWohbR01KenAVjOH8kkxcl393g.tssQrq6cl7KzcnxAbqzwyUnA-PmgklvhfRr8vRZtH9mweTbyJpcIa98QirobUOVGa-t1P.f5CmQoc-'>修改</a>&nbsp;<span onclick=del_action(136)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 >/newscontent/136.shtml</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/136.shtml' target=_blank>136</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 16:05:56</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 16:00:31</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=135><input type=hidden name=published value=n></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=3VRNAexi6cY-6zNQhjzXaGKa3.TM.aNjnWZ3oHBXajoAedd9mm482e5nD5aFmHNqKDWi7rSXoTl7RWeL0AcQEhF-ICrST2oaRLcSFPWR.ldGRrokQAAl4IIyTIdV49L7jhuTRNc0dg1.T1tnU6K1TSQVPn3okJDrArV4vWPmtTkijJ1VGD8j-wfNzWrVzHZa4k--'>查看</a>&nbsp;<a href='this_doc?--key--=XMaj9M0SNdQ-dMs.s2KSqd7.mdaPbT9PlI.67iMsfTs89u7HpZojtOGcDq-4Nhj4wRJ3ZXvt33Yq79aCAvhImDQ3H5kYvXypWSBbOESAkpvg3xXpfx46sFX9zXoDlWiXWJquHLmeudf.Bl1zt0VyvHaZhVOEQVn5EymCLFcEwkmih6m9X6.X1dIOPBWTShrIKw6.BgDSMS8HG9OvfL2d7.mWmFnkJcTI.YSxTe01Vw9SkIhWSE9FT.w-5oScOERi04XkN9pF9Y0PS-MqfbEm0zYcmK93VCHFq005QpheECXmNlwWDnccN4UXsNmDXn5Nj5oqNzaIw8TCx8k39HkE.JbpAv3kAiXjLxoIBK.xMjjQqPxcwemmONd0F7gy5tgQQOjmQwHOSvzGlJOilB9-y3QcOSkMVhh0W3wfbCgZnKt2dQ4o2lGgMglj4WpvdZVqQDo7QavL2X166nyToWqpBwxgKyr5P46H6dO7fDHG1SroThBO2Tp-EOI-'>修改</a>&nbsp;<span onclick=del_action(135)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 >&nbsp;</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >135</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 15:59:26</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 15:59:26</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=134><input type=hidden name=published value=n></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=y6Iun2Ic8HI-.232X9hlWDv.Atf8AneDo9sI0n5LTOi9DJ197vWP0Qu.jXpnHOyqHKJLi-nMPnMN2MeFoJLZeLGlcKI21ZDdEjlqHZdtvuJcYyiOwjzHHCoxnv5N9a2LshNOnCY1qee482f8fgwv.lCvmGtrgS4oAoONf5itEEVfBraCBVrMjhXpbm3IMHWBjU--'>查看</a>&nbsp;<a href='this_doc?--key--=wCDT.FK5h8g-LhhU8dkyRvUKeyRB7mxlgdEV5vGJdMUGVIXrCurrPqTlvMUXfb4LdxMuml95DWo2EEgPAYw.FveiVgXp80a5xhR9aeNUtkL56t.F5ACygb6lZhqwFrRI13SjB9p1mgViQK0ku.NzFy8uGgBdty6sqiATHR05Dm.oRpItFVwMj7SpvDSIbkQghHZY9H-d-MDuwAJMKBdjD4wqFMtvY-uj4tUP.oI3HRWUiR90uImkaSSovveNgGceKATSUeiBCOvygkJinVrt9vCV1IHdNvDnFSHCqTIwDrfsy8awu4GlfxYOaVMC2oQO3auzd6Ht7a7-4kBAsJoWG3dfWKdobQkYvAf3px-qdl33XgZuonFMXmMQ4kNC1pBexkN.B8dJgTQgtyFcGB.osja6DZQxsV4hr6h6f8bMsVktdqU0fWKzVg8iqy0wUNH7-eUZWISJIiC.3IXQxRlCJpkXmL2.90A2KFMdl6SmXrRkIb4ha.bTjRk-'>修改</a>&nbsp;<span onclick=del_action(134)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 >&nbsp;</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >134</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 15:58:37</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 15:58:37</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=133><input type=hidden name=published value=n></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=lCPwQVDUFhM-t6JVGQbGWihLi-p5ydgaCKip1x7M12GOsIXoJfbfzbLMfmwq-xrA0Ao6jJW5mqZTAlQ9CvEN47DkoQQyEvQ.51nYIqjmKTw4NxPCGx76Ye97iE1jNvD4QyC.DMoa8UxLdbAn0y98SdYL2A7CpNAVB33uiRuul-j0nxJvrC.bItHIaTGtb7.sbk--'>查看</a>&nbsp;<a href='this_doc?--key--=Wgrrct57OcY-.Rs7yZfM-FejW6qSTL7x1cnJ82.SfV9scqW9XvWsQi9UkAP9B1J-oKsXS9gtr0HW3.UyR1Qr7Ff6V927dnVr3f7ZxEejPp3PmD81LGhOJh158j0p1VXAqEiOG5cllbu9OcSGgwmO7XwwJeVCdsR6gWYYMYBfI29BCCrbJYEwUiHukZkGuyeJ-evW2Xjy1kn3AYBVJ3POSlx6WZ38H4koGxgixLp1v9mITEfXxemm.EOLweFlPdRf8e.aaj2pnBl8nV6HbfM1JGrNRZto6LBTD.VUmYX5WvQl4ZxcfA6q2FIMdbyELT5RiPR-6r7r9VZRYkHWYJjP30iTYWzXCvV2tvhsj8v9Xrqpj5VNb-AwcOz6l8RwpaOwVmk9-QMvmzfQrRUaz7iNaswBSpDplS7kZaKst.LPoJaX25TFlrg6-wUrx0BWxoHYdly46iN3FuZMvpfYECQHvtzM6e.BmrVWf6C0j-URrY3Vljr-bniClX--'>修改</a>&nbsp;<span onclick=del_action(133)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 >&nbsp;</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >133</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 15:50:52</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 15:50:52</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=132><input type=hidden name=published value=n></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=nltf8mL.urg-g1rKTtUxlEzAwZk9jJmfu7JRCKRw3wkSqb25b2L7QHoLkSvb4U1dEYd1nTJfP2R.WRsjrex9BX.CM.HP7vGNeOtbI3t5y1ndY159agcTe9m6TfbFGhEz1HjtDzFZnppIWPq4KJmgiU5fxbMtD4arLmpIauvqlMx-X00H1FyhRx7mI2gaRFycRE--'>查看</a>&nbsp;<a href='this_doc?--key--=WVmP33FCVLs-tkcjpVSkGLBDj6Zvspg5CwDppvsZbRcDARRgMEqQ0vZJe-k1brbR.6RWv9VcqoNryfhDNb3oGTf23H8QD4ztHctxKYfft.TBizIFzL58lYKjhohuYvpZ6160ZpdPqWnVF9UpCwChjLlaXPLudEbhkmDcS75XqjpRYNHUHCS8fRYJxB8dVKnlrBq9v0rzRXpREoV4gv5rZxmb8XvETO.muI7DP662m8nTkDgRo6fwhHd6uqyBEor3W9HM69Is6AirHUeH1A93jtay.qRhE8mqJ1J2d993Rp3.L.GyUYtVWpYnNVKg2hRMLy0XfdiBUi8N.O7CYO6rOjG9wDh97qkudtFeCav2VVcWwNeYC0EFjXFJytShxKwLREh63MObpERybN5WZYQbN070cxhuoHfwmjiMVzHhVaAhTSKdZuD6PdPOd7Ur1XseVrXwi5mecan6TMNgD1JkuAlnXh4IBzguhSsOFHpmFVCl3dD.mTeR.S6-'>修改</a>&nbsp;<span onclick=del_action(132)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 >&nbsp;</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >132</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 15:50:23</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 15:50:23</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=129><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=36WZzYJTvzk-kTrQP2b45O5XiKS1ildX8cXuSnvz-6iYSl94rOtAkvfX5Lyje-nskQGEPkNuq7B.zrQTeMKGapFyDnhA5nPA1Drfw12O8iqP81MRzynlJrV.hin0VFogxUU7Gc9WSUj0wTZu9DwW-KktD6XCH8.H8BH7qQfSabjmm20ZtJd2pqoIvrcR1EhW9U--'>查看</a>&nbsp;<a href='this_doc?--key--=VZvXlLKcNyA-aFbS637Xv8pJ5o67p7g.fnCPMquIY..LvRQ4AOm7ugAv8UZ3tLvL8e6FDv0LbpDQy6HW-O48OEKzdxJHQMIk3vuPqCs1lC0TRKYXd41tUeLV0BAFoxcoCvsXn2NjVmKFAdVpK7mPthPoDml2ldnQeFhpLKsETCAMOMrHgRVEG6Lm85tuooNmx9YXKPoWmntbnZPmYzDdjbjr7cPia.KwS9qtD757qMY5rd1Ggw2I3r3zAy2g4.XTlER9gSYs8KwnbleS4oxtrxFyOTcAd6S2WXqUWS1XeRazLGrhBudD5iKVp5cr1WvMAOqK7CVzINmdPgyoSEkmvilNYEnpEjNJ8VQeYhbts-KG3uE8QMGObm1vGfX-9kksA3kjcvPXW6aSdW-DdMphKfndMBWGuSa5vYbG0YYYA.3LYQckKySIOicSJW9CoPq9T0TsSeUn9Wuf1VpS3q7MG0HmGdfMNk2aTNChiHhcmvfWtLS-7Xw6oUs-'>修改</a>&nbsp;<span onclick=del_action(129)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/129.shtml' target=_blank>/newscontent/129.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/129.shtml' target=_blank>129</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 15:09:03</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 11:17:16</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=128><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=i5zANdzn5QU-ZLR8RmWnijHJPbK-xFC5a9-lzOv3gfY.hjKoiYwAY-DskKiO1T-MbpvncN3KTGH3zlzHWuUjGVpaTpM0Jt0VA.ExrjZYFytLg2xhtl83qNFWAUD3aEkYpA-mWSVdiuQvVV1DjZucRuLeEmQ8zisA1twnSzv.-AaqPBVAsIFfXTRIt0aKIgnxiU--'>查看</a>&nbsp;<a href='this_doc?--key--=hz2dee.XY4k-zviQUqDiMgTiv.zaIPsnYtPo1NvZCwAn4Q714GiaaFT-4oOsEBSL8XvcJ2cpzQaewGoCZAHM1bWqLEGpBUxTz8Z03mELX2dvXOWlZBiLOzOj-r9rnJBbROCIG4yu4qAjjv42DEiz4K2x3vTOK8gTKpWDX-fwOBq5AZju8QqjnXeghWWpqh0gIyTxp6x.euKZYhRkaxM5Xda0owp8j1nPknwdEBiiD3EVyRuKyLliTfDkl7L0v.NM74Q3f2Rm3PmIEpMKcTmXtlJG1DUKkc.40YgtIrt1n0Lvy5bRLGdz6tNyNL4BMK6iWf3ePi8E27zxRRER9yqdJJLl77rtCMbn720qUNzGP0cXXZH.ZA17POnWqIDSL1i7OaAVwjomP2pSiKuPGd62EjcCpdvMHSLQbGB22c4-xpVSfEV-OT0oLiVusMJV9BB.n-Kt78xudvdh4UHY4NodrUQtA9i3g6u0GIwQ13D8ePSMfe3yy-J2q-A-'>修改</a>&nbsp;<span onclick=del_action(128)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/128.shtml' target=_blank>/newscontent/128.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/128.shtml' target=_blank>128</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 10:46:49</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-28 10:40:58</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=121><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=up06P0qZZao-ymzqlVE7p3UkURm0mPnyL9kakS77El3x0aAYTFd4oBn50qczUBNewje1QIYjWp3FwHtmuacAGu.zQXCJi6SUpMQ00zoBRxxwMCRKf5xdvT96VrHQUkwSzYuZnT0ixa.BJYBhghJomRWC8yp1fcHVpo0gEp4twmMvm4HXO.mW8IUZiitszv7yok--'>查看</a>&nbsp;<a href='this_doc?--key--=XZEA69r3T26-x64qPpn4naARJynpIrOKfJ85XBm-NvsF8Q28r0srCYpXsDeWe.dVUbqZW0yuhiW90QWvSPbraeQEK6iVbWplxM0NCw2DKo4oqBKzjIUr7UjuKC6TADpSVUQhVwvI9mP-DT-XUfwVcL23UwwkGiuuaYU2kGp9TaJLB5bxadXjNgtOpXvPy..GB3WpeqW-PkwI.iCUwwkZSZsdAN.n21Zm.VFO6Iicb3w.1zVLht4v9OEjxV4XnQFiavKFv5i0soRjU3VXj3h-f3EvO2QsASeGEulba4ylmYT49.bpTIri0fyZfUzOYBiHtcn7WvuxUg9XtevvXPgnbWscuf7SPdwmzik7xMW.2LzlCQFt2aploZUaMOcCxBRbhMPpmKgiKAzQwGo6opUXPb2iLJT--MBlGrGINpYQ8DWhy.gTogxLkAI2C09OGWluNK4ly5oAOzfzFS0PpLRAozg8nAxwMcqi6fvkXup.s6DFX0eswvvLV9--'>修改</a>&nbsp;<span onclick=del_action(121)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/121.shtml' target=_blank>/newscontent/121.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/121.shtml' target=_blank>121</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-23 16:11:28</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-23 16:02:19</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=119><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=bIOTz6ITAiE-y9NtSsaxpaKzfcskFVaoI76mK1sPw55CJXK1pgGJBjbIIn7CV1FfV-cqRz64UDDl3PjNzXceDTklz6DDglv3OJjlUDzA0yeQWbtA78dX2vS03cVzcUNn0mvBXTxbyvLcLC3S-wJrvDv6FcNwQcfwQ2BXveMQnC8rs4hJ15TlC9rV0d1wvQeKRk--'>查看</a>&nbsp;<a href='this_doc?--key--=5Rak209dM.6-tsmCDSaijus.QwZMH.VUTX5DLF1YbfO41czIIPu26qUh9QmKlzgrN5tlc7K07whgy6L.TYSYCG6eH8dQt.jQ3pv-jYkdudCkpw9TDuoq3rydU-.0r47v30HuxTw3CqUwIitLdrdE7XHBEdgHtvVfLABYLlYH.AyFlXq-7hEEp6tZGXbhdG9XJT6GTRgKjgcKp-vz6eM3U.aZHPsV0cnvbdbP.L2pzQ2cGMzOEtvmUsUWtmIUPhl1hkQo-8yd5HW1XPrYEzO2YcjjHQridDP2zKaouMgwYt9poWRm5Gmv3EOr9.3hTSRJ5h9BSc67Rzobe3HlzJSkbdDQCwT0v2VqndAdamX5shZPyo2KBHO.kKoqMWAouoy78QyemWcJQ.9uHQZrucJZGQk2NLp-XhnhaCaM27yV4F3aHuKWnJOOjAYwjioQAutDqUOqb1R5ERkiULEnI.OwzwFtN57QeRELPqt0AdGasn9QnilvmHXxKBo-'>修改</a>&nbsp;<span onclick=del_action(119)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/119.shtml' target=_blank>/newscontent/119.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/119.shtml' target=_blank>119</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-23 11:17:07</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-23 10:49:41</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=118><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=gQ3cdgxcxrY-5I2NJ33hfPceCJpUg1573R0uYJ4.mrsBas8GK.LvJhBPum7w9nI9zxEqSR5xdu8FE.1v7-3CejV4A5kJZObbYtg58IxuD.n2BUM-FQi8iYpTc.RkyWVrcOB0wNnKyz3W.7HbQWe.vIRWNA5zUhZLfDjzM0sZtOadm5RspOlANgd.YA.gmVOvzU--'>查看</a>&nbsp;<a href='this_doc?--key--=CCZiOU54Kcg-PHqIag7S1-REpKbuITVJSBK8sqVZrwBUuhkTpHXPpav61.oXj2Man2Ou7zt.Mp2GaImsuVXtOUYiFbq3iVMbXY0p2D8Z9frRuSnA98q8fCJY7Vmtww.K5ihIoHt0eNQlr9nzRRPhG9p51CJ75E-8-x8Aa8y1FXFbI3d6SzQHmWifoGve6YSKsWRXm4blQ9TuSnuhllpPle2DtTPIUxrD171ppNwtOijV6TQGCXybx85sVj06do639xDwjbcphEt-TCW8eER4fEBh5ETPJS9pY900Nqoi08pJhH-s0IUSI4D--Pc7ZCYWV.wPR3vYHhgOshg1wzZiLS.fdGxJ20CX5-l64-RxR0Ejg.W2.xI2S6deeqj2KmXI777CE14zxeYX5iJfKy-tdXc06N0wNBe1YLjYuZ4UVpbcN8MeknsRCH5yJYXCXF3WO5flf0a6K0EWkNXWCZwzW-lkuiWKNrYzTPmJHq2gCdzcl.0cLmTkXik-'>修改</a>&nbsp;<span onclick=del_action(118)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/118.shtml' target=_blank>/newscontent/118.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/118.shtml' target=_blank>118</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-08 17:46:19</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-08 17:35:00</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=117><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=13IaBJKOtq2-B8h899pO6FTmkIb0QBop0f2V4WjG8RZDTGjNPRCyqWT4oUJkgjPfoWQwOFVc2ZbPF4UnFGQNhxIgVY9QtsS8KPfC-c6GLkwUhPaU9wzaAI2i7-hXXmlUPO5z.wKtUDJBpmY-70.M.RMfSGFAZkm5dT6xyoTY61Va8VjNXWe0z6KQW6qGMlA6R---'>查看</a>&nbsp;<a href='this_doc?--key--=4rWWfv6PAIk-Nju9QVB4wI9XbTOPeRlQ-1tK4zaV7.U.wAq89LNAhNCCJaJH3KuOm7Bh1ncO.gOtdrzfhVqgqVwpE9kfhwZWpQqjHcScXJS3AbWAbPCUU2I-zdWkj4QB0zL2n-QPdSZtW0dLzAvvfCjDC46MVr6wXIQy9gf3wAIrQC33Lu9X7u3MTJGf51HNbbcKSSDPrcDR0.SlhzAlTVzyZheF2zI-FE45Xqiz7yGZ.vopJnhzBrKg483cBTO50SKuFP853ZIv4rUBxOtOBei9LGT3h5AJ2NrpORNIPJ7TeaN3F0CZKcIHgdvVgaiUt5lp20Htsu-kx1R9OJe.9zp6dYNnF6juN9s0rtqO9o7T5hix2jid9MMj2rmQzLqWTkROTS9YJVBH8eq8b4dJ6PSHJVBhaCyLIx6S5v-zYgsOxJgsb8HcBVmom13L4bYZwNiNMMThUe73rgHfDcKn1uHmaSJRvfBL7hH5V3rF4uPLgf1e9yiRI2U-'>修改</a>&nbsp;<span onclick=del_action(117)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/117.shtml' target=_blank>/newscontent/117.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/117.shtml' target=_blank>117</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-08 17:44:52</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-08 17:33:40</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=116><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=8hVqYPe40Ak-cP7gMVjueuRZVyUeEB9NeQherAMMO4husthIVfi5HVUNKOiqbTkGMjttWr.SUGsucDLuMQmIufS8m9a4FxnaednMQv1UXZn0SkIBNg7UFZt.u-5DUr0kE4q4wlRtYlMHE9X5weD2EBf95HrqQfKWe0qYPBu9nIGxbw.K4Eq3FSgSvNzpMU0Vgk--'>查看</a>&nbsp;<a href='this_doc?--key--=JDwxmeb.7D6-y-Y7pjoEEGej.Ow36NWx-.mIrH5dJ6I9vxn62CZzS.hKvyFgB5HI0wgk8R1stQpLOIOallfRTZtE.88jqMPAzbbvOa1Een51djmIlHui0lV18yEuWyU2lG8Tnd3ThiiMUYxXykOt5qlMevcjNwG0QiFMvP.sNo8RjQpVUg7mN4qhBdsTRboYjE7vpEcd1iTnA9zrJFhlYTCvlaL3jFgs5cy.2iyF0aQsAMMV2Ax-dy6C0Rz2ZPq5T5akS.fwrlPJwKnzQqLpGRSbKDV-d5Ol2KtYabc42gxF7Kdn4sxW3jJehgNL3IvQZmy0M2ltU1C3CjdB6E71LyLDV0gIUeIKCfDYlejz1HB1OQ4xEfssQNl-cAaC7rDdZdeZkmxzhqLX4lPZ3cf-9Q6KEW.KQWEgq1VUEyagchdowfWd9OEucXZMiqTDXH2nKS0nmiJMDCM9mT-Ha8WMy5ln405seIVtnheyQvN.gJoXm7C37Y2Gv3s-'>修改</a>&nbsp;<span onclick=del_action(116)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/116.shtml' target=_blank>/newscontent/116.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/116.shtml' target=_blank>116</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-08 13:26:44</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-08 13:25:59</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=115><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=hxyL8sAszUs-tH45YbS.oe7-a77SEAqzW6aIUMeGdpSzD0PvMTDRZ4eNAMRtx4RUp7Yk3t2XROKnWTVS6E94haABVPNQ0xOdhBzDl96PRA7HZQZZqlskLQfLh.dUCLrHBLxS72CCjbaEP9R5W-GHxYYIGY17vdWKT5h4a.KjmCgo.VIW1L3HV5QliCYanLknyE--'>查看</a>&nbsp;<a href='this_doc?--key--=yDYzE3jal0Y-sJSG8uysqpZeMQ.Nt.7nv5WoO.Ir-n5wRBxQNI02-alAMNCvixSAGlBsmaeVbv3.lWvJgB.zuj00o1k8IEAM0ccc-YxbgJJvLRzHQeQHuLsuozgMLksA0CcgxlPYpAvUi8tQnwkqgJXSXUonHNd77xNh56jB7Gi2yVH-W0MvoGhYwFu45D4w-7TXjvWbo-b4tV5gwuEZrjb8lNHhW93syK.RS8NHzeh.8pnw0wdIfbD5i7vHLVT8jN8AcEq0-VD4Ochkj5cQz976EC78l4wm6K2SH71XgPrMlCm.o7c9.JaVrwIsf0plfSK8Gp4HASt-53U8xlOvzhEgWytsOqEVXfZsGksW21Xo8dwf8q4qu3l-zQ38Pdl10UazC9IS9vRUD7rAtoSh-HOPJiuX0N5Lq.aDPQO4rA9BLPiD9P04XWUeRDhqV7vURsswU3aBI8c9IeRuM4p.RzCSKMm9GwkCW7IQgwIYBlgXGV5DeMIBlko-'>修改</a>&nbsp;<span onclick=del_action(115)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/115.shtml' target=_blank>/newscontent/115.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/115.shtml' target=_blank>115</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-07 18:53:07</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-07 18:52:10</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=114><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=Hyd7aptwGHA-D2Zk4tGwrZJ51dIKvesOQDLaYEs5P1b8yQPFCvS-IHql8eez1SAoMehszekZYG6EUMReav.upfgashxMF8HknU9I7fu8e39n3u-4ZcL4G-6XJHOnfsOc0b41dQUilYzRa46pm-xoW8AAu0Z3.lYSv7kpUH2WAkftZNL-UhSwXH1X03d.s762CE--'>查看</a>&nbsp;<a href='this_doc?--key--=zd2le1HoH7w-QFdbv6EGaq-WpcR65SemXhCsnjvaGy3DOOo9UQh6KbMqTWe9Et6d3bjSeS593aQ8AMA-ZAnqZT1yvkKXngcKETaQT6t4Mk-vFL7CkY29otTmK8CNAzoxBfztjYGJw4jtZlsE62L4GRNN.KqAE9rgfyQBbUSLYskgzT9yVWL3L1NpkLDJTqu3SrSL-IEXzNKEYgXWWWeobe3IXuPhhvTnItJg.0ZUALDu5vMd6kCsQr7iHfJV1EIfBYVg3HCRk79P9TzDQlzcsR9Y3.ZRXzrL2hEgl4TckKuMVS65GLC64JggPpYDatWIfW3DMSRykhyULUxZYK.iQkA.kQUIONnKp3FQZwzA9ZleIkP.xQsridOGsEr-I1amMYk3c7HmLZ9atR89nq.s3bGPAMzpsJt3HKtjgYEK5jM9T2FbXhLpEifFlE8h4GbtvgsoE0u5VE.WQATB5bTeT9e1a257PKcM81TD8lrO6lTEOgqNjwvKPcE-'>修改</a>&nbsp;<span onclick=del_action(114)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/114.shtml' target=_blank>/newscontent/114.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/114.shtml' target=_blank>114</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-03 10:57:15</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-03 10:57:15</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=#D6D3CE width=10 height=20 ><input type=checkbox name=d_id value=113><input type=hidden name=published value=y></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >不需要</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='this_doc?--key--=uiWWUAfNXHM-Y4Znj1a7iA6d42-IHjH14jOgZVz56JZfV.YDJdBNXyzGWQSdam.1H5viOi--hrSPxcwYK7ZLXf32D7ddzvOkZkj4.tqkxCukhW3HqhqQZor4.XXxK.pmlnyw.UiifNC1MGEuz5pvfaUuy2ZHXWLD-A.AvHpDRayndzTMGRsMy7qkdfXudTwv.k--'>查看</a>&nbsp;<a href='this_doc?--key--=pg5UDw3rET2-rmtPMAexGKcIhRI7fuF3BSiv8pqxyDZGXq6IlxupmR99Sj30AxDHOs2WXnIL57hUrsIM5b-JITs7iBko0-1SNLl.noPuWpldwaEqYXaEXY1TC7yGYp3EPTNXXmcBK8M4QSXdgPvWOyoZU.Cuv02QWrxGLN5EqCUBoPLUPaYBNE9gBshiWu7VPc8nuD1abS0rUPbuejR-H5XiVuE.zAETzqRjlSUuYxRs8tYdpp-wW1alEMrPPm8y0iunSXxJDU3C0yU6O6vswaB0kCnOYxekU4P-G1428.L3r9Reykey0eqCaJgPx5LqVA6.lZBzMgK3dbXQNL0xB3LBPbT6DKio4OpLzVBjL1c2Yw00jflnHky5F.-ZqROVShaL-jjjvgArl3.TsrtStJJsXQWRu2.A-Ba8EArG3FGpNxL5-TL1-ZyeYjnZvLITmmWGYcsBDv5GFUmxq6YF3HLPV3ldOfz6qr9vYC70lI9dW.tFJqedI3I-'>修改</a>&nbsp;<span onclick=del_action(113)>删除</span></script><script name="igriddata" type="text/html" clsname="pt3"  height=30 ><a href='http://123.57.65.251:9163/newscontent/113.shtml' target=_blank>/newscontent/113.shtml</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 ><a href='http://123.57.65.251:9163/newscontent/113.shtml' target=_blank>113</a></script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >张英磊</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-02 17:03:52</script><script name="igriddata" type="text/html" clsname="pt2"  height=30 >2016-06-02 17:03:52</script></ipaggrid>
+<hr width=640>
+<ibuttongroups clsname="sel" width="640" align="center">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='number current'>1</span>
+&nbsp;<a href='' onclick='return movePage(self.document.form1,2);' class='number'>2</a>
+&nbsp;<a href='' onclick='return movePage(self.document.form1,3);' class='number'>3</a>
+&nbsp;<a href='' onclick='return movePage(self.document.form1,4);' class='number'>4</a>
+<a href='' onclick='return movePage(self.document.form1,2);'>下一页</a>
+&nbsp;&nbsp;<input type=text value='1' name=setpage size=6 onKeyDown='if(window.event.keyCode==13){if(this.value>4 || this.value<1) this.value=1; return movePage(self.document.form1,this.value);}'>
+
+&nbsp;&nbsp;页码：1 / 4 &nbsp;&nbsp;数目：96 &nbsp;&nbsp;<font color=red><b>&#60;本文档不需要审核&#62;</b></font>
+
+</ibuttongroups>
+
+<br>
+</imainframe>
+
+<script type="text/javascript" src="js/components.js"></script>
+</center>
+</form>
+</body>
+</html>
+

@@ -1,0 +1,7 @@
+/node_modules
+*.zip
+/bower_components
+.DS_Store
+/.idea
+/.project
+

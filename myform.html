@@ -1,0 +1,693 @@
+
+<html XMLNS:XS>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv='Pragma' content='no-cache'>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body bgcolor=#FFFFFF leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+<center>
+<form action='doc_new' onSubmit='return Validate();' method=post name=myform enctype=multipart/form-data>
+<input type=hidden name=target value=>
+<input type=hidden name=returnobject value=>
+<ibreadcrumb>您现在的位置:&gt;&gt;<a href='proj_list' class=title_navigator>内容中心</a>&gt;&gt;<a href='tmpl_list?--key--=S4c7KhqDxSg-ZyOpr9a2xfuDdVtTlvvSanXyhK0RBobfrh2J3ASp26gZTLRBkKCdOZjYYp7BU4O3sQ.KXIrOUuHoEwwoqxyDuk--' class=title_navigator>信租会官网</a>&gt;&gt;<a href='doc_list?--key--=b9JsqZC63r2-ceU5f0Q2U.6bF-KUMvH-TD6ZZ6s2cAKRb1d.2Uh7rh4R4ltvCFBnh8uN5bg2o4HtuDjQl7u7YeJXQdOiNOP1bsqqV-YOkuR6gPnC.F9HQHB663axeeLbqqjOL8RQQX3O' class=title_navigator>文档正文页</a>&gt;&gt;添加文档</ibreadcrumb>
+
+<br>
+<imainframe title="文档">
+
+<input type=hidden name='p_id' value=210>
+<input type=hidden name='p_cname' value='信租会官网'>
+<input type=hidden name='t_id' value=21>
+<input type=hidden name='t_name' value='testcontent'>
+<input type=hidden name='t_cname' value='文档正文页'>
+<input type=hidden name='audit_level' value=0>
+<input type=hidden name='if_workflow' value=n>
+<input type=hidden name='fieldvalues' value=''>
+<input type=hidden name='refervalues' value=''>
+<input type=hidden name='p_uri' value='http://wx.xinzuhui.com:9000/cgi-bin/publish/doc_list?--key--=ULLyQfMbo9I-D4m73NnpRcTQgv2Y610qGNclYOlYY2oPHx4rXiepHJs3nfn19DEC.--JSbN8YR.-NbM6rtfKbnbFZCrm1eeGwMOPmpS-ZxqF'>
+
+<input type=hidden name=pre_flag value=0>
+<input type=hidden name=pre_pm_id>
+<script language='JavaScript'>
+function previewedit(pm_id)
+{
+	document.myform.pre_flag.value=1;
+	document.myform.pre_pm_id.value=pm_id;
+	document.myform.submit();
+}
+</script>
+
+<script language='JavaScript' src='/publish/shared_func.js'>
+</script>
+
+<script language='JavaScript' src='/publish/public_func.js'>
+</script>
+<script language='JavaScript'>
+function switchURL(obj,index)
+{
+	var check_value = '';
+	var ref_url = '__url_outer_'+index;
+	var ref_url_value = '外部网站文章或本站文章全路径';
+	for(var i=0;i<obj.length;i++)
+	{
+		if(obj[i].checked)
+		{
+			check_value = obj[i].value;
+			break;
+		}
+	}
+	if(check_value == 'new_outer')
+	{
+		if(document.myform.elements[ref_url].value==ref_url_value)
+		{
+			document.myform.elements[ref_url].value='';
+		}
+		document.myform.elements[ref_url].focus();
+	}
+	else
+	{
+		if(document.myform.elements[ref_url].value=='')
+		{
+			document.myform.elements[ref_url].value=ref_url_value;
+		}
+	}
+}
+</script><ifieldintoform width="640">
+<div slot="iffname">一级分类</div>
+
+<select  id="_fieldvalue_first" name="_fieldvalue_first">
+<option value=''>--</option>
+</select>
+
+</ifieldintoform>
+
+					<script language=javascript>
+						tmp__fieldvalue_first=""; 
+					</script>
+
+					<script for=_fieldvalue_first event=onchange language=javascript>
+						if (document.myform._fieldvalue_second==null)
+						{
+							return;
+						}
+						if (tmp__fieldvalue_first=="") tmp__fieldvalue_first=document.myform._fieldvalue_second.outerHTML; 
+						document.myform._fieldvalue_second.outerHTML=tmp__fieldvalue_first; 
+						str1=document.myform._fieldvalue_first.options(document.myform._fieldvalue_first.selectedIndex).title;
+						for(i=0;i<document.myform._fieldvalue_second.length;){
+							str2=document.myform._fieldvalue_second.options(i).title;
+							if (str2.indexOf(str1,0)!=0){
+								document.myform._fieldvalue_second.remove(i);
+							}
+							else{
+								i++;
+							}
+						}
+					</script>
+
+<ifieldintoform width="640">
+<div slot="iffname">二级分类</div>
+
+<select  id="_fieldvalue_second" name="_fieldvalue_second">
+<option value=''>--</option>
+</select>
+
+</ifieldintoform>
+
+<ifieldintoform width="640">
+<div slot="iffname">标题</div>
+
+<input type=text id="_fieldvalue_Title" name="_fieldvalue_Title" value="" size="72">
+</ifieldintoform>
+
+<ifieldintoform width="640">
+<div slot="iffname">简介</div>
+
+<textarea id="_fieldvalue_sp_f89" name="_fieldvalue_sp_f89" cols="60" rows="15" wrap="virtual"></textarea>
+</ifieldintoform>
+
+<div unselectable='on' id='toolbar' style='position:absolute;display:none;'><ifieldintoform width="640">
+<div slot="iffname"></div>
+
+<?import namespace='XS' implementation='/htc/xsdhtmleditor.htc'/>
+<script language='javascript' src='/lib/button.js'></script>
+<script language='javascript'>
+var instancenum=0;
+var modeflag=true;
+var position=0;
+function setMenu(setPosition)
+{
+	if(setPosition !=position)
+	{
+		if(position>0)
+		{
+			eval("tabName=table"+position);
+			if (tabName.rows.length>0)
+			{
+				tabName.deleteRow(0);
+			}
+		}
+		
+		eval("tabName=table"+setPosition);
+		newtr=tabName.insertRow();
+		newtd=newtr.insertCell();
+		newtd.height=45;
+
+		eval("divlocate=locate"+setPosition);	
+		toolbar.style.top=divlocate.offsetTop;
+
+		toolbar.style.display="";
+		position=setPosition;
+	}
+}
+</script>
+							<select id='selectBlockFormat' 
+							  style='width=60; height=15px;font-size:9pt' onchange='mouseClick(this,position)'>
+                                <option value='<p>'>段落样式</option>
+                                <option value='<h1>'>标题1</option>
+                                <option value='<h2>'>标题2</option>
+                                <option value='<h3>'>标题3</option>
+                                <option value='<h4>'>标题4</option>
+                                <option value='<h5>'>标题5</option>
+                                <option value='<h6>'>标题6</option>
+                                <option value='<h7>'>标题7</option>
+                                <option value='<p>'>段落</option>
+                                <option value='<dl>|<dd>'>定义</option>
+                                <option value='<dl>|<dt>'>术语定义</option>
+                                <option value='<dir>|<li>'>目录列表</option>
+                                <option value='<menu>|<li>'>菜单列表</option>
+                                <option value='<pre>'>编排格式</option>
+                              </select><select id='selectFontName' style='width=80;height=15px' 
+							  onChange='mouseClick(this,position)'>
+                                <option value='' defaultselected=false >字体</option>
+                                <option value=''>宋体</option>
+                                <option value=''>黑体</option>
+                                <option value=''>楷体_GB2312</option>
+                                <option value=''>仿宋_GB2312</option>
+                                <option value=''>Arial</option>
+                                <option value=''>Arial Black</option>
+                                <option value=''>Arial Narrow</option>
+                                <option value=''>Courier New</option>
+                                <option value=''>Georgia</option>
+                                <option value=''>New Roman</option>
+                              </select><select id='selectFontSize' style='height=15px' 
+							  onChange='mouseClick(this,position)'>
+                                <option value='' defaultselected=false >字号</option>
+                                <option value=''>小小号</option>
+                                <option value=''>特小号</option>
+                                <option value=''>小号</option>
+                                <option value=''>中号</option>
+                                <option value=''>大号</option>
+                                <option value=''>特大号</option>
+                                <option value=''>超大号</option>
+                                <option value='42pt'>初号</option>
+                                <option value='36pt'>小初</option>
+                                <option value='26pt'>一号</option>
+                                <option value='24pt'>小一</option>
+                                <option value='22pt'>二号</option>
+                                <option value='18pt'>小二</option>
+                                <option value='16pt'>三号</option>
+                                <option value='15pt'>小三</option>
+                                <option value='14pt'>四号</option>
+                                <option value='12pt'>小四</option>
+                                <option value='10.5pt'>五号</option>
+                                <option value='9pt'>小五</option>
+                                <option value='7.5pt'>六号</option>
+                                <option value='5.5pt'>七号</option>
+                                <option value='5pt'>八号</option>
+                                <option value='5pt'>5</option>
+                                <option value='5.5pt'>5.5</option>
+                                <option value='6.5pt'>6.5</option>
+                                <option value='7.5pt'>7.5</option>
+                                <option value='8pt'>8</option>
+                                <option value='9pt'>9</option>
+                                <option value='10pt'>10</option>
+                                <option value='10.5pt'>10.5</option>
+                                <option value='11pt'>11</option>
+                                <option value='12pt'>12</option>
+                                <option value='14pt'>14</option>
+                                <option value='16pt'>16</option>
+                                <option value='18pt'>18</option>
+                                <option value='20pt'>20</option>
+                                <option value='24pt'>24</option>
+                                <option value='26pt'>26</option>
+                                <option value='28pt'>28</option>
+                                <option value='36pt'>36</option>
+                                <option value='48pt'>48</option>
+                                <option value='72pt'>72</option>
+                              </select><img id=separ1 
+							  src='/lib/images/separator.gif' hight=4 width=3 alt=''><img 
+							  class='coolButton' id=Bold src='/lib/images/b.gif' height=15							  width=15 alt='粗体' onclick='mouseClick(this,position)'><img 
+							  class='coolButton' id=Italic src='/lib/images/i.gif' height=15 
+							  width=15 border=0 alt='斜体' onclick='mouseClick(this,position)'><img 
+							  class='coolButton' id=Underline src='/lib/images/u.gif' hight=15 
+							  width=15 alt='下划线' onclick='mouseClick(this,position)'><img id=separ1 
+							  src='/lib/images/separator.gif' hight=4 width=3 alt=''><select id='selectFontName1' style='width=60;height=15px' 
+							  onChange='mouseClick(this,position);document.all.selectFontName1[0].selected=true;'>
+                                <option value='' defaultselected=false >格式</option>
+                                <option value=''>上标</option>
+                                <option value=''>下标</option>
+                                <option value=''>删除线</option>
+                                <option value=''>增加字体</option>
+                                <option value=''>减小字体</option>
+                              </select><img 
+							  class='coolButton' id=deleteformat src='/lib/images/unformat.gif' hight=15							  width=15 alt='取消格式' onclick='mouseClick(this,position)'><img id=separ1 
+							  src='/lib/images/separator.gif'  height=4 width=3 alt=''><img 
+							  class='coolButton' id='Undo' src='/lib/images/icon_undo.gif' hight=15 
+							  width=15 alt='撤消' onclick='mouseClick(this,position)'><img 
+							  class='coolButton' id='Redo' src='/lib/images/icon_redo.gif ' hight=15							  width=15 alt='重做' onclick='mouseClick(this,position)'><img id=separ1 
+							  src='/lib/images/separator.gif' hight=4 width=3 alt=''><img 
+							  class='coolButton' id=JustifyLeft src='/lib/images/left.gif' hight=15 
+							  width=15 alt='居左' onclick='mouseClick(this,position)'><img 
+							  class='coolButton' id=JustifyCenter src='/lib/images/center.gif' hight=15 
+							  width=15 alt='居中' onclick='mouseClick(this,position)' ><img 
+							  class='coolButton' id=JustifyRight  src='/lib/images/right.gif' hight=15 
+							  width=15 alt='居右' onclick='mouseClick(this,position)'><img id=separ1 
+							  src='/lib/images/separator.gif' hight=4 width=3 alt=''><img 
+							  class='coolButton' id=JustifyFull src='/lib/images/icon_justify.gif' hight=15 
+							  width=15 alt='分散' onclick='mouseClick(this,position)'><img 
+							  class='coolButton' id=Cut src='/lib/images/icon_cut.gif' hight=15 
+							  width=15 alt='剪切' onclick='mouseClick(this,position)'><img 
+							  class='coolButton' id=Copy src='/lib/images/icon_copy.gif' 
+							  hight=15 width=15 alt='复制' onclick='mouseClick(this,position)'><img 
+							  class='coolButton' id=Paste  src='/lib/images/icon_paste.gif' hight=15 
+							  width=15 alt='Html格式粘贴' onclick='mouseClick(this,position)'><img 
+							  class='coolButton' id=WordPaste  src='/lib/images/icon_word.gif' hight=15 
+							  width=15 alt='Word格式粘贴' onclick='mouseClick(this,position)'> <img 
+							  class='coolButton' id=Delete  src='/lib/images/delete.gif' hight=15 
+							  width=15 alt='删除' onclick='mouseClick(this,position)'><img id=separ1 
+							  src='/lib/images/separator.gif' hight=4 width=3 alt=''><img 
+							  class='coolButton' id=Hr src='/lib/images/hr.gif' hight=15 
+							  width=15 alt='横线' onclick='mouseClick(this,position)' ><img 
+							  class='coolButton' id='Loadlink' src='/lib/images/icon_link.gif' hight=15 
+							  width=15 alt='链接' onClick='mouseClick(this,position)'><img 
+							  class='coolButton' id='LoadTablePanel' src='/lib/images/table.gif ' hight=15 
+							  width=15 alt='表格' onClick='mouseClick(this,position)'> <img id=separ1 
+							  src='/lib/images/separator.gif ' hight=4 width=3 alt=''><img 
+							  class='coolButton' id='LoadColorBKGPanel' src='/lib/images/colorpen.gif ' hight=15 
+							  width=15 alt='背景色' onClick='mouseClick(this,position)'><img 
+							  class='coolButton' id='LoadColorPanel' src='/lib/images/fontcolor.gif ' hight=15 
+							  width=15 alt='画笔色' onClick='mouseClick(this,position)'> <img id=separ1 
+							  src='/lib/images/separator.gif' hight=4 width=3 alt=''><img 
+							  class='coolButton' id=Outdent src='/lib/images/outdent.gif' hight=15 
+							  width=15 alt='微调左移' onclick='mouseClick(this,position)'><img 
+							  class='coolButton' id=Indent src='/lib/images/indent.gif' hight=15 
+							  width=15 alt='微调右移' onclick='mouseClick(this,position)'> <img id=separ1 
+							  src='/lib/images/separator.gif' hight=4 width=3 alt=''><img 
+							  class='coolButton' id=InsertOrderedList src='/lib/images/ol.gif' hight=15 
+							  width=15 alt='插入顺序号' onclick='mouseClick(this,position)'><img 
+							  class='coolButton' id=InsertUnorderedList src='/lib/images/ul.gif' hight=15 
+							  width=15 alt='插入非序号' onclick='mouseClick(this,position)'><img 
+							  class='coolButton' id='PageBreak' src='/lib/images/link.gif ' hight=15 
+							  width=15 alt='分页' onClick='mouseClick(this,position)'><img 
+							  class='coolButton' id='Upfile' src='/lib/images/upfile.gif ' hight=15 
+							  width=15 alt='上载' onClick='mouseClick(this,position)'><img 
+							  class='coolButton' id='LoadImagePanel' src='/lib/images/image.gif' hight=15 
+								  width=15 alt='图片' onClick='mouseClick(this,position)'>
+<img class='coolButton' id='insFlash' src='/lib/images/flash.gif' hight=15 width=15 alt='插入FLASH' onclick='mouseClick(this,position)'>
+<img class='coolButton' id='insMedia' src='/lib/images/media.gif' hight=15 width=15 alt='插入视频' onclick='mouseClick(this,position)'>
+
+</ifieldintoform>
+</div>
+<script language='javascript'>
+instancenum++;
+var fulledit__fieldvalue_content=new Array(
+
+new Array("扩展构件","extendjsplugin","资源模板","window.open('/cgi-bin/publish/doc_list?p_id=210&p_cname=信租会官网&t_id=2','resource_wizard','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes');","./images/source.gif",1)
+)
+</script>
+<ifieldintoform width="640">
+<div slot="iffname">正文内容<br>
+<input type=button name=format_btn__fieldvalue_content title='对右边HTML正文内容中的链接、HTML代码进行快递排版和筛除' class=leftinput value='自动排版' onClick="document.myform._fieldvalue_content.value=format_html(document.myform._fieldvalue_content.value,1);document.myform._fieldvalue_content.onchange(); "><br>
+<script language='javascript'>
+document.write("<input type=button name=format_preview__fieldvalue_content title='使用默认可视化编排工具填写内容' class=leftinput value='全屏编辑' onClick=\"text_preview(document.myform._fieldvalue_content.value,'xsEditor"+instancenum+".content','CTXT', fulledit__fieldvalue_content);\">");
+</script>
+
+<input type=hidden name=_rel_result__fieldvalue_content_p_id value=210><br>
+
+<input type=hidden name=_rel_result__fieldvalue_content_t_id value=21><br>
+
+<input type=hidden name=_rel_result__fieldvalue_content_language value='cn'>
+</div>
+
+<textarea name=_fieldvalue_content style='display:none'></textarea>
+<IFRAME ID='ewebedit__fieldvalue_content' src='/ewebedit/ewebeditor.htm?id=_fieldvalue_content' frameborder=0 scrolling=no width=513 height=300></IFRAME>
+
+</ifieldintoform>
+
+<ifieldintoform width="640">
+<div slot="iffname">图片</div>
+
+<input type=file id="_fieldvalue__poly_picture" name="_fieldvalue__poly_picture" value="" size=60>
+</ifieldintoform>
+
+<ifieldintoform width="640">
+<div slot="iffname">
+相关文章<br>
+<input type=hidden name=_rel_result__fieldvalue_sp_f111_total value='yes'>
+<input type=hidden name=_rel_result__fieldvalue_sp_f111_line value='25'>
+<input type=hidden name=_rel_result__fieldvalue_sp_f111_bn value='1'>
+<input type=hidden name=_rel_result__fieldvalue_sp_f111_offset value='0'>
+<input type=hidden name=_rel_result__fieldvalue_sp_f111_t_name value='datasum_of_48_pid'>
+搜索范围<br><select name=_rel_result__fieldvalue_sp_f111_mode size=1 style='width:100'>
+<option value='{subject}' selected>{subject}</option>
+<option value='{content}' >{content}</option>
+<option value='{classify}' >{classify}</option>
+<option value='{subject}.{content}' >{subject}.{content}</option>
+</select><br>
+<br>多个AND:+,OR:-组成的关键字<br><input size=10 type=text name=_rel_result__fieldvalue_sp_f111_key value=''><br>
+<input type=hidden name=_rel_result__fieldvalue_sp_f111_display value='{doc_id}&#32;&#60;a&#32;href={doc_url}&#32;target=_blank&#62;&#60;MakeRed&#62;{subject}&#60;/MakeRed&#62;&#60;/a&#62;'>
+<input type=hidden name=_rel_result__fieldvalue_sp_f111_retvalue value='&#60;a&#32;href={doc_url}&#62;{subject}&#60;/a&#62;&#60;br&#62;'>
+<input type=hidden name=_rel_result__fieldvalue_sp_f111_title value='相关文章搜索：|10'>
+<input type=button name=btnCommand value='搜索' onClick="do_Rel_Result('/cgi-bin/publish/www_agent', 'http://10.171.101.239:9000/cgi-bin/publish/rel_report', self.document.myform, '_fieldvalue_sp_f111', '相关文章');">
+<input type=button name=format_preview__fieldvalue_sp_f111 value='排' onClick="text_preview(document.myform._fieldvalue_sp_f111.value,'document.myform._fieldvalue_sp_f111.value','RELT'); ">
+
+<input type=hidden name=_rel_result__fieldvalue_sp_f111_p_id value=210><br>
+
+<input type=hidden name=_rel_result__fieldvalue_sp_f111_t_id value=21><br>
+
+<input type=hidden name=_rel_result__fieldvalue_sp_f111_language value='cn'>
+</div>
+
+<textarea id="_fieldvalue_sp_f111" name="_fieldvalue_sp_f111" cols="70" rows="15" wrap="virtual"></textarea>
+</ifieldintoform>
+
+<ifieldintoform width="640">
+<div slot="iffname">重要度</div>
+
+<input type=text id="_fieldvalue_sp_f90" name="_fieldvalue_sp_f90" value="" size="72" onChange="return jsNumberCheck(self.document.myform._fieldvalue_sp_f90);">
+
+</ifieldintoform>
+
+<ifieldintoform width="640">
+<div slot="iffname">发往内网</div>
+<select id="_fieldvalue_sp_f91" name="_fieldvalue_sp_f91"><option title='' value='1'>是</option>
+<option title='' value='0'>否</option>
+
+	</select>
+	
+</ifieldintoform>
+
+<input type=hidden name=f_namelist value='一级分类,二级分类,标题,简介,正文内容,图片,相关文章,重要度,发往内网'><ifieldintoformdevidor width="640" height="30" align="center">
+<font color=white><b>gb样式<SELECT  name=__selectstyle_1>
+<OPTION selected value=1>默认风格</OPTION>
+</SELECT>选择设置 </b></font><input type=button value='预编辑' onClick='previewedit(1);'>
+</ifieldintoformdevidor>
+<ifieldintoform width="640">
+<div slot="iffname">静态url</div>
+
+	<input type=radio name='__urlradio_1' value='default' checked onclick='switchURL(document.myform.__urlradio_1,1);'>
+
+	<input type=text name='__url_1' class=url size=30 value='/content/${docid}.shtml'>
+
+<input type=radio name='__urlradio_1' value='new_outer' onclick='switchURL(document.myform.__urlradio_1,1);'>
+
+<input type=text name='__url_outer_1' class=url size=30 value='外部网站文章或本站文章全路径' onblur='if(this.value.length>0 && this.value.indexOf("http")<0){alert("引用本地网站内容请补全该网站外部访问地址!");}'>
+
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">发布方式</div>
+
+<input type=radio name='pub_type' value='0'>即时合成发布&nbsp;<input type=radio name='pub_type' value='1'>提交给后台发布&nbsp;<input type=radio name='pub_type' value='2'>只入库不合成&nbsp;<input type=radio name='pub_type' value='3' checked>只合成不发布&nbsp;
+</ifieldintoform>
+<ibuttongroups clsname="info_url" width="640" align="center">
+<hr width=640>
+<input class=butnsubmit type=submit name=mysubmit value='  提 交'>
+<input class=butnreset type=reset name=myreset value='  重 写'>
+<input class=butnback type=button value='  返 回' onClick='history.back();'>
+<p></p>
+
+</ibuttongroups>
+
+<script language='JavaScript'>
+function getEscapeValue(val)
+{//yyq 20020805
+	if(val==null || val=='') val='';
+	val=val.replace(/&/g,"&amp;");
+	val=val.replace(/</g,"&lt;");
+	val=val.replace(/>/g,"&gt;");
+	val=val.replace(/"/g,"&quot;");
+	return val;
+}
+
+function do_Rel_Result(agent, cgi, form, target, title, winproperty)
+{
+	if(agent.indexOf("http://",0) != 0) 
+	{
+		tmpString="http://" + self.location.host;
+		if(agent.indexOf("/",0) != 0)
+		{
+			tmpString+="/";
+		}
+		tmpString+=agent;
+		agent=tmpString;
+	}
+	if(cgi.indexOf("http://",0) != 0) 
+	{
+		tmpString="http://" + self.location.host;
+		if(cgi.indexOf("/",0) != 0)
+		{
+			tmpString+="/";
+		}
+		tmpString+=cgi;
+		cgi=tmpString;
+	}
+
+	var collection= form.elements;
+	var browse;
+	var strName;
+	var keyArray = new Array();
+	regExp = new RegExp(target+'_','ig');
+	if(collection != null)
+	{
+		var j = 0;
+		for(var i=0;i<collection.length; i++)
+		{
+			var ele = form.elements[i];
+			strName = ele.name;
+			if((strName.indexOf('_rel_result_') != -1) && (strName.indexOf(target) != -1))
+			{
+				if(ele.value == '')
+				{
+					alert('请对参数值完成输入!');
+					if(ele.type != 'hidden')
+					{
+						ele.focus();
+					}
+					return false;
+				}
+				keyArray[j] = strName;
+				j++;
+		    	}
+		}
+	}
+		
+	var newwin;
+	var win_name = 'rel_result_win';
+	var key_element;
+	var screen_width = window.screen.width;
+	var screen_height = window.screen.height;
+	var left = (screen_width - 600)/2;
+	var top = (screen_height - 400)/2;
+	var property;
+	if(winproperty){
+		property = winproperty;
+	}else{
+		property = 'scrollbars=yes,height=400,width=640,status=yes,resizable=yes,toolbar=yes,menubar=no,location=no';
+	}
+	property = property + ',top='+top+',left='+left;
+		
+	if(navigator.appName.indexOf('Netscape') != -1)
+	{
+		newwin=window.open('', win_name, property);
+  	}
+	else
+	{ 
+		if(self.newwin != null)
+		{
+			self.newwin.close();
+			newwin=window.open('', win_name, property);
+		}
+		else
+		{
+			newwin=window.open('', win_name, property);
+		}
+	}
+		
+	b_agent=navigator.appName;
+	if(b_agent == 'Netscape')
+	{
+		browse = 'Netscape';
+	}
+	else
+	{
+		browse = 'IE';
+	}
+	
+	var html_code = '';	
+	newwin.focus();
+	html_code += '<html>\n';
+	html_code += '<head>\n';
+	html_code += '<title>' + title + '</title>\n';
+	html_code += '<meta http-equiv="Pragma" content="no-cache">\n';
+	html_code += '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">\n';
+	html_code += '</head>\n';
+	html_code += '<body>\n';
+	html_code += '<form method=post name=this_form action="'+ agent +'">\n';
+	html_code += 'Please Waiting.....\n';
+	
+	for(i=0;i<keyArray.length;i++)
+	{
+		var current_object;
+		key_element = new String(keyArray[i]);
+		key = key_element.replace(/_rel_result_/,'');
+		key = key.replace(regExp,'');
+		current_object = form.elements[key_element];
+		type = current_object.type;
+		if(type == 'select')
+		{
+			key_value = current_object.options[current_object.selectedIndex].value;
+		}
+		else
+		{
+			key_value = current_object.value;
+			if(type == 'hidden')
+			{
+				var form_element = '';
+				if(b_agent == 'Netscape')
+				{
+					var start_pos = key_value.indexOf('${');
+					var end_pos = key_value.indexOf('}');
+					if((start_pos != -1) && (end_pos != -1) && (end_pos > start_pos + 2))
+					{
+						form_element = key_value.substring(start_pos+2,end_pos);
+					}
+				}
+				else
+				{
+					var re = new RegExp('^\${(.*)}$');
+					var arr = re.exec(key_value);
+					form_element = RegExp.$1;
+				}
+				if(form_element != '')
+				{
+					form_element = '_fieldvalue_'+form_element;
+					var my_current_object = form.elements[form_element];
+					var form_element_type = my_current_object.type;
+					if(form_element_type == 'select')
+					{
+						key_value = my_current_object.options[my_current_object.selectedIndex].value;
+					}
+					else
+					{
+						key_value = my_current_object.value;
+					}
+				}
+			}
+		}
+		
+		key_value = getEscapeValue(key_value);
+			
+		html_code += '<input type=hidden name="' + key +  '" value="' + key_value + '">\n';
+	}
+		
+	html_code += '<input type=hidden name="cgi"' + ' value="' + cgi + '">\n';
+	html_code += '<input type=hidden name="target"' + ' value="' + target + '">\n';
+
+	target_value = getEscapeValue(form.elements[target].value);
+
+	html_code += '<textarea name="' + target +  '" style="display:none">' + target_value + '</textarea>\n';
+	html_code += '<input type=hidden name="browse" value="' + browse+ '">\n';
+	html_code += '</form>\n';
+	html_code += '</body>\n';	
+	html_code += '<script language="JavaScript">\n';
+	html_code += 'document.this_form.submit();\n';
+	html_code += '</' + 'script>\n';
+	html_code += '</html>\n';
+	
+	document.form_trans.target = win_name;
+	document.form_trans.html_code.value = html_code;
+	document.form_trans.submit();
+	
+	return true;
+}
+</script>
+
+
+<script language=javascript>
+var submit_flag=false;
+function Validate()
+{
+	if(submit_flag)
+	{
+		window.alert('本页面已经提交，按“确定”按钮返回。');
+		return false;
+	}
+	
+	var fields=new Array;
+	var prompts=new Array;
+	var types=new Array;
+
+	fields[0]='Title';
+	prompts[0]='标题';
+	types[0]='Title';
+
+	var form=document.myform;
+	var who;
+	var index;
+	var len = form.elements.length;
+	
+	for (var i=0; i<fields.length;i++)
+	{
+		for(k=0;k<len;k++)
+		{
+			who=form.elements[k];
+			if(who.name == '_fieldvalue_'+fields[i])
+			{
+				if(types[i] == 'Static_Select' || types[i] == 'Dynamic_Select')
+				{
+					if(who.options[who.selectedIndex].value=='')
+					{
+						window.alert(prompts[i]+'不能为空，请填写！');
+						if(who.type != 'hidden' && who.style.display!='none')
+						{
+							who.focus();
+						}
+						return false;
+					}
+				}
+				else if((types[i]=='Integer' || types[i]=='Title' || types[i] == 'CommonText' || types[i]=='Typeset_Text' || types[i]=='Extra_Plugin') && who.value=='')
+				{
+					window.alert(prompts[i]+'不能为空，请填写！');
+					if(who.type != 'hidden' && who.style.display!='none')
+					{
+						who.focus();
+					}
+					return false;
+				}
+				
+				break;
+			}
+		}
+	}
+
+	submit_flag=true;
+	return true;
+}
+
+</script>
+
+</imainframe>
+
+<script type="text/javascript" src="js/components.js"></script>
+</form>	
+</center>
+
+<form action='print_html' method=post name='form_trans'>
+<input type=hidden name='html_code' value=''>
+</form>
+
+</body>
+</html>
+
