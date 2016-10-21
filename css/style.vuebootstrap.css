@@ -1,0 +1,134 @@
+@import url("bootstrap.css"); 
+
+body{
+    padding:0 20px 0;
+}
+a{
+    font-size: 14px;
+}
+b{
+	color: gray;
+}
+br,hr{
+    display: none;
+}
+.butnsubmit{
+    margin: 10px 0;
+}
+.breadcrumb,.container{
+    text-align: left;
+}
+.table-1{
+    margin: 0;
+}
+.form-textarea{
+    width: 100%;
+}
+.navbar-default{
+    margin-bottom: 0;
+    height: 30px;
+}
+.btn-group{
+    display: flex;
+    justify-content: center;    
+} 
+.dropdown-toggle{
+	margin: 0 16px;
+}
+.status1{
+    justify-content: flex-start;
+ }
+.btn1{
+    margin: 0 5px;
+}
+.input-group{
+    width: 100%;
+    margin: 1px 0;
+    height: 28px;
+    /*line-height: 28px;*/
+}
+/*.input-group .inp-radio{
+    position: relative;
+     top:6px;
+     margin-left: 4px;
+     margin-right: 4px;
+     
+}*/
+.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle){
+	border-top-right-radius:0;
+	border-bottom-right-radius:0;
+}
+.btn-group>.btn:last-child:not(:first-child){
+	border-top-left-radius:0;
+	border-bottom-left-radius:0;
+}
+.input-group-addon{
+    width: 15%;
+}
+.input-group1 .form-control{
+    width: 45%;
+}
+.form-control::-webkit-input-placeholder{
+    color: #000;
+}
+
+.input-group-addon:first-child{
+    border-right: 1px solid #ccc;
+}
+.input-group .url{
+	width: 46%;
+	height: 28px;
+}
+#_fieldvalue_id{
+	height: 28px;
+}
+.input-group #_fieldvalue_name,#_fieldvalue_id{
+	width: 100%;
+}
+
+#page-header-1{
+    margin-top: 0;
+}
+.status,.status_td_left{
+    line-height: 30px;
+    margin:0 80px 0 80px;
+}
+
+.list-group-item input{
+    display: inline-block;
+    width:16%;
+}
+.list-group-item span{
+    display: inline-block;
+    width:30%;
+    text-align: left;
+}
+.list-group-item .right{
+    border-left:1px solid black;
+    order-right:1px solid black;
+}
+.dropdown input{
+    height:32px;
+    border-radius: 6px;
+    margin: 0 16px;
+}
+.dropdown{
+    text-align: center;
+    margin: 10px 0;
+    line-height: 32px;
+}
+.dropdown button{
+    margin:0 12px 0;
+}
+.table td:nth-of-type(3){
+	text-align: left;
+}
+.panel-default th,td{
+    text-align: center;
+}
+.well div{
+    display: inline-block;
+}
+.well{
+    text-align: center;
+}    

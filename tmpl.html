@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html xmlns="">
+<head>
+<title>Untitled Document</title>
+<meta http-equiv='Pragma' content='no-cache'>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+<script language='JavaScript' src='/publish/shared_func.js'>
+</script>
+
+<script language='JavaScript' >
+
+function addStyle(tabName,htmlName,stylename,pm_id)
+{
+newtr=tabName.insertRow();
+newtd=newtr.insertCell();
+htmlName1=htmlName+ "_" + (tabName.rows.length-1);
+newtd.innerHTML="风格名称:"+ stylename.value +"，<br>"+"<TEXTAREA name=" + htmlName + "_" + (tabName.rows.length-1) + " rows=16 cols=68% ONSELECT='storeCaret(this);' onCLICK='storeCaret(this);' onKEYUP='storeCaret(this);' onfocus='curHtml_"+pm_id+"=this;'></TEXTAREA><input type=hidden name=" +htmlName + "_" + (tabName.rows.length-1) + "_name value='" + stylename.value +"'>";
+}
+
+function delStyle(tabName,styleNO)
+{
+if (confirm("你真的要删除该风格吗？")) {
+	stNO=styleNO.value;
+	if (stNO>1 && stNO<(tabName.rows.length+1)) tabName.deleteRow(stNO-1);
+	else alert("无法删除！");
+}
+}
+
+function setDefaultStyle(tabName,styleNO)
+{
+stNO=styleNO.value;
+if (stNO>0 && stNO<(tabName.rows.length+1)){
+	op=window.prompt('默认风格的html代码将被替换否则将进行交换?','yes');
+
+	var tmpary1=tabName.id.split("_");
+	var obj1html,obj2html;
+	eval("obj1html=document.myform.html_"+tmpary1[1]);
+	eval("obj2html=document.myform.html_"+tmpary1[1]+"_"+(stNO-1));
+
+	if(op=='yes') 
+	{	
+		obj1html.value=obj2html.value;
+	}
+	else
+	{
+		tmphtml=obj1html.value;
+		obj1html.value=obj2html.value;
+		obj2html.value=tmphtml;
+		
+	}
+}
+
+}
+
+function storeCaret(textEl){ 
+	if(textEl.createTextRange) 
+	textEl.caretPos=document.selection.createRange().duplicate(); 
+}
+function insertAtCaret(textEl,text){
+	if(textEl.createTextRange && textEl.caretPos){
+		var caretPos=textEl.caretPos; 
+		caretPos.text=caretPos.text.charAt(caretPos.text.length-1)==""?text +"":text; 
+	} 
+	else 
+	textEl.value=text;
+}
+</script>
+
+</head>
+<body bgcolor=#FFFFFF leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+<form method=post name=myform onSubmit='return Validate();' action='tmpl_new'>
+<center><ibreadcrumb>您现在的位置:&gt;&gt;<a href='proj_list' class=title_navigator>内容中心</a>&gt;&gt;<a href='tmpl_list?--key--=xAX5Z6Hdc2c-h1fitbl4tUIQQV3sedJc7NUIGZNLXx3zNVv.9JrJ6KO9KNvdo1AVU2zCmbFlF4wDssltaUv7h9vW6KdeJCSNaE--' class=title_navigator>信租会官网</a>&gt;&gt;<a href='unvs_list?p_id=210&p_cname=信租会官网&t_name=temp' class=title_navigator>模板列表</a>&gt;&gt;创建模板</ibreadcrumb>
+
+<br>
+<imainframe title="模板维护">
+
+<input type=hidden name=p_id value='210'>
+<input type=hidden name=p_cname value='信租会官网'>
+<input type=hidden name=t_id value='0'>
+<input type=hidden name=p_uri value='unvs_list?p_id=210&#38;p_cname=信租会官网&#38;t_name=temp'>
+<script language=javascript>
+	var submit_flag=false;
+	var previewed = false;
+	function Validate()
+	{
+		if(submit_flag)
+		{
+			window.alert('本页面已经提交，按“确定”按钮返回。');
+			return false;
+		}
+		
+		if(previewed == false)
+		{
+			if(confirm('你还没有预览模板!确定提交吗?') == false)
+			{
+				return false;
+			}
+		}
+		parent.t_id='';
+		submit_flag=true;
+		return true;
+	}
+
+	function copyfieldnameclick(pm_id)
+	{
+		eval('id =document.myform.fieldlist_' + pm_id + '.selectedIndex');
+		if(id>=0)
+		{
+			eval('value=document.myform.fieldlist_' + pm_id + '.options[id].text')
+			if(value.charAt(0)=='$')
+			{
+				eval('document.myform.copyfieldname_' + pm_id + '.value = value')
+			}
+		}
+	}
+
+	function insertfieldnameclick(pm_id)
+	{
+		eval('curHtml=curHtml_'+pm_id);
+		if(curHtml!=null) 
+		{
+			eval('id =document.myform.fieldlist_' + pm_id + '.selectedIndex');
+			if(id>=0)
+			{
+				eval('value=document.myform.fieldlist_' + pm_id + '.options[id].text')
+				if(value.charAt(0)=='$')
+				{
+					insertAtCaret(curHtml, value);
+				}
+			}
+		}
+	}
+	
+	function autocleanpageview(objhtml)
+	{
+		if(objhtml!=null) 
+		{
+			eval('curhtml=document.myform.'+objhtml);
+
+			eval("var tmpreg=/<PAGEVIEW [^>]*>([\\w\\W]*?)<\\\/PAGEVIEW>/g");
+			
+			curhtml.value=curhtml.value.replace(tmpreg, "$1");
+
+			eval("var tmpreg=/<MAINPTD [^>]*>/");
+			
+			curhtml.value=curhtml.value.replace(tmpreg, "");
+
+		}
+	}
+
+	var docPtdTag;
+	var mdularray;
+	function autosetpageview(objhtml, poly)
+	{
+		if(objhtml!=null) 
+		{
+			eval('curhtml=document.myform.'+objhtml);
+			var curDocPtdTag=docPtdTag.replace('${pm_id}', poly);
+			eval("var tmpreg=/<MAINPTD [^>]*>/");
+			if(tmpreg.test(curhtml.value))
+			{
+				curhtml.value=curhtml.value.replace(tmpreg, curDocPtdTag);
+			}
+			else
+			{
+				insertAtCaret(curhtml, curDocPtdTag);
+			}
+			posMainptd=curhtml.value.indexOf(curDocPtdTag);
+			var toSethtml=curhtml.value.substr(posMainptd, curhtml.value.length-posMainptd);
+			var i,j;
+			var regs=new Array(/<PAGEVIEW[\w\W]*?<\/PAGEVIEW>/gi, /<SCRIPT[\w\W]*?<\/SCRIPT>/gi, /<OBJECT[\w\W]*?<\/OBJECT>/gi, /<!--# [^>]+?>/gi, /<[^>]+?>/gi);
+			var _array;
+			var newValue;
+			for(j=0;j<regs.length;j++)
+			{
+				_array=toSethtml.match(regs[j]);
+				if(_array!=null)
+				{
+					for(i=0;i<_array.length;i++)
+					{
+						if(_array[i].indexOf("${")>0)
+						{
+							newValue=_array[i].replace(/\${/g, "__NOTPAGEVIEWMDUL__{");
+							toSethtml=toSethtml.replace(_array[i], newValue);
+						}
+					}
+				}
+			}
+			var tmpreg=new RegExp("<([^ ]+?) id=ajaxbegin_([^>]+?)>(\\${[^}]+?})<\/\\1>","i");
+			var res;
+			while((res=tmpreg.exec(toSethtml))!=null)
+			{
+				for(i=0;i<=mdularray.length-1;i++)
+				{
+					if(mdularray[i][0]==res[3]) break;
+				}
+				newValue=mdularray[i][1].replace("$$", res[0]).replace(/\${/g, "__NOTPAGEVIEWMDUL__{");
+				toSethtml=toSethtml.replace(res[0], newValue);
+			}
+			for(i=0;i<=mdularray.length-1;i++)
+			{
+				eval("var tmpreg=/"+mdularray[i][0].replace('$','\\$').replace('/','\\/')+"/g");
+				newValue=mdularray[i][1].replace("$$", mdularray[i][0]);
+				toSethtml=toSethtml.replace(tmpreg, newValue);
+			}
+			toSethtml=toSethtml.replace(/__NOTPAGEVIEWMDUL__{/g, "${");
+			curhtml.value=curhtml.value.substr(0, posMainptd)+toSethtml;
+			curhtml.value=curhtml.value.replace(curDocPtdTag, "");
+		}
+	}
+
+	function displaycontrol()
+	{
+		var audit_id;
+		audit_id=eval(document.myform.audit_level.selectedIndex);
+		if(audit_id==4)
+		{
+			someParagraph.style.display="";
+		}
+		else
+		{
+			someParagraph.style.display="NONE";
+		}
+	}
+
+	function mudl_maintain(mdul_name)
+	{
+		var opUrl="mdul?p_id=210&p_cname=%E4%BF%A1%E7%A7%9F%E4%BC%9A%E5%AE%98%E7%BD%91&t_id=0&";
+		if(mdul_name)
+		{
+			opUrl=opUrl+"op=U&mdulname="+encodeURI(mdul_name.substr(2,mdul_name.length-3));
+		}
+		else
+		{
+			opUrl=opUrl+"op=I";
+		}
+		window.open(opUrl, 'main', '');
+	}
+
+</script><script language=javascript>
+	function genCollectModule()
+	{
+		id =document.myform.moduleConstlist.selectedIndex;
+		value=document.myform.moduleConstlist.options[id].value;
+		if(value!='')
+		{
+			var value_array=value.split(':');
+			document.myform._rel_result_moduleConst_id.value = value_array[1];
+			if(value_array[0]=='1')
+			{
+				do_Rel_Result('/www_agent', '/gen_client_collect_page', self.document.myform, 'moduleConst', '页面表现');
+			}
+			else
+			{
+				do_Rel_Result('/www_agent', '/gen_proj_collect_page', self.document.myform, 'moduleConst', '页面表现');
+			}
+		}
+	}
+	
+</script><input type=hidden name='old_audit_level' value=0>
+<ifieldintoformdevidor width="640" height="20" align="left">
+&nbsp;&nbsp;模板名称
+</ifieldintoformdevidor>
+<ifieldintoform width="640">
+<div slot="iffname">中文名称</div>
+<input type=text name=cname value=''>
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">英文名称</div>
+<input type=text name=ename value=''>
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">表名称(可不填)</div>
+<input type=text name=t_name value=''>
+</ifieldintoform>
+<ifieldintoformdevidor width="640" height="20" align="left">
+&nbsp;&nbsp;参数设置
+</ifieldintoformdevidor>
+<ifieldintoform width="640">
+<div slot="iffname">是否文章模板</div>
+
+<select name=if_article size=1>
+
+<option value='y'>是</option>
+<option value='n' selected>否</option>
+
+</select>
+
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">是否隐藏</div>
+
+<select name=if_hide size=1>
+
+<option value='y'>是</option>
+<option value='n' selected>否</option>
+
+</select>
+
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">是否进行工作统计</div>
+
+<select name=if_statistic size=1>
+
+<option value='y'>是</option>
+<option value='n' selected>否</option>
+
+</select>
+
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">显示顺序</div>
+
+<input type=text name=showorder size=4 value='0'>
+
+</ifieldintoform>
+
+<script language=javascript>
+var fulledit=new Array(
+
+new Array("公共常量","constvar","项目号","return INTRINSICS_onclick('&lt;BUTTON&gt$:projid&lt;/BUTTON&gt;')","",1),
+new Array("公共常量","constvar","项目中文名","return INTRINSICS_onclick('&lt;BUTTON&gt$:p_cname&lt;/BUTTON&gt;')","",1),
+new Array("公共常量","constvar","项目英文名","return INTRINSICS_onclick('&lt;BUTTON&gt$:p_ename&lt;/BUTTON&gt;')","",1),
+new Array("公共常量","constvar","模板号","return INTRINSICS_onclick('&lt;BUTTON&gt$:tempid&lt;/BUTTON&gt;')","",1),
+new Array("公共常量","constvar","文档号","return INTRINSICS_onclick('&lt;BUTTON&gt$:docid&lt;/BUTTON&gt;')","",1),
+new Array("公共常量","constvar","编辑","return INTRINSICS_onclick('&lt;BUTTON&gt$:creator&lt;/BUTTON&gt;')","",1),
+new Array("公共常量","constvar","创建日期","return INTRINSICS_onclick('&lt;BUTTON&gt$:createdate&lt;/BUTTON&gt;')","",1),
+new Array("公共常量","constvar","创建时间","return INTRINSICS_onclick('&lt;BUTTON&gt$:createtime&lt;/BUTTON&gt;')","",1),
+new Array("公共常量","constvar","编审","return INTRINSICS_onclick('&lt;BUTTON&gt$:mender&lt;/BUTTON&gt;')","",1),
+new Array("公共常量","constvar","修改日期","return INTRINSICS_onclick('&lt;BUTTON&gt$:savedate&lt;/BUTTON&gt;')","",1),
+new Array("公共常量","constvar","修改时间","return INTRINSICS_onclick('&lt;BUTTON&gt$:savetime&lt;/BUTTON&gt;')","",1),
+new Array("全局变量","globalvar","commoncss","return INTRINSICS_onclick('&lt;BUTTON&gt$G:commoncss&lt;/BUTTON&gt;')","",1),
+new Array("全局变量","globalvar","commonjs","return INTRINSICS_onclick('&lt;BUTTON&gt$G:commonjs&lt;/BUTTON&gt;')","",1)
+)
+</script>
+
+<script language=javascript>
+mdularray=new Array(
+
+)
+docPtdTag="<MAINPTD param='p_id=${p_id}&p_cname=${p_cname}&poly=${pm_id}&t_id=${t_id}&t_name=&op=U&audit_level=0&op_flag=0&d_id=${d_id}'>";
+</script>
+<input type=hidden name=f_namelist value=''><ifieldintoformdevidor width="640" height="20" align="left">
+&nbsp;&nbsp;内置审核设置
+</ifieldintoformdevidor>
+<ifieldintoform width="640">
+<div slot="iffname">文档审核级别</div>
+
+<select name=audit_level size=1>
+<option value=0 selected>不需要审核</option>
+<option value=1 >需要一级审核</option>
+<option value=2 >需要二级审核</option>
+<option value=3 >需要三级审核</option>
+
+</select>
+
+</ifieldintoform>
+<ifieldintoformdevidor width="640" height="20" align="left">
+&nbsp;&nbsp;外部调用
+</ifieldintoformdevidor>
+<ifieldintoform width="640">
+<div slot="iffname"><select name=set_extern_cgi onchange='extern_cgi_url.value=this.options(this.selectedIndex).value;'><option value=''>-选择-</option>
+<option value='mdul_wiz?mduls=${html_样式:指定组件的xml定义形式}&#38;src_pid=${src_pid}$src_tid=${src_tid}&#38;type=${type}&#38;p_id=${projid}&#38;t_id=${tempid}&#38;d_id=${docid}'>组件向导</option>
+<option value='page_wiz?p_id=${projid}&#38;t_id=${tempid}&#38;d_id=${docid}&#38;html=${html_指定样式}'>页面片断向导</option></select></div>
+
+<input type=text name=extern_cgi_url size=80% value=''>
+
+</ifieldintoform>
+<ifieldintoformdevidor width="640" height="20" align="left">
+&nbsp;&nbsp;其他
+</ifieldintoformdevidor>
+<ifieldintoform width="640">
+<div slot="iffname">备注</div>
+
+<textarea wrap=soft name=notes rows=5 cols=68% ></textarea>
+
+</ifieldintoform>
+<script language=javascript>
+var curHtml_1;
+</script><ifieldintoformdevidor width="640" height="20" align="left">
+&nbsp;&nbsp;gb样式
+</ifieldintoformdevidor>
+<ifieldintoform width="640">
+<div slot="iffname">默认URL</div>
+<input type=text name='defaulturl_1' style=width:300 value='' >
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname"><select name=fieldlist_1 multiple style='width:120;height:230' onChange='copyfieldnameclick(1)' ondblclick='insertfieldnameclick(1);'>
+<option>--模板公共变量列表--</option>
+<option>${projid}</option>
+<option>${p_cname}</option>
+<option>${p_ename}</option>
+<option>${tempid}</option>
+<option>${docid}</option>
+<option>${createdate}</option>
+<option>${createtime}</option>
+<option>${creator}</option>
+<option>${savedate}</option>
+<option>${savetime}</option>
+<option>${mender}</option>
+<option></option>
+
+<option>--项目公共变量列表--</option>
+<option>$G{urlbase}</option>
+
+<option></option>
+<option>--全局变量列表--</option>
+<option>$G{commoncss}</option>
+<option>$G{commonjs}</option>
+</select>
+<input type=text name=copyfieldname_1 size=18 value='' ondblclick='mudl_maintain(this.value);'>
+</div>
+
+<TABLE border=0 cellspacing=0 cellpadding=0 id='tab_1'>
+
+   <TR><TD>风格名称:默认风格，
+   <input type=button name=_previewset value='清除PAGEVIEW' onclick="autocleanpageview('html_1')">
+  <input type=button name=_maintainset value='支持PAGEVIEW' onclick="autosetpageview('html_1','1')"><br><textarea name='html_1' rows=16 cols=68%   ONSELECT='storeCaret(this);' onCLICK='storeCaret(this);' onKEYUP='storeCaret(this);' onfocus='curHtml_1=this;'></textarea>
+</TD></TR>
+
+</TABLE>
+<hr>
+<INPUT type=button value='增加' onclick="addStyle(tab_1,'html_1',tab_1_stylename,1)">
+<INPUT type=text name='tab_1_stylename' size=15>&nbsp;&nbsp;
+把第<INPUT size=2 name='tab_1_styleNO' >个
+<INPUT type=button value='删除' onclick="delStyle(tab_1,tab_1_styleNO)">
+<INPUT type=button value="默认" onclick="setDefaultStyle(tab_1,tab_1_styleNO)">
+
+<input type=button size=16 onclick="window.open('/cgi-bin/publish/tmpl_cp_step1?description=内容模块向导&action=tmpl_guide%3Fp_id%3Dsrc_pid%26p_cname%3Dsrc_pcname%26t_id%3Dsrc_tid%26dest_pid%3D210%26dest_tid%3D0%26dest_tname%3D&dest_pid=210&dest_pcname=%E4%BF%A1%E7%A7%9F%E4%BC%9A%E5%AE%98%E7%BD%91&tmpl_condition=extern_cgi_url%20like%20%27page_wiz%25%25%27','tmplguide','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=640,height=480');" value="扩展内容模块">
+
+</ifieldintoform>
+
+<br>
+<ibuttongroups clsname="" width="640" align="center">
+
+<input type=submit class=butnsubmit value='  提 交'>
+<input type=reset class=butnreset value='  重 写'>
+
+</ibuttongroups>
+
+<br>
+</imainframe>
+
+<script type="text/javascript" src="js/components.js"></script>
+<script language='JavaScript'>
+function getEscapeValue(val)
+{//yyq 20020805
+	if(val==null || val=='') val='';
+	val=val.replace(/&/g,"&amp;");
+	val=val.replace(/</g,"&lt;");
+	val=val.replace(/>/g,"&gt;");
+	val=val.replace(/"/g,"&quot;");
+	return val;
+}
+
+function do_Rel_Result(agent, cgi, form, target, title, winproperty)
+{
+	if(agent.indexOf("http://",0) != 0) 
+	{
+		tmpString="http://" + self.location.host;
+		if(agent.indexOf("/",0) != 0)
+		{
+			tmpString+="/";
+		}
+		tmpString+=agent;
+		agent=tmpString;
+	}
+	if(cgi.indexOf("http://",0) != 0) 
+	{
+		tmpString="http://" + self.location.host;
+		if(cgi.indexOf("/",0) != 0)
+		{
+			tmpString+="/";
+		}
+		tmpString+=cgi;
+		cgi=tmpString;
+	}
+
+	var collection= form.elements;
+	var browse;
+	var strName;
+	var keyArray = new Array();
+	regExp = new RegExp(target+'_','ig');
+	if(collection != null)
+	{
+		var j = 0;
+		for(var i=0;i<collection.length; i++)
+		{
+			var ele = form.elements[i];
+			strName = ele.name;
+			if((strName.indexOf('_rel_result_') != -1) && (strName.indexOf(target) != -1))
+			{
+				if(ele.value == '')
+				{
+					alert('请对参数值完成输入!');
+					if(ele.type != 'hidden')
+					{
+						ele.focus();
+					}
+					return false;
+				}
+				keyArray[j] = strName;
+				j++;
+		    	}
+		}
+	}
+		
+	var newwin;
+	var win_name = 'rel_result_win';
+	var key_element;
+	var screen_width = window.screen.width;
+	var screen_height = window.screen.height;
+	var left = (screen_width - 600)/2;
+	var top = (screen_height - 400)/2;
+	var property;
+	if(winproperty){
+		property = winproperty;
+	}else{
+		property = 'scrollbars=yes,height=400,width=640,status=yes,resizable=yes,toolbar=yes,menubar=no,location=no';
+	}
+	property = property + ',top='+top+',left='+left;
+		
+	if(navigator.appName.indexOf('Netscape') != -1)
+	{
+		newwin=window.open('', win_name, property);
+  	}
+	else
+	{ 
+		if(self.newwin != null)
+		{
+			self.newwin.close();
+			newwin=window.open('', win_name, property);
+		}
+		else
+		{
+			newwin=window.open('', win_name, property);
+		}
+	}
+		
+	b_agent=navigator.appName;
+	if(b_agent == 'Netscape')
+	{
+		browse = 'Netscape';
+	}
+	else
+	{
+		browse = 'IE';
+	}
+	
+	var html_code = '';	
+	newwin.focus();
+	html_code += '<html>\n';
+	html_code += '<head>\n';
+	html_code += '<title>' + title + '</title>\n';
+	html_code += '<meta http-equiv="Pragma" content="no-cache">\n';
+	html_code += '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">\n';
+	html_code += '</head>\n';
+	html_code += '<body>\n';
+	html_code += '<form method=post name=this_form action="'+ agent +'">\n';
+	html_code += 'Please Waiting.....\n';
+	
+	for(i=0;i<keyArray.length;i++)
+	{
+		var current_object;
+		key_element = new String(keyArray[i]);
+		key = key_element.replace(/_rel_result_/,'');
+		key = key.replace(regExp,'');
+		current_object = form.elements[key_element];
+		type = current_object.type;
+		if(type == 'select')
+		{
+			key_value = current_object.options[current_object.selectedIndex].value;
+		}
+		else
+		{
+			key_value = current_object.value;
+			if(type == 'hidden')
+			{
+				var form_element = '';
+				if(b_agent == 'Netscape')
+				{
+					var start_pos = key_value.indexOf('${');
+					var end_pos = key_value.indexOf('}');
+					if((start_pos != -1) && (end_pos != -1) && (end_pos > start_pos + 2))
+					{
+						form_element = key_value.substring(start_pos+2,end_pos);
+					}
+				}
+				else
+				{
+					var re = new RegExp('^\${(.*)}$');
+					var arr = re.exec(key_value);
+					form_element = RegExp.$1;
+				}
+				if(form_element != '')
+				{
+					form_element = '_fieldvalue_'+form_element;
+					var my_current_object = form.elements[form_element];
+					var form_element_type = my_current_object.type;
+					if(form_element_type == 'select')
+					{
+						key_value = my_current_object.options[my_current_object.selectedIndex].value;
+					}
+					else
+					{
+						key_value = my_current_object.value;
+					}
+				}
+			}
+		}
+		
+		key_value = getEscapeValue(key_value);
+			
+		html_code += '<input type=hidden name="' + key +  '" value="' + key_value + '">\n';
+	}
+		
+	html_code += '<input type=hidden name="cgi"' + ' value="' + cgi + '">\n';
+	html_code += '<input type=hidden name="target"' + ' value="' + target + '">\n';
+
+	target_value = getEscapeValue(form.elements[target].value);
+
+	html_code += '<textarea name="' + target +  '" style="display:none">' + target_value + '</textarea>\n';
+	html_code += '<input type=hidden name="browse" value="' + browse+ '">\n';
+	html_code += '</form>\n';
+	html_code += '</body>\n';	
+	html_code += '<script language="JavaScript">\n';
+	html_code += 'document.this_form.submit();\n';
+	html_code += '</' + 'script>\n';
+	html_code += '</html>\n';
+	
+	document.form_trans.target = win_name;
+	document.form_trans.html_code.value = html_code;
+	document.form_trans.submit();
+	
+	return true;
+}
+</script>
+
+</center>
+</form>
+
+<form action='print_html' method=post name='form_trans'>
+<input type=hidden name='html_code' value=''>
+</form>
+
+</body>
+</html>
+

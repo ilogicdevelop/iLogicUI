@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html xmlns="">
+<head>
+<title>Untitled Document</title>
+<meta http-equiv='Pragma' content='no-cache'>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body bgcolor=#FFFFFF leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+<form action='mdul_new' method=post name=myform onSubmit='return Validate();'>
+<center>
+<ibreadcrumb>您现在的位置:&gt;&gt;<a href='proj_list' class=title_navigator>内容中心</a>&gt;&gt;<a href='tmpl_list?--key--=QvfjooxJbqU-Qv0NAlKdaX2hQiRtbYmzKPxHMwaan7mOr5CPgX5a80tq4cO4kzIio08g23LXVeuTxKAwIgfbzdxka8UMd5uhl---' class=title_navigator>信租会官网</a>&gt;&gt;<a href='doc_list?--key--=tnT2rUd7pSc-dHcHa0Hcbvj6SK2bdcueTUhRyeg4ijoLC65WFV8jhqVOH7TgE9.TiGxADuk9X37C8e8YwGXFeAU5.QiXt-kw45p9yTXmoFNg' class=title_navigator>文档正文页</a>&gt;&gt;创建模板组件</ibreadcrumb>
+
+<br>
+<imainframe title="组件维护">
+
+<input type=hidden name=p_id value='210'>
+<input type=hidden name=p_cname value='信租会官网'>
+<input type=hidden name=t_id value='21'>
+<input type=hidden name=f_id value='0'>
+<input type=hidden name=t_name value='testcontent'>
+<input type=hidden name=old_if_into_db value=''>
+<input type=hidden name=old_real_type value=''>
+<input type=hidden name=old_type value=''>
+<input type=hidden name=atdatetime value='2016-09-04 14:47:38'>
+
+<script LANGUAGE='JavaScript'>
+var lastTypeIndex=-1;
+var sel_f_id=0;
+var auto_fill_arith_flag=false;
+function actionclick(my_form, _action)
+{
+	my_form.action=_action;
+	
+	if( _action == 'mdul_order' || (_action == 'tempdef' && document.fields_list_form.op.value=='I'))
+	{
+		my_form.submit();
+		return true;
+	}
+	
+	if( _action == 'mdul_tag' && my_form.tag_act.value == 'D')
+	{
+		if(window.prompt('真要去除模板标记域吗（yes/no）？','no')!='yes') return false;
+		my_form.submit();
+		return true;
+	}
+	
+	if(sel_f_id<=0)
+	{
+		window.alert('请先选择一个模板组件！');
+		return false;
+	}
+
+	if(_action=='mdul_delete')
+	{
+		if(window.prompt('真要删除序号为 '+sel_f_id+' 的模板组件吗（yes/no）？','no')!='yes') return false;
+	}
+
+	my_form.submit();
+	return true;
+}
+
+function tempdefChanged(f_id_selected)
+{
+	sel_f_id=f_id_selected;
+	return true;
+}
+
+var submit_flag=false;
+
+function Validate()
+{
+	if(submit_flag)
+	{
+		window.alert('本页面已经提交，按“确定”按钮返回。');
+		return false;
+	}
+	
+	var form=self.document.myform;
+	
+	var verifiedFields = new Array;
+	verifiedFields[0] = 'cname';
+	verifiedFields[1] = 'ename';
+	verifiedFields[2] = 'type';
+	
+	var fieldsName = new Array;
+	fieldsName[0] = '中文名称';
+	fieldsName[1] = '英文名称';
+	fieldsName[2] = '模板组件类型';
+	
+	var elementNum = form.elements.length;	
+	for(var i=0;i<verifiedFields.length;i++)
+	{	
+		var current_object=verifiedFields[i];
+		
+		for(var j=0;j<elementNum;j++)
+		{
+	    		var who = form.elements[j];
+	  		if(who.name==current_object)
+	  		{
+	  			if(who.value=='')
+	  			{
+	  				window.alert(fieldsName[i]+'不能为空，请填写！');
+	  				who.focus();
+	  				return false;
+	  			}
+	  		}
+		}
+	}
+
+	submit_flag=true;
+	return true;
+}
+
+function formLoad()
+{
+	lastTypeIndex=document.myform.type.selectedIndex;
+	return;
+}
+
+function intodbChanged()
+{
+	var form=self.document.myform;
+	
+	if((form.old_if_into_db.value=='y' || form.old_if_into_db.value=='s') && form.if_into_db.value=='n')
+	{
+		if(window.prompt('本模板组件存放的所有数据将丢失，键入yes确认不入库：','no')!='yes')
+		{
+			form.if_into_db.value=form.old_if_into_db.value;
+			return false;
+		}
+	}
+	
+	return true;
+}
+
+function typeChanged()
+{
+	var form=self.document.myform;
+	
+	if(auto_fill_arith_flag)
+	{
+		form.arithmetic.value='';
+	}
+	
+	if(form.old_type.value=='')
+	{
+		lastTypeIndex=form.type.selectedIndex;
+		setTemplateCode(form);
+		return true;
+	}
+	
+	if(form.old_type.value=='File')
+	{
+		form.type.selectedIndex=lastTypeIndex;
+		window.alert('不能把文件(File)类型更改为其它类型！');
+		return false;
+	}
+	
+	if(form.type.value=='File')
+	{
+		form.type.selectedIndex=lastTypeIndex;
+		window.alert('不能把其它类型更改为文件(File)类型！');
+		return false;
+	}
+	
+	lastTypeIndex=form.type.selectedIndex;
+	setTemplateCode(form);
+	return true;
+}
+
+function setTemplateCode(form)
+{
+	if(form.arithmetic.value != '') return;
+	auto_fill_arith_flag=true;
+	if(form.type.value == 'Static_Select')
+	{
+		form.arithmetic.value='#显示值,真实值';
+	}
+	else if(form.type.value == 'Dynamic_Select')
+	{
+		form.arithmetic.value='#proj:{项目名称}:{样式名称}\n#select {显示的模板组件名},{存储的模板组件名} from {模板名}\n#f_name:影响的其他组件名称\n#do_name:具体行为方式，如add-增加，filter-过滤等...';
+		var dowiz=window.prompt('是否利用向导生成(前提是导入了向导集合)？', 'no');
+		if(dowiz=='yes')
+		{
+			if(form.cname.value.length>0)
+			{
+				window.open('doc_list?p_id=1&p_cname=系统项目&t_id=96&op_publish=0&fieldvalues=src_pid:'+form.p_id.value+';src_tid:'+form.t_id.value+';mdul_name:'+form.cname.value,'mdulwiz','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes');
+			}
+			else
+			{
+				window.open('doc_list?p_id=1&p_cname=系统项目&t_id=96&op_publish=0&fieldvalues=src_pid:'+form.p_id.value+';src_tid:'+form.t_id.value,'mdulwiz','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes');
+			}
+		}
+	}
+	else if(form.type.value == 'Auto_list')
+	{
+		form.arithmetic.value='#proj:{项目名称}:{样式名称}\n#sql:SQL语句部分\n#limit:针对SQL语句的条数限制,如10\n#code:perl代码部分\n#html:输出部分';
+		var dowiz=window.prompt('是否利用向导生成(前提是导入了向导集合)，这里请输入Auto_list_Wizard或iLogic_code_Wizard？', 'no');
+		if(dowiz=='iLogic_code_Wizard')
+		{
+			if(form.cname.value.length>0)
+			{
+				window.open('doc_list?p_id=1&p_cname=系统项目&t_id=146&op_publish=0&fieldvalues=src_pid:'+form.p_id.value+';src_tid:'+form.t_id.value+';mdul_name:'+form.cname.value,'mdulwiz','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes');
+			}
+			else
+			{
+				window.open('doc_list?p_id=1&p_cname=系统项目&t_id=146&op_publish=0&fieldvalues=src_pid:'+form.p_id.value+';src_tid:'+form.t_id.value,'mdulwiz','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes');
+			}
+		}
+		if(dowiz=='Auto_list_Wizard')
+		{
+			if(form.cname.value.length>0)
+			{
+				window.open('doc_list?p_id=1&p_cname=系统项目&t_id=85&op_publish=0&fieldvalues=src_pid:'+form.p_id.value+';src_tid:'+form.t_id.value+';mdul_name:'+form.cname.value,'mdulwiz','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes');
+			}
+			else
+			{
+				window.open('doc_list?p_id=1&p_cname=系统项目&t_id=85&op_publish=0&fieldvalues=src_pid:'+form.p_id.value+';src_tid:'+form.t_id.value,'mdulwiz','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes');
+			}
+		}
+	}
+	else if(form.type.value == 'Extra_Service')
+	{
+		form.arithmetic.value='#Container:服务容器，缺省为空是直接执行\n#Service:挂接目标程序、服务和传递给外挂信息服务的参数列表\n#Regex:对结果的正则格式化，其中还可以进行XSL模板耦合\n#limit:针对格式化后数据的条数限制,如10\n#code:perl代码部分\n#html:输出部分';
+	}
+	else if(form.type.value == 'Extra_Plugin')
+	{
+		form.arithmetic.value='#Agent:/cgi-bin/publish/www_agent\n#CGI:/cgi-bin/publish/rel_report\n#Param:传递给外挂程序的参数列表，参数之间用"&"分隔\n#Command:搜索按钮提示文字，例如“搜索”\n#Arrange:外挂处理后是否编排，无则不挂有则挂接\n#Autoformat:是否挂接自动排版，一般为空';
+	}
+	else if(form.type.value == 'Relatively_Post')
+	{
+		form.arithmetic.value='#Target:{项目名称}:{被触发模板名称}\n#Condition:触发条件, and连接, 如{模板组件名1}=\'${本地组件1}\'\n#Transfer:同步传输其他字段如${本地组件n+1}';
+	}
+	else if(form.type.value == 'Doc_AutoAdd')
+	{
+		form.arithmetic.value='#Recievebycondition:{组件1},{组件i},{组件n}\n#Recievebytransfer:{组件n+1},{组件n+j},{组件n+m}\n#ForceOp:强制联动参数,0 or 1';
+	}
+	else if(form.type.value == 'Data_Gather')
+	{
+		form.arithmetic.value='#倒入已有数据=yes或no\n#样式到模板=当前项目样式序号或{样式名}>汇总项目模板\n#汇总表中的字段名1或{组件名1}=${字段或组件名1}\n#汇总表中的字段名i或{组件名i}=${字段或组件名i}\n#汇总表中的字段名n或{组件名n}=${字段或组件名n}';
+	}
+	else if(form.type.value == 'Typeset_Text')
+	{
+		form.arithmetic.value='#Agent:/cgi-bin/publish/www_agent\n#CGI:/cgi-bin/publish/search_keywords\n#Param:传递给外挂程序的参数列表，参数之间用"&"分隔\n#Command:按钮提示文字，例如“关键字链接”\n#Resource:模板资源列表，*为任意，+指定，-排除';
+	}
+	else if(form.type.value == 'Page_Break')
+	{
+		form.arithmetic.value='#breakto:要分页的正文内容类型的组件名\n#firstmask:非首页不预显示的组件列表，中间用逗号\n#lastmask:非末页不预显示的组件列表，中间用逗号\n#pagelook:页面列表显示形式值,可用默认变量自定义各种形式，如<PREVPAGE>上一页</PREV> <NEXTPAGE>下一页</NEXT>...\n';
+	}
+	else if(form.type.value == 'List_Multipages')
+	{
+		form.arithmetic.value='#breakto:要增页的自动信息列表内容类型的组件名\n#code:具体的页面显示形式的编码处理部分\n#pagelook:页面列表显示形式值，如<PREVPAGE>上一页</PREV> <NEXTPAGE>下一页</NEXT>\n';
+	}
+	else if(form.type.value == 'Doc_Container')
+	{
+		form.arithmetic.value='#docfrom:{项目1}:{模板1}:{样式};{项目2}:{模板2}:{样式}…\n#limit:文档总数目的限制,如10\n#code:perl代码处理返回文档变量的部分\n#html:输出部分\n';
+	}
+	return;
+}
+function arithChanged()
+{
+	auto_fill_arith_flag=false;
+	return;
+}
+
+function copyEleClick()
+{
+	var index = document.myform.element_list.selectedIndex;
+	if(index>=0)
+	{
+		//var value=document.myform.element_list.options[index].text;
+		//var pos=value.indexOf('：');
+		//if(pos <=0) return;
+		//document.myform.cp_ele_target.value=value.substring(pos+1, value.length);
+		document.myform.cp_ele_target.value=document.myform.element_list.options[index].value;
+	}
+}
+function storeCaret(textEl){ 
+	if(textEl.createTextRange) 
+	textEl.caretPos=document.selection.createRange().duplicate(); 
+}
+function insertAtCaret(textEl,text){
+	if(textEl.createTextRange && textEl.caretPos){
+		var caretPos=textEl.caretPos; 
+		caretPos.text=caretPos.text.charAt(caretPos.text.length-1)==""?text +"":text; 
+	} 
+	else 
+	textEl.value=text;
+}
+function wiz_click()
+{
+	if(document.myform.type.value=="")
+	{
+		alert("请选择数据类型！")
+	}else
+	{
+		var url="cms_help?type=" + document.myform.type.value + ""
+		window.open(url,"cmshelp","resizable,height=400,width=740")	
+	}
+}
+function arith_dblclick()
+{
+	var form=self.document.myform;
+		var dowiz=window.prompt('是否重置该算法？', 'no');
+		if(dowiz=='yes')
+		{
+			form.arithmetic.value='';
+			setTemplateCode(form);
+		}
+}
+</script><ifieldintoformdevidor width="640" height="20" align="left">
+&nbsp;&nbsp;组件名称
+</ifieldintoformdevidor>
+<ifieldintoform width="640">
+<div slot="iffname">中文名称</div>
+<input type=text name=cname value=''>
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">英文名称</div>
+<input type=text name=ename value=''>
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">字段名称(可不填)</div>
+<input type=text name=f_name value=''>
+</ifieldintoform>
+<ifieldintoformdevidor width="640" height="20" align="left">
+&nbsp;&nbsp;组件类型、算法与缺省
+</ifieldintoformdevidor>
+<ifieldintoform width="640">
+<div slot="iffname">数据类型</div>
+<select name='type' onChange='return typeChanged();'><option value='' selected></option><option value='Integer' >数值型(Integer)</option>
+<option value='Title' >标题型(Title)</option>
+<option value='CommonText' >普通文本(CommonText)</option>
+<option value='Static_Select' >静态选择列表(Static Select)</option>
+<option value='Dynamic_Select' >动态选择列表(Dynamic Select)</option>
+<option value='File' >文件类型(File)</option>
+<option value='Typeset_Text' >可排版正文内容(Typeset Text)</option>
+<option value='Auto_list' >自动信息列表(Auto List)</option>
+<option value='Extra_Service' >外挂信息服务(Extra Service)</option>
+<option value='Doc_Container' >文档容器(Doc Container)</option>
+<option value='Extra_Plugin' >外挂插件(Extra Plugin)</option>
+<option value='Page_Break' >自动分页(Page Break)</option>
+<option value='List_Multipages' >列表增页(List Multipages)</option>
+<option value='Relatively_Post' >关联发布(Relatively Post)</option>
+<option value='Doc_AutoAdd' >自动增加文档(Doc AutoAdd)</option>
+<option value='Post_Scheme' >定时发布计划(Post Scheme)</option>
+<option value='Data_Gather' >数据汇总(Data Gather)</option>
+
+</select>
+
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">真实存储类型</div>
+<input type=text name=real_type size=16 value=''>
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">
+算法:
+</div>
+
+<textarea name=arithmetic rows=6 cols=68% onChange='arithChanged()' ondblclick='arith_dblclick();'></textarea>
+
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">缺省值</div>
+
+<textarea name=defaultvalue rows=3 cols=68%></textarea>
+
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">是否入库</div>
+
+<select name='if_into_db' size=1 onChange='return intodbChanged();'>
+<option value='d' selected>默认</option>
+
+<option  value='y' >是</option>
+<option  value='n' >否</option>
+</select>
+
+</ifieldintoform>
+
+<input type=hidden name='modi_filename' value='y'>
+<ifieldintoformdevidor width="640" height="20" align="left">
+&nbsp;&nbsp;JS、VBScript页面算法及控制
+</ifieldintoformdevidor>
+<ifieldintoform width="640">
+<div slot="iffname">是否为空</div>
+<select name='ifnull' size=1>
+<option value='y' selected>可空</option>
+<option  value='n' >非空</option>
+</select>
+
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">扩展页面算法</div>
+
+<select name=script_examples onchange='insertAtCaret(myform.validate_script,this.options[this.selectedIndex].value);'>
+<option value='' selected>--算法类例--</option>
+<option value='&#60;script&#32;language=javascript&#62;
+document.myform.$this.value=&#39;&#39;;
+document.myform.$this.readOnly=true;
+document.myform.$this.style.display=&#39;none&#39;;
+document.myform.$this.parentElement.parentElement.style.display=&#39;none&#39;;
+if(document.myform.fieldvalues.value.indexOf(document.myform.$this.value)&#62;0)&#32;document.myform.$this.parentElement.parentElement.style.display=&#39;none&#39;;
+&#60;/script&#62;'>属性和值的设置</option>
+<option value='&#60;script&#32;language=javascript&#62;
+function&#32;validate$this()
+{
+&#32;&#32;&#32;&#32;return&#32;false;
+&#32;&#32;&#32;&#32;return&#32;true;
+}
+&#60;/script&#62;'>校验和函数设置</option>
+<option value='&#60;script&#32;language=javascript&#32;for=$this&#32;event=onchange&#62;
+&#60;/script&#62;'>事件和触发函数设置</option>
+<option value='&#60;div&#32;unselectable=&#39;on&#39;&#32;
+	id=&#39;$this_PalDiv&#39;&#32;
+	style=&#39;position:absolute;&#32;padding:&#32;0px;&#32;border:1px;&#32;height:195px;width:193px;padding-bottom:&#32;0px;&#32;left:0px;&#32;top:0px;&#32;display:none;&#32;zindex:&#32;1;&#32;margin&#32;0px;&#32;border&#32;0px;filter:progid:DXImageTransform.Microsoft.shadow(Color=#666666,Direction=120,Strength=2);&#39;&#62;
+	&#60;object&#32;id=&#39;$this_palette&#39;&#32;
+		type=&#39;text/x-scriptlet&#39;&#32;
+		height=&#39;195px&#39;&#32;
+		width=&#39;193px&#39;&#32;
+		style=&#39;margin:0px;border:0px;&#39;&#32;
+		data=&#39;PaletteFile&#39;&#32;viewastext&#62;
+	&#60;/object&#62;
+&#60;/div&#62;
+&#60;script&#32;type=&#39;text/javascript&#39;&#32;for=&#39;$this_palette&#39;&#32;event=&#39;onscriptletevent(name,&#32;eventData)&#39;&#32;language=&#39;JavaScript&#39;&#62;
+	document.myform.$this.value=eventData;&#32;
+	document.myform.$this.ondblclick();&#32;
+&#60;/script&#62;
+&#60;script&#32;language=javascript&#32;for=$this&#32;event=ondblclick&#62;
+	if($this_PalDiv.style.display&#32;==&#32;&#39;&#39;)&#32;{
+			$this_PalDiv.style.display&#32;=&#32;&#39;none&#39;;&#32;
+	}&#32;else&#32;{
+			$this_PalDiv.style.left&#32;=&#32;(document.myform.$this.parentElement.parentElement.parentElement.parentElement.offsetLeft&#32;+&#32;130)&#32;+&#32;&#39;px&#39;;&#32;
+			$this_PalDiv.style.top&#32;=&#32;(document.myform.$this.parentElement.parentElement.parentElement.parentElement.offsetTop&#32;+&#32;120)&#32;+&#32;&#39;px&#39;;&#32;
+			$this_PalDiv.style.display&#32;=&#32;&#39;&#39;;&#32;
+	}
+	return;	
+&#60;/script&#62;'>挂入外部palette到事件</option></select>
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname"><input type=text name=cp_ele_target size=18 value=''><br><select name=element_list multiple style=width:120;height:85 onChange='copyEleClick()' onDblClick='insertAtCaret(myform.validate_script,myform.cp_ele_target.value);'>
+<option value='document.myform._fieldvalue_first'>一级分类</option>
+
+<option value='document.myform._fieldvalue_second'>二级分类</option>
+
+<option value='document.myform._fieldvalue_Title'>标题</option>
+
+<option value='document.myform._fieldvalue_sp_f89'>简介</option>
+
+<option value='document.myform._fieldvalue_content'>正文内容</option>
+
+<option value='document.myform._fieldvalue__poly_picture'>图片</option>
+
+<option value='document.myform._fieldvalue_sp_f111'>相关文章</option>
+
+<option value='document.myform._fieldvalue_sp_f90'>重要度</option>
+
+<option value='document.myform._fieldvalue_sp_f91'>发往内网</option>
+</select></div>
+
+<textarea name='validate_script' rows=6 cols=68% ONSELECT='storeCaret(this);' onCLICK='storeCaret(this);' onKEYUP='storeCaret(this);'></textarea>
+
+</ifieldintoform>
+<ifieldintoformdevidor width="640" height="20" align="left">
+&nbsp;&nbsp;统计因素、贡献等设置
+</ifieldintoformdevidor>
+<ifieldintoform width="640">
+<div slot="iffname">分组统计</div>
+<select name='stat_element' size=1>
+<option  value=0 selected>否</option>
+<option  value=1 >是</option>
+</select>
+
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">贡献类型</div>
+<select name='statistic_type' size=1>
+<option  value=0 selected>无贡献</option>
+<option  value=1 >文字数目统计</option>
+<option  value=3 >带历史文字数目贡献</option>
+<option  value=4 >求和贡献</option>
+<option  value=5 >属性相异数贡献</option>
+</select>
+
+</ifieldintoform>
+<input type=hidden name='index_type'><ifieldintoformdevidor width="640" height="20" align="left">
+&nbsp;&nbsp;显示设置
+</ifieldintoformdevidor>
+<ifieldintoform width="640">
+<div slot="iffname">显示顺序</div>
+
+<input type=text name=showorder size=3 value='0'>
+
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">显示宽度</div>
+
+<input type=text name=showwidth size=3 value='0'>
+
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">显示高度</div>
+
+<input type=text name=showheight size=3 value='0'>
+
+</ifieldintoform>
+<ifieldintoform width="640">
+<div slot="iffname">显隐</div>
+
+<select name='hide' size=1>
+
+<option selected value='n' selected>显示</option>
+<option  value='y' >隐藏</option>
+</select>
+
+</ifieldintoform>
+<ifieldintoformdevidor width="640" height="20" align="left">
+
+</ifieldintoformdevidor>
+<br>
+<ibuttongroups clsname="" width="640" align="center">
+
+<input type=submit class=butnsubmit value='  提 交'>
+<input type=reset class=butnreset value='  重 写'>
+
+</ibuttongroups>
+</form>
+<ifieldintoformdevidor width="640" height="25" align="left">
+<font color=#FFFFFF>本模板对应表名:testcontent(*是文档的标记域)</font>
+</ifieldintoformdevidor>
+
+<form action='' name=fields_list_form method=post>
+<input type=hidden name=p_id value='210'>
+<input type=hidden name=p_cname value='信租会官网'>
+<input type=hidden name=t_id value='21'>
+<input type=hidden name=t_name value='testcontent'>
+<input type=hidden name=op value='I'>
+<input type=hidden name=tag_act value=''>
+<ifieldintoformdevidor width="640" height="35" align="center">
+<select name=mdul_wiz 
+onchange="if(self.document.fields_list_form.mdul_wiz.selectedIndex>0){window.open('doc_list?p_id=1&p_cname=系统项目&fieldvalues=src_pid:210;src_tid:21&t_id='+self.document.fields_list_form.mdul_wiz.options[self.document.fields_list_form.mdul_wiz.selectedIndex].value,'mdulwiz','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes');}">
+<option value=''>--缺省组件向导--</option>
+<option value='83'>扩展组件-栏目标识</option><option value='69'>扩展组件-主资源文件</option><option value='70'>扩展组件-分页正文</option><option value='71'>扩展组件-上下条内容</option><option value='72'>扩展组件-当前位置</option><option value='73'>扩展组件-栏目变量</option><option value='74'>扩展组件-栏目链接</option><option value='75'>扩展组件-自设快速列表</option><option value='76'>扩展组件-栏目列表</option><option value='78'>扩展组件-多层次列表</option><option value='84'>扩展组件-主列表</option><option value='85'>扩展组件-快速列表</option><option value='146'>扩展组件-逻辑编码</option><option value='77'>扩展组件-头条</option><option value='79'>扩展组件-可调式列表</option><option value='80'>扩展组件-相关信息</option><option value='110'>扩展组件-网页聚合</option><option value='92'>扩展组件-外挂面板</option><option value='93'>扩展组件-水印图片</option><option value='94'>扩展组件-树构件</option><option value='95'>扩展组件-子内容</option><option value='96'>扩展组件-动态选择</option><option value='111'>扩展组件-图片缩略</option><option value='112'>扩展组件-二次统计</option><option value='113'>扩展组件-用户组织</option><option value='115'>扩展组件-子文档</option><option value='116'>扩展组件-级联选择</option><option value='118'>扩展组件-流程列表</option><option value='150'>扩展组件-增删改处理</option></select>
+<input type=button value='扩 展' onClick="window.open('tmpl_cp_step1?description=组件扩展向导&action=doc_list%3Fp_id%3Dsrc_pid%26p_cname%3Dsrc_pcname%26t_id%3Dsrc_tid&dest_pid=210&dest_pcname=%E4%BF%A1%E7%A7%9F%E4%BC%9A%E5%AE%98%E7%BD%91&tmpl_condition=extern_cgi_url%20like%20%27mdul_wiz%25%27&iftip=n','mdulwiz','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes');">
+<input type=button value='增 加' onClick="self.document.fields_list_form.op.value='I'; actionclick(self.document.fields_list_form,'mdul');">
+<input type=button value='编 辑' onClick="self.document.fields_list_form.op.value='U'; actionclick(self.document.fields_list_form,'mdul');">
+<input type=button value='设置显示顺序' onClick="actionclick(self.document.fields_list_form,'mdul_order');">
+<input type=button value='设置标记域' onClick="self.document.fields_list_form.tag_act.value='U'; actionclick(self.document.fields_list_form,'mdul_tag');">
+<input type=button value='去除标记域' onClick="self.document.fields_list_form.tag_act.value='D'; actionclick(self.document.fields_list_form,'mdul_tag');">
+
+</ifieldintoformdevidor>
+<ipaggrid width="640" :rows="pagdatas" :columns="pagcolumns" :colnames="pagcolnames">
+<!--<irow clsname="''"  bgcolor=rgb(214,211,206) >-->
+<script id="igridheader" type="text/html">
+<th height=40 width=40><img src=/images/c.gif width=1 height=1></th>
+<th width=20><img src=/images/c.gif width=1 height=1></th>
+<th>名称</th>
+<th width=120>类型</th>
+<th width=50>显示<br>顺序</th>
+<th width=50>显示<br>宽度</th>
+<th width=50>显示<br>高度</th>
+<th width=50>是否<br>为空</th>
+<th width=50>是否<br>隐藏</th>
+<th width=50>是否<br>入库</th>
+</script>
+<!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='85'  onClick='tempdefChanged(85)'></script><script name="igriddata" type="text/html" clsname="pt2" >85</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=YXcqt4qdPBI-wyqpvm9k67z4r4CKWPM7KaTxwsO9FykHjcmmSqK1FB1rviUVcru5-kzbL72Y5GWOWGfrXfwpQMmfehQidLKPW-ksmJn.-SkqnH9Jf--Ejf.hapNfCL42rk--' class=title3>一级分类<br>(first)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Dynamic_Select<br><font color=red>varchar(255)</font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_85' size=4 value='1'></script><script name="igriddata" type="text/html" clsname="pt2" >100</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >是</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='82'  onClick='tempdefChanged(82)'></script><script name="igriddata" type="text/html" clsname="pt2" >82</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=UzqnNFQuVYI-ead5IiWoBsHYv7oWDHUd74-vM7MgUr8nKEp8JAz7rDjfpLic-geQq1GY4FFlA6YNGxImJPsd2PEPfcbfHKjiGepE-one4ZYbSjilzxY7Mry0LUVOhHXpqE--' class=title3>二级分类<br>(second)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Dynamic_Select<br><font color=red>varchar(255)</font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_82' size=4 value='2'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >是</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='86'  onClick='tempdefChanged(86)'></script><script name="igriddata" type="text/html" clsname="pt2" >86</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=xzTA3KndKpA-Zljli2oDMbn7jTU5B3.rYkVG1WX9-JnqDCQp6jrjCQi4.Pr539BmxhJcghXrvLaO6eBkrqnUImdf9WGn61rtTHZ2r5xQ-GZE3Z3eUwN7VX7XTscQwzodEU--' class=title3>标题<br>(Title)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Title<br><font color=red>varchar(255)</font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_86' size=4 value='10'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >非空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >是</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='89'  onClick='tempdefChanged(89)'></script><script name="igriddata" type="text/html" clsname="pt2" >89</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=pPAsscQjdWQ-dG3ESR8EVVnPs6MdRGIB.SL8DlPAyUraACuK6RW6F-P5eXyBAPpQJ8vCeiORY6aZ8d8jlCvLT5RKS0MuosmeGO6T-B3cweCcRrNNmv6N.vd.zNW.MkFmoE--' class=title3>简介<br>(sp_f89)</a></script><script name="igriddata" type="text/html" clsname="pt2" >CommonText<br><font color=red>text</font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_89' size=4 value='12'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >是</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='87'  onClick='tempdefChanged(87)'></script><script name="igriddata" type="text/html" clsname="pt2" >87</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=AqGOWSG9DvQ-ENzmW9eOWrU831LZDuGcFaJVEkMc-3yVC.dMr7RkZaBQ3aFevoxJv18Xebf7ZrRWg9Be8.qbXXVS45UAMTIHKcJ55dJMsUI6g4rOYg9TS.GjhXVvqsd5wE--' class=title3>正文内容<br>(content)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Typeset_Text<br><font color=red>mediumtext</font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_87' size=4 value='20'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >是</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='83'  onClick='tempdefChanged(83)'></script><script name="igriddata" type="text/html" clsname="pt2" >83</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=Sy9w7dDFhaY-06zNc6Mkot9AWgLXY950Ej2rMBuRWPyuXhp3XY5xBrlBFLPKL32ZUFv9f-ydprGvoSe6O31ikUXkHdOZ-juDKaVlFixUqcnYvWccKjTP6syaMM1mlNqL5k--' class=title3>左栏目导航<br>(left_nav)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Auto_list<br><font color=red></font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_83' size=4 value='30'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >否</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='84'  onClick='tempdefChanged(84)'></script><script name="igriddata" type="text/html" clsname="pt2" >84</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=XcOii3HKPRk-wlK0hdSSETzlQLgR-7zm83RnnyCHlDHd01Nx3jwJnxi4RJrTCcDXfavVJu6J3OpVhwkfcWnV8tti78.z6S6C0wdvKL9uTPtz1.GoRSc6r9vJgyZy1xBCp---' class=title3>列表页关联发布<br>(rel_post)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Relatively_Post<br><font color=red></font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_84' size=4 value='40'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >否</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='81'  onClick='tempdefChanged(81)'></script><script name="igriddata" type="text/html" clsname="pt2" >81</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=-spRql3BQOo-3SgbopQzOcq8QNMsFoTgrIOEF-y9zKJrL-gBbz37mNrG0PKkIRtqem0.fKpGvGQX53Yp6.oIdaZcWWC9ITvvDOzERyyKZ5o3T4pgqXL4kWffmd9cUxQu6E--' class=title3>首页关联发布<br>(sp_f161)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Relatively_Post<br><font color=red></font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_81' size=4 value='50'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >否</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='80'  onClick='tempdefChanged(80)'></script><script name="igriddata" type="text/html" clsname="pt2" >80</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=VyKJHqHfUVw-D0XQ8trpwtSfw7pzWDTWreOOQsrlNYwveQJjelpW8GUG10p4bFls3dJGeVBqurl6yljyZhNzQ4TTcKk5gwKnl0PYoh8DiM1sQf8q2J0zPd0MEqVdw-M0Zk--' class=title3>二级分类标题<br>(sp_f261)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Auto_list<br><font color=red>text</font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_80' size=4 value='60'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >是</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='76'  onClick='tempdefChanged(76)'></script><script name="igriddata" type="text/html" clsname="pt2" >76</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=TDwL9mnQ3aE-eyiKUlyxGPnWji38z0mxKsA7jlu8PFFE8a77jH.dLlO25QRv478mW.bpcrfEdQBQyNgHAan4DzOLn3iZQqcPWhYz5GXXAprejfy29LejgB2StwAfEaWfx---' class=title3>一级分类标题<br>(sp_f281)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Auto_list<br><font color=red>text</font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_76' size=4 value='70'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >是</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='77'  onClick='tempdefChanged(77)'></script><script name="igriddata" type="text/html" clsname="pt2" >77</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=R92L4Wx4XBA-cnRuIwjIOJWS86PgVOpa2JF1l.yEueE3oGI0IH2u61OSl-j-ogASb2xf5-jzveamFxHf3ZTdlPDzt8A.oGFaqM.jnMEgI2O60mHZyDrHEG8nUm.UsThY6k--' class=title3>图片<br>(picture)</a></script><script name="igriddata" type="text/html" clsname="pt2" >File<br><font color=red>varchar(255)</font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_77' size=4 value='80'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >是</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='78'  onClick='tempdefChanged(78)'></script><script name="igriddata" type="text/html" clsname="pt2" >78</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=i-FOBfQhYLo-b1FQkgPY25HzXFkf-pu6kKUlMps236JCPPCh6.oavlfmPdVYVJBeQxrXd034bDe-ooU-mzdFM7MUJxgU40cz.AMZcKVbWyHkcPKByyYfLj-JDyns2Ydn2---' class=title3>一级栏目首页关联发布<br>(sp_f461)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Relatively_Post<br><font color=red></font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_78' size=4 value='90'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >否</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='79'  onClick='tempdefChanged(79)'></script><script name="igriddata" type="text/html" clsname="pt2" >79</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=ret5rYho5LU-iT45VMNHTpGB4HNhZ52xiupBo1Xk7epuMpjN0wGPNH4b7FQwur9eRG1x9..5M44SutBe-DfXomG2DTGD8sG2q-rAYoXAObE4.6JM9nv8K8lUJNl0Oualsk--' class=title3>分类有效性检查<br>(category_check)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Auto_list<br><font color=red>text</font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_79' size=4 value='100'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >是</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='88'  onClick='tempdefChanged(88)'></script><script name="igriddata" type="text/html" clsname="pt2" >88</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=3EIOeBQaf7A-jcL1Ox2N3QwdIU1JYuBtMKCeDoNkfQ3H.WbZJ9K0oC3sNklxc3eldsv.5MNsHanD8cCHzTD5TDGmTwhJOyjCwYRHk4099-p1z4BgmrJF6YjKACNNRzGrX---' class=title3>相关文章<br>(sp_f111)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Extra_Plugin<br><font color=red>mediumtext</font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_88' size=4 value='110'></script><script name="igriddata" type="text/html" clsname="pt2" >85</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >是</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='74'  onClick='tempdefChanged(74)'></script><script name="igriddata" type="text/html" clsname="pt2" >74</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=ul8HZ6nPOIA-shTKTw1Ck6-q3tBa-PFwt7bmd5oBFoGM1pD7q1YNG.d2xzVgqQrNBvaG.jtXH73hXPyigAWHfCx2rU1ItDmpMv.rwLcz451su9qO3catinKVnGBZn6l2y---' class=title3>上一条内容<br>(sp_f115)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Auto_list<br><font color=red></font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_74' size=4 value='130'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >否</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='75'  onClick='tempdefChanged(75)'></script><script name="igriddata" type="text/html" clsname="pt2" >75</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=1LD1rYRJyV2-Myi-8GXT.n-zAqZ5C8usZ8R71ZgZJ1uta6LYdkmlLiTtKJZGMphJqiGE1a.HYwoc.DYoiXR7tR.AtPDjlTEGcqJMrp1-fxao70ku7t4A1-KzdqAqbdgus---' class=title3>下一条内容<br>(sp_f116)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Auto_list<br><font color=red></font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_75' size=4 value='140'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >否</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='73'  onClick='tempdefChanged(73)'></script><script name="igriddata" type="text/html" clsname="pt2" >73</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=6o3Z6mPu-aE-TyWF.Y5bZwUf9J6wq.CqfV8mi5qm6Mr.2twoP8fhuiqNbnXqq.-gND.usq0M9OGkIpF4ZJWv6XfyNCXD3C-u6dA-avhqEyaAIIrOnqHGDh5cm0GsmtaceE--' class=title3>汇总到datasum_of_48_pid<br>(sp_f110)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Data_Gather<br><font color=red></font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_73' size=4 value='150'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >非空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >否</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='90'  onClick='tempdefChanged(90)'></script><script name="igriddata" type="text/html" clsname="pt2" >90</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=.2tOEKyyFnk-odM-wQBcqkV76fZfXpTf4scfZSNy4Qfa4ScoCEdWf4xwrI.mNtbj4Cvci7Cc6pzWkjald.MAlSLFx0.HWwL.iXKKIAJdgPuPLtyjFflhJxHTYUSoYUBDOk--' class=title3>重要度<br>(sp_f90)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Integer<br><font color=red>int(12)</font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_90' size=4 value='160'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >是</script><!--<irow clsname="''"  bgcolor=#FFFFFF >-->
+<script name="igriddata" type="text/html" clsname="''"  bgcolor=rgb(214,211,206) ><input type=radio name=f_id value='91'  onClick='tempdefChanged(91)'></script><script name="igriddata" type="text/html" clsname="pt2" >91</script><script name="igriddata" type="text/html" clsname="pt2" ><a href='mdul?--key--=ZavFe.bw9fU-7wOf067eh.BPx-QmKu7l-1YOx4yLZL5np3WXy3jKffQW4t0QDbx60beeWlytLGEt.UYp0qhtZcdbpfgJQKU-ozQUvIc3uAJtT3bjJILEVEAgAp8Zvgzu0E--' class=title3>发往内网<br>(sp_f91)</a></script><script name="igriddata" type="text/html" clsname="pt2" >Static_Select<br><font color=red>varchar(255)</font></script><script name="igriddata" type="text/html" clsname="pt2" ><input type=text name='showorder_91' size=4 value='170'></script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >0</script><script name="igriddata" type="text/html" clsname="pt2" >可空</script><script name="igriddata" type="text/html" clsname="pt2" >显示</script><script name="igriddata" type="text/html" clsname="pt2" >是</script>
+</ipaggrid><ifieldintoformdevidor width="640" height="35" align="center">
+
+<input type=button value='扩 展' onClick="window.open('tmpl_cp_step1?description=组件扩展向导&action=doc_list%3Fp_id%3Dsrc_pid%26p_cname%3Dsrc_pcname%26t_id%3Dsrc_tid&dest_pid=210&dest_pcname=%E4%BF%A1%E7%A7%9F%E4%BC%9A%E5%AE%98%E7%BD%91&tmpl_condition=extern_cgi_url%20like%20%27mdul_wiz%25%27&iftip=n','mdulwiz','toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes');">
+<input type=button value='增 加' onClick="self.document.fields_list_form.op.value='I'; actionclick(self.document.fields_list_form,'mdul');">
+<input type=button value='编 辑' onClick="self.document.fields_list_form.op.value='U'; actionclick(self.document.fields_list_form,'mdul');">
+<input type=button value='设置显示顺序' onClick="actionclick(self.document.fields_list_form,'mdul_order');">
+<input type=button value='设置标记域' onClick="self.document.fields_list_form.tag_act.value='U'; actionclick(self.document.fields_list_form,'mdul_tag');">
+<input type=button value='去除标记域' onClick="self.document.fields_list_form.tag_act.value='D'; actionclick(self.document.fields_list_form,'mdul_tag');">
+
+</ifieldintoformdevidor>
+
+<br>
+</imainframe>
+
+<script type="text/javascript" src="js/components.js"></script>
+
+<input type=hidden name=f_namelist value='一级分类,二级分类,标题,简介,正文内容,左栏目导航,列表页关联发布,首页关联发布,二级分类标题,一级分类标题,图片,一级栏目首页关联发布,分类有效性检查,相关文章,上一条内容,下一条内容,汇总到datasum_of_48_pid,重要度,发往内网'>
+</center>
+</form>
+</body>
+</html>
+

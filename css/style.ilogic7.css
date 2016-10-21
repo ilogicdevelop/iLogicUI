@@ -1,0 +1,65 @@
+BODY {	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt}
+th,td,p,input,select {FONT-FAMILY: "宋体"; FONT-SIZE: 9pt; FONT-WEIGHT: normal;}
+
+.title {  font-family: "宋体"; font-size: 18px; height: 20px; color: #3366FF}
+.pt1 {  font-size: 12px; text-align: right; }
+.pt2 {  font-size: 12px; text-align: center; }
+.pt3 {  font-size: 12px; text-align: left; }
+.text {  font-size: 12px; text-align: left;  width: 300px; }
+.select {  font-size: 12px; text-align: left; }
+.text2 {  font-size: 12px; text-align: left; }
+.noedit {  font-size: 12px; text-align: left; background-color:#E6E6E6}
+.submit {  font-size: 12px; text-align: left; }
+
+
+A {FONT-FAMILY: "宋体"; FONT-SIZE: 9pt; TEXT-DECORATION: none}
+A:hover { FONT-FAMILY: "宋体"; FONT-SIZE: 9pt; TEXT-DECORATION: underline}
+
+.unnamed1 {  font-size: 9pt; color: #0000FF; width: 90mm; line-height: 21px}
+.unnamed2 {  font-family: "宋体"; font-size: 10pt; font-weight: 600; color: #000000}
+.text3 {  font-family: "宋体"; font-size: 10pt; color: #0033FF}
+a:link {  font-size: 9pt; color: #FF0000}
+.textf_d {  height: 18px; border: #000000; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+
+.ttd {font-family:宋体;font-size:14px;color=#000000}
+.tr_title1 {height:20px; align:left; bgcolor:#229AE1;}
+A.title1:link {font-family:宋体;text-decoration:none;color:#000000;font-size:14px;}
+A.title1:visited {font-family:宋体;text-decoration:none;color:#000000;font-size:14px;}
+A.title1:active {font-family:宋体;text-decoration:none;color:#000000;font-size:14px;}
+A.title1:hover {font-family:宋体;text-decoration:none;color:#000000;font-size:14px;}
+
+A.title3:link {font-family:宋体;text-decoration:underline;color:#57699B;font-size:12px;}
+A.title3:visited {font-family:宋体;text-decoration:underline;color:#57699B;font-size:12px;}
+A.title3:active {font-family:宋体;text-decoration:underline;color:#57699B;font-size:12px;}
+A.title3:hover {font-family:宋体;text-decoration:underline;color:#57699B;font-size:12px;}
+
+A.title4:link {font-family:宋体;text-decoration:none;color:#FFFFFF;font-size:14px;}
+A.title4:visited {font-family:宋体;text-decoration:none;color:#FFFFFF;font-size:14px;}
+A.title4:active {font-family:宋体;text-decoration:none;color:#FFFFFF;font-size:14px;}
+A.title4:hover {font-family:宋体;text-decoration:none;color:#FFFFFF;font-size:14px;}
+
+A.title_navigator:link {font-family:宋体;text-decoration:underline;color:#FFFFFF;font-size:12px;}
+A.title_navigator:visited {font-family:宋体;text-decoration:underline;color:#FFFF0F;font-size:12px;}
+A.title_navigator:active {font-family:宋体;text-decoration:underline;color:#F7699B;font-size:12px;}
+A.title_navigator:hover {font-family:宋体;text-decoration:underline;color:#F7699B;font-size:12px;}
+
+.butnadd {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_create.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butndel {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_delete.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butnmodify {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_modify.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butncopy1 {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_copy1.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butncopy2 {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_copy2.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butnsubmit {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_copy1.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butnreset {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_copy2.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butnback {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_copy2.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+
+
+table.status{ width:80%;border:0;cellspacing:0;cellpadding:0;}
+table.status td.status_td_left{width:25%;}
+
+.multiselect{width:15px;height:15px;}
+.cked{
+    margin:1px;padding:2px;width:100%;display:block;background-color:highlight;color:highlighttext;
+}
+.nock{
+    margin:1px;padding:2px;width:100%;display:block;
+}

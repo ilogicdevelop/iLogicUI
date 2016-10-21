@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="">
+<head>
+<title>Untitled Document</title>
+<meta http-equiv='Pragma' content='no-cache'>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+<body bgcolor=#FFFFFF leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+<form method=post name=myform>
+<center>
+<ibreadcrumb>您现在的位置:&gt;&gt;内容中心</ibreadcrumb>
+
+<br>
+<imainframe title="项目列表">
+
+<script language=javascript>
+function selectAProj(index)
+{
+  var form;
+  form=document.myform;
+  if(form.p_id.length==null)
+  {
+    form.p_id.checked=true;
+    parent.p_id=form.p_id.value;
+    parent.p_cname=form.p_cname.value;
+    parent.t_id='';
+  }
+  else
+  {
+    form.p_id[index].checked=true;
+    parent.p_id=form.p_id[index].value;
+    parent.p_cname=form.p_cname[index].value;
+    parent.t_id='';
+  }
+  return;
+}
+</script>
+
+<br>
+<itypicallist width="600" :typdatas="griddatas"></itypicallist>
+<script name="itchk" type="text/html">
+<input type=radio name=p_id value=1  onClick='selectAProj(0)'>
+<input type=hidden name=s_pid value='1'>
+<input type=hidden name=p_cname value='系统项目'>
+</script>
+<script name="itid" type="text/html">1</script>
+<script name="itvalue" type="text/html">
+<a href='tmpl_list?--key--=uw1Z5z0Gy7U-jAHtdK3dm-NfpN7zgMIm60.NBi6I0moI--PyRdXCGxZ246wbPJ.vfDr2tWKtNh7h54LkdLLTjmY-' onClick='selectAProj(0)'  class=title3>系统项目</a>
+</script>
+<script name="itchk" type="text/html">
+<input type=radio name=p_id value=96  onClick='selectAProj(1)'>
+<input type=hidden name=s_pid value='96'>
+<input type=hidden name=p_cname value='基准项目'>
+</script>
+<script name="itid" type="text/html">96</script>
+<script name="itvalue" type="text/html">
+<a href='tmpl_list?--key--=ozpn7wKJZ36-aInznWUlBBoJmvPNkZCpAQQemtp9gp95coEqySDFkfHM7uHS4NtIT2p1JucEVc5Cx5dt9dLipQM-' onClick='selectAProj(1)'  class=title3>基准项目</a>
+</script>
+<script name="itchk" type="text/html">
+<input type=radio name=p_id value=118  onClick='selectAProj(2)'>
+<input type=hidden name=s_pid value='118'>
+<input type=hidden name=p_cname value='壹壹客户端'>
+</script>
+<script name="itid" type="text/html">118</script>
+<script name="itvalue" type="text/html">
+<a href='tmpl_list?--key--=n7Z4BgBk0OA-NfNsqwaawfhoZUeZ15sb2aB663FGGD9hVbNYAszq9xoJok-lFr1S.H7oW.2SU-LeTTfzoO6RuRy3Xu488XxZL---' onClick='selectAProj(2)'  class=title3>壹壹客户端</a>
+</script>
+<script name="itchk" type="text/html">
+<input type=radio name=p_id value=195  onClick='selectAProj(3)'>
+<input type=hidden name=s_pid value='195'>
+<input type=hidden name=p_cname value='核心服务端'>
+</script>
+<script name="itid" type="text/html">195</script>
+<script name="itvalue" type="text/html">
+<a href='tmpl_list?--key--=0Z-yiFkQqXk-kYssbfqLHtzYKBo2iqYd1TkaQF3RU8Q2K.4sGeZmT9KPPsLzoBZnP0is62-RjW55kMPtzvrQ8---Sr2DoaJVAU--' onClick='selectAProj(3)'  class=title3>核心服务端</a>
+</script>
+<script name="itchk" type="text/html">
+<input type=radio name=p_id value=196  onClick='selectAProj(4)'>
+<input type=hidden name=s_pid value='196'>
+<input type=hidden name=p_cname value='汽车监控端'>
+</script>
+<script name="itid" type="text/html">196</script>
+<script name="itvalue" type="text/html">
+<a href='tmpl_list?--key--=mzsbc1IBZCI-1RNb2V3fePM2yQzAG57l9fsBTasFsBVm9xp5zpksHnkrrcrrLwk0aUyr8j3cxZVeVhQrhvNosgYa9tpxDP08sU--' onClick='selectAProj(4)'  class=title3>汽车监控端</a>
+</script>
+<script name="itchk" type="text/html">
+<input type=radio name=p_id value=198  onClick='selectAProj(5)'>
+<input type=hidden name=s_pid value='198'>
+<input type=hidden name=p_cname value='壹壹主网站'>
+</script>
+<script name="itid" type="text/html">198</script>
+<script name="itvalue" type="text/html">
+<a href='tmpl_list?--key--=-.UabS1NZr2-WWQJ.MtOTe-dy8.I92pAyNuvIqt8X1FI0voJLDDmWcQmgcjuZmmXLAqdb6p13x5YXXnnBsuBqNNdYlILIhPFqU--' onClick='selectAProj(5)'  class=title3>壹壹主网站</a>
+</script>
+<script name="itchk" type="text/html">
+<input type=radio name=p_id value=199  onClick='selectAProj(6)'>
+<input type=hidden name=s_pid value='199'>
+<input type=hidden name=p_cname value='壹壹内门户'>
+</script>
+<script name="itid" type="text/html">199</script>
+<script name="itvalue" type="text/html">
+<a href='tmpl_list?--key--=e4jspHJipsc-yCOK40hP.4InttbF1XQLSpkb1BOxYhF6DIcCphxQ.L24RAKaHnZ-wmdrIuG6zPu4kcrGOwQ9UCBQiCPlk.-cUU--' onClick='selectAProj(6)'  class=title3>壹壹内门户</a>
+</script>
+<script name="itchk" type="text/html">
+<input type=radio name=p_id value=206  onClick='selectAProj(7)'>
+<input type=hidden name=s_pid value='206'>
+<input type=hidden name=p_cname value='壹壹微信端'>
+</script>
+<script name="itid" type="text/html">206</script>
+<script name="itvalue" type="text/html">
+<a href='tmpl_list?--key--=.YfrHHSYfM6-Zl36ww6ft.AfdQ4RbjKjHbSpR.Z5HswLUmuf6POQyoaUBj58IcTt6mxEpMjKhqEVbd2d6SeVZEYQEiRHM2up8E--' onClick='selectAProj(7)'  class=title3>壹壹微信端</a>
+</script>
+<script name="itchk" type="text/html">
+<input type=radio name=p_id value=207  onClick='selectAProj(8)'>
+<input type=hidden name=s_pid value='207'>
+<input type=hidden name=p_cname value='分时服务端'>
+</script>
+<script name="itid" type="text/html">207</script>
+<script name="itvalue" type="text/html">
+<a href='tmpl_list?--key--=PxLE0fQ3aCg-cczmRu6zoXvT.LUQNU2gr9L.y0A3.t9m41SzrbvFUK8E5GobVfCczysN81UXZXeGaq.gcD5Q8DDrpkrfvRbTbk--' onClick='selectAProj(8)'  class=title3>分时服务端</a>
+</script>
+<script name="itchk" type="text/html">
+<input type=radio name=p_id value=208  onClick='selectAProj(9)'>
+<input type=hidden name=s_pid value='208'>
+<input type=hidden name=p_cname value='信租会主系统'>
+</script>
+<script name="itid" type="text/html">208</script>
+<script name="itvalue" type="text/html">
+<a href='tmpl_list?--key--=fQYeNTdlzaU-.eGM0eo.8q96t.XI0IzBzFW6lJSELZLv8-I4VIJK8QK4aPNc.lfHui9zE56K-BYJfjyPe50pyEgko2YJM6ssGYip6TM4kTEP' onClick='selectAProj(9)'  class=title3>信租会主系统</a>
+</script>
+<script name="itchk" type="text/html">
+<input type=radio name=p_id value=210  onClick='selectAProj(10)'>
+<input type=hidden name=s_pid value='210'>
+<input type=hidden name=p_cname value='信租会官网'>
+</script>
+<script name="itid" type="text/html">210</script>
+<script name="itvalue" type="text/html">
+<a href='tmpl_list?--key--=bbjzeTzNnt2-LL2ekE2L83RB-lQWYwDWaa9XkaHY2GJ6PWmcCe7DCgOc463-WyQHijeXm07Ncpqo.qeJixOLpd7D7s7wEeiMuk--' onClick='selectAProj(10)'  class=title3>信租会官网</a>
+</script>
+
+
+<br>
+</imainframe>
+
+<script type="text/javascript" src="js/components.js"></script>
+</center>
+</form>
+</body>
+</html>
+
