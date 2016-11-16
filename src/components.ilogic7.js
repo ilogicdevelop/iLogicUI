@@ -1,4 +1,6 @@
 var Vue=require("vue");
+// require("./oldtree");
+require("./createPopup");
 
 var ibreadcrumb = Vue.extend({
   template:
@@ -206,37 +208,6 @@ if(document.getElementById("igridheader"))
   } 
   // console.log(pagdatas);
 }
-
-// var iLogicComponents={
-//     "genlist_total_begin":
-//         "<table width=\"__VARINT__\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\" bordercolorlight=\"#7C7C7C\" bordercolordark=\"#FFFFFF\">",
-//     "genlist_vert":
-//         "<tr class=__VARSTR__ __VARSTR__>__VARSTR__</tr>",
-//     "genlist_hori": 
-//         "<td class=__VARSTR__ __VARSTR__>__VARSTR__</td>",
-//     "genlist_total_end":
-//         "</table>"
-
-// }
-
-
-// var ncol=0;
-// function gen_genlist_header(){
-//     var gridheader=document.getElementById("iheader").innerHTML;
-//     var gridths=gridheader.match(/<th[^>]+?>[^<]+?<\/th>/gi);
-//     ncol=gridths.length;
-//     document.write(iLogicComponents.genlist_vert.replace(/\_\_VARSTR\_\_/, "").replace(/\_\_VARSTR\_\_/, "").replace(/\_\_VARSTR\_\_/, gridheader));
-// }
-
-// var nrow=0;
-// function gen_genlist_vert(clsname,properties,nrow){
-//     var igriddatas=document.getElementsByName("igriddata");
-//     var irowhtml="";
-//     for(i=nrow*ncol;i<(nrow+1)*ncol;i++){
-//         irowhtml+= iLogicComponents.genlist_hori.replace(/\_\_VARSTR\_\_/,igriddatas[i].getAttribute("clsname")).replace(/\_\_VARSTR\_\_/,igriddatas[i].getAttribute("properties")).replace(/\_\_VARSTR\_\_/, igriddatas[i].innerHTML);
-//     }
-//     document.write(iLogicComponents.genlist_vert.replace(/\_\_VARSTR\_\_/,clsname).replace(/\_\_VARSTR\_\_/,properties).replace(/\_\_VARSTR\_\_/, irowhtml));
-// }
 
 
 // 创建根实例

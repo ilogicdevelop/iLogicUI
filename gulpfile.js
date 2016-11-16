@@ -8,7 +8,9 @@ var browserify = require("browserify");
 var sourcemaps = require("gulp-sourcemaps");
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
+var rename = require("gulp-rename");
 var fs = require("fs");
+var argv = require('yargs').argv;
 
 var paths = {
     htmlpunit:['./*.html','./punit/**/*.html'],
@@ -73,30 +75,35 @@ gulp.task('js', function(done) {
     //   .pipe(connect.reload())
     //   .on('end', done);
 
-    browserify('./src/components.js')
-    // // .transform(vueify)
-    .bundle()
-    .pipe(fs.createWriteStream("js/components.js"));
+    // return browserify('./src/components.js')
+    // // // .transform(vueify)
+    // .bundle()
+    // // .pipe(fs.createWriteStream("js/components.js"))
+    // .pipe(gulp.dest("js"))
+    // .pipe(connect.reload())
+    // .on('end', done);
 
-    // var b = browserify({
-    //     entries: "./src/components.js",
-    //     debug: true
-    // });
-    // return b.bundle()
-    //     .pipe(source("./src.components.js"))
-    //     .pipe(buffer())
-    //     .pipe(sourcemaps.init({loadMaps: true}))
-    //     .pipe(sourcemaps.write("."))
-    //     .pipe(gulp.dest("./js"));
+    var b = browserify({
+        entries: "./src/components.js",
+        debug: false
+    });
+    return b.bundle()
+        .pipe(source("./src/components.js"))
+        .pipe(rename({dirname: ''}))
+        .pipe(buffer())
+        .pipe(gulp.dest("./js"))
+        .pipe(connect.reload());
+
 
 });
 
 gulp.task('link', function() {
-    if(gulp.env.ui){     
+    // if(gulp.env.ui){    
+    if(argv.ui){
       sh.exec('rm css/style.css');
-      sh.exec('ln css/style.'+gulp.env.ui+'.css css/style.css');
+      sh.exec('ln css/style.'+argv.ui+'.css css/style.css');
       sh.exec('rm src/components.js');
-      sh.exec('ln src/components.'+gulp.env.ui+'.js src/components.js');      
+      sh.exec('ln src/components.'+argv.ui+'.js src/components.js');      
     }
     else{
       console.log("use --ui=xxx to set ui name")

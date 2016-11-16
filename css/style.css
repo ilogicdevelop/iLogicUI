@@ -1,134 +1,65 @@
-@import url("bootstrap.css"); 
+BODY {	FONT-FAMILY: "宋体"; FONT-SIZE: 9pt}
+th,td,p,input,select {FONT-FAMILY: "宋体"; FONT-SIZE: 9pt; FONT-WEIGHT: normal;}
 
-body{
-    padding:0 20px 0;
-}
-a{
-    font-size: 14px;
-}
-b{
-	color: gray;
-}
-br,hr{
-    display: none;
-}
-.butnsubmit{
-    margin: 10px 0;
-}
-.breadcrumb,.container{
-    text-align: left;
-}
-.table-1{
-    margin: 0;
-}
-.form-textarea{
-    width: 100%;
-}
-.navbar-default{
-    margin-bottom: 0;
-    height: 30px;
-}
-.btn-group{
-    display: flex;
-    justify-content: center;    
-} 
-.dropdown-toggle{
-	margin: 0 16px;
-}
-.status1{
-    justify-content: flex-start;
- }
-.btn1{
-    margin: 0 5px;
-}
-.input-group{
-    width: 100%;
-    margin: 1px 0;
-    height: 28px;
-    /*line-height: 28px;*/
-}
-/*.input-group .inp-radio{
-    position: relative;
-     top:6px;
-     margin-left: 4px;
-     margin-right: 4px;
-     
-}*/
-.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle){
-	border-top-right-radius:0;
-	border-bottom-right-radius:0;
-}
-.btn-group>.btn:last-child:not(:first-child){
-	border-top-left-radius:0;
-	border-bottom-left-radius:0;
-}
-.input-group-addon{
-    width: 15%;
-}
-.input-group1 .form-control{
-    width: 45%;
-}
-.form-control::-webkit-input-placeholder{
-    color: #000;
-}
+.title {  font-family: "宋体"; font-size: 18px; height: 20px; color: #3366FF}
+.pt1 {  font-size: 12px; text-align: right; }
+.pt2 {  font-size: 12px; text-align: center; }
+.pt3 {  font-size: 12px; text-align: left; }
+.text {  font-size: 12px; text-align: left;  width: 300px; }
+.select {  font-size: 12px; text-align: left; }
+.text2 {  font-size: 12px; text-align: left; }
+.noedit {  font-size: 12px; text-align: left; background-color:#E6E6E6}
+.submit {  font-size: 12px; text-align: left; }
 
-.input-group-addon:first-child{
-    border-right: 1px solid #ccc;
-}
-.input-group .url{
-	width: 46%;
-	height: 28px;
-}
-#_fieldvalue_id{
-	height: 28px;
-}
-.input-group #_fieldvalue_name,#_fieldvalue_id{
-	width: 100%;
-}
 
-#page-header-1{
-    margin-top: 0;
-}
-.status,.status_td_left{
-    line-height: 30px;
-    margin:0 80px 0 80px;
-}
+A {FONT-FAMILY: "宋体"; FONT-SIZE: 9pt; TEXT-DECORATION: none}
+A:hover { FONT-FAMILY: "宋体"; FONT-SIZE: 9pt; TEXT-DECORATION: underline}
 
-.list-group-item input{
-    display: inline-block;
-    width:16%;
+.unnamed1 {  font-size: 9pt; color: #0000FF; width: 90mm; line-height: 21px}
+.unnamed2 {  font-family: "宋体"; font-size: 10pt; font-weight: 600; color: #000000}
+.text3 {  font-family: "宋体"; font-size: 10pt; color: #0033FF}
+a:link {  font-size: 9pt; color: #FF0000}
+.textf_d {  height: 18px; border: #000000; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px}
+
+.ttd {font-family:宋体;font-size:14px;color=#000000}
+.tr_title1 {height:20px; align:left; bgcolor:#229AE1;}
+A.title1:link {font-family:宋体;text-decoration:none;color:#000000;font-size:14px;}
+A.title1:visited {font-family:宋体;text-decoration:none;color:#000000;font-size:14px;}
+A.title1:active {font-family:宋体;text-decoration:none;color:#000000;font-size:14px;}
+A.title1:hover {font-family:宋体;text-decoration:none;color:#000000;font-size:14px;}
+
+A.title3:link {font-family:宋体;text-decoration:underline;color:#57699B;font-size:12px;}
+A.title3:visited {font-family:宋体;text-decoration:underline;color:#57699B;font-size:12px;}
+A.title3:active {font-family:宋体;text-decoration:underline;color:#57699B;font-size:12px;}
+A.title3:hover {font-family:宋体;text-decoration:underline;color:#57699B;font-size:12px;}
+
+A.title4:link {font-family:宋体;text-decoration:none;color:#FFFFFF;font-size:14px;}
+A.title4:visited {font-family:宋体;text-decoration:none;color:#FFFFFF;font-size:14px;}
+A.title4:active {font-family:宋体;text-decoration:none;color:#FFFFFF;font-size:14px;}
+A.title4:hover {font-family:宋体;text-decoration:none;color:#FFFFFF;font-size:14px;}
+
+A.title_navigator:link {font-family:宋体;text-decoration:underline;color:#FFFFFF;font-size:12px;}
+A.title_navigator:visited {font-family:宋体;text-decoration:underline;color:#FFFF0F;font-size:12px;}
+A.title_navigator:active {font-family:宋体;text-decoration:underline;color:#F7699B;font-size:12px;}
+A.title_navigator:hover {font-family:宋体;text-decoration:underline;color:#F7699B;font-size:12px;}
+
+.butnadd {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_create.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butndel {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_delete.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butnmodify {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_modify.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butncopy1 {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_copy1.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butncopy2 {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_copy2.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butnsubmit {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_copy1.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butnreset {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_copy2.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+.butnback {font-family: 宋体; font-size: 10.5pt; background-image: url('../images/butn_copy2.gif'); background-repeat: no-repeat; border: 1px ridge; background-position: left center}
+
+
+table.status{ width:80%;border:0;cellspacing:0;cellpadding:0;}
+table.status td.status_td_left{width:25%;}
+
+.multiselect{width:15px;height:15px;}
+.cked{
+    margin:1px;padding:2px;width:100%;display:block;background-color:highlight;color:highlighttext;
 }
-.list-group-item span{
-    display: inline-block;
-    width:30%;
-    text-align: left;
+.nock{
+    margin:1px;padding:2px;width:100%;display:block;
 }
-.list-group-item .right{
-    border-left:1px solid black;
-    order-right:1px solid black;
-}
-.dropdown input{
-    height:32px;
-    border-radius: 6px;
-    margin: 0 16px;
-}
-.dropdown{
-    text-align: center;
-    margin: 10px 0;
-    line-height: 32px;
-}
-.dropdown button{
-    margin:0 12px 0;
-}
-.table td:nth-of-type(3){
-	text-align: left;
-}
-.panel-default th,td{
-    text-align: center;
-}
-.well div{
-    display: inline-block;
-}
-.well{
-    text-align: center;
-}    
