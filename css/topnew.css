@@ -1,0 +1,61 @@
+A:link { FONT-SIZE: 9pt; COLOR: #000000; TEXT-DECORATION: none}
+A:visited {	FONT-SIZE: 9pt; COLOR: #000000; TEXT-DECORATION: none}
+A:active { FONT-SIZE: 9pt; COLOR: #000000; TEXT-DECORATION: none}
+A:hover { FONT-SIZE: 9pt; COLOR: #000000; TEXT-DECORATION: none}
+A{text-decoration:none;color:#000000;}
+
+#menubar .root1 {
+	BORDER-BOTTOM: buttonface 1px solid; BORDER-LEFT: buttonface 1px solid; BORDER-RIGHT: buttonface 1px solid; BORDER-TOP: buttonface 1px solid; MARGIN: 6px; PADDING-BOTTOM: 1px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; PADDING-TOP: 1px
+}
+#menubar {
+        BACKGROUND: rgb(212,208,200); FONT: menu; CURSOR: default; POSITION: relative
+}
+#menubar .root {
+        BORDER-RIGHT: rgb(212,208,200) 1px solid; PADDING-RIGHT: 2pt; BORDER-TOP: rgb(212,208,200) 1px solid; PADDING-LEFT: 2pt; BORDER-LEFT: rgb(212,208,200) 1px solid; BORDER-BOTTOM: rgb(212,208,200) 1px solid
+}
+#menubar TABLE {
+        BORDER-RIGHT: gray 2px solid; PADDING-RIGHT: 0pt; BORDER-TOP: #eeeeee 2px solid; DISPLAY: none; PADDING-LEFT: 0pt; BACKGROUND: rgb(212,208,200); PADDING-BOTTOM: 0pt; MARGIN: 0pt; FONT: menu; BORDER-LEFT: #eeeeee 2px solid; PADDING-TOP: 0pt; BORDER-BOTTOM: gray 2px solid; POSITION: absolute
+}
+#menubar TABLE TD {
+        PADDING-RIGHT: 15pt; PADDING-LEFT: 12pt; PADDING-BOTTOM: 2pt; MARGIN: 0pt; PADDING-TOP: 2pt
+}
+#menubar .highlight {
+        BACKGROUND: #08246B; COLOR: white;
+}
+#menubar .disabledhighlight {
+        BACKGROUND: rgb(212,208,200); COLOR: gray
+}
+#menubar #break {
+        COLOR: gray
+}
+#menubar .disabled {
+        COLOR: gray
+}
+#menubar #break {
+        PADDING-RIGHT: 0pt; PADDING-LEFT: 0pt; PADDING-BOTTOM: 0pt; MARGIN: 0pt; PADDING-TOP: 0pt
+}
+#menubar SPAN.more {
+        PADDING-RIGHT: 0pt; PADDING-LEFT: 0pt; LEFT: 14pt; FLOAT: right; PADDING-BOTTOM: 0pt; MARGIN: 0pt; FONT: 9pt webdings; WIDTH: 0.8em; PADDING-TOP: 0pt; POSITION: relative; TOP: -2pt; HEIGHT: 9pt
+}
+#menubar .TBHandle {
+    BACKGROUND-COLOR: menu;
+    BORDER-LEFT: buttonhighlight 1px solid;
+    BORDER-RIGHT: buttonshadow 1px solid;
+    BORDER-TOP:        buttonhighlight        1px solid;
+    FONT-SIZE: 1px;
+    HEIGHT: 22px;
+    POSITION: absolute;
+    TOP: 1px;
+    WIDTH: 3px
+}
+#menubar .yToolbar {
+    BACKGROUND-COLOR: menu;
+    BORDER-BOTTOM: buttonshadow        1px solid;
+    BORDER-LEFT: buttonhighlight 1px solid;
+    BORDER-RIGHT: buttonshadow 1px solid;
+    BORDER-TOP:        buttonhighlight        1px solid;
+    HEIGHT: 27px;
+    LEFT: 0px;
+    POSITION: relative;
+    TOP: 0px;
+}

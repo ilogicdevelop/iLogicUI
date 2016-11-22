@@ -103,7 +103,9 @@ gulp.task('link', function() {
       sh.exec('rm css/style.css');
       sh.exec('ln css/style.'+argv.ui+'.css css/style.css');
       sh.exec('rm src/components.js');
-      sh.exec('ln src/components.'+argv.ui+'.js src/components.js');      
+      sh.exec('ln src/components.'+argv.ui+'.js src/components.js');    
+      sh.exec('rm menu.html');
+      sh.exec('ln src/menu.'+argv.ui+'.html menu.html');      
     }
     else{
       console.log("use --ui=xxx to set ui name")

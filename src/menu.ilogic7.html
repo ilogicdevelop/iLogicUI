@@ -1,0 +1,637 @@
+<html>
+<meta http-equiv='Pragma' content='no-cache'>
+<meta http-equiv='content-type' content='text/html; charset=utf-8'>
+<title>通用菜单</title>
+<body topmargin=0 leftmargin=0 >
+
+<LINK href="/css/topnew.css" type="text/css" rel="stylesheet">
+
+<script language="javascript">     if(window.addEventListener) { FixPrototypeForGecko(); }       function  FixPrototypeForGecko()   {       HTMLElement.prototype.__defineGetter__("runtimeStyle",element_prototype_get_runtimeStyle);       window.constructor.prototype.__defineGetter__("event",window_prototype_get_event);       Event.prototype.__defineGetter__("srcElement",event_prototype_get_srcElement);       Event.prototype.__defineGetter__("fromElement",  element_prototype_get_fromElement);       Event.prototype.__defineGetter__("toElement", element_prototype_get_toElement);     }       function  element_prototype_get_runtimeStyle() { return  this.style; }   function  window_prototype_get_event() { return  SearchEvent(); }   function  event_prototype_get_srcElement() { return  this.target; }       function element_prototype_get_fromElement() {       var node;       if(this.type == "mouseover") node = this.relatedTarget;       else if (this.type == "mouseout") node = this.target;       if(!node) return;       while (node.nodeType != 1)           node = node.parentNode;       return node;   }     function  element_prototype_get_toElement() {           var node;           if(this.type == "mouseout")  node = this.relatedTarget;           else if (this.type == "mouseover") node = this.target;           if(!node) return;           while (node.nodeType != 1)              node = node.parentNode;           return node;   }     function  SearchEvent()   {       if(document.all) return  window.event;           func = SearchEvent.caller;           while(func!=null){           var  arg0=func.arguments[0];               if(arg0 instanceof Event) {               return  arg0;           }          func=func.caller;       }       return   null;   } </script>
+
+<script type="text/javascript">
+  if(!!window.find){
+    HTMLElement.prototype.contains = function(B){
+     return this.compareDocumentPosition(B) - 19 > 0
+    }
+  }
+</script>
+<!-- add结束 -->
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+OutBarFolder1=new Array(
+"产品(<U>P</U>)",
+"none","default","导入更多产品...","doc_list?p_id=1&p_cname="+encodeURI("系统项目")+"&t_id=34&t_name=paas_wizard&audit_mask=4","main",2,
+"none","default","<hr>","","",2,
+"none","default","设置产品首页...","doc_list?p_id=1&p_cname="+encodeURI("系统项目")+"&t_id=10&t_name=web_manage&audit_mask=4&fieldvalues=limited_p_id:$P_ID","main",2,
+"none","default","设置个性门户...","doc_list?p_id=1&p_cname="+encodeURI("系统项目")+"&t_id=28&t_name=your_portal_set&audit_mask=4","main",2,
+"none","default","产品主体配置...","doc_list?p_id=1&p_cname="+encodeURI("系统项目")+"&t_id=30&t_name=product_manage&audit_mask=4","main",2,
+"none","default","产品文件上载...","uploadzip?p_id=1&p_cname="+encodeURI("系统项目")+"&t_name=file_in_content&prefix=/content_file/$NOW_P_ID/$T_ID/$D_ID","main",2,
+"none","default","<hr>","","",2,
+"none","default","产品封装...","doc_list?p_id=1&p_cname="+encodeURI("系统项目")+"&t_id=120&t_name=paas_package&audit_mask=4","main",2,
+"none","default","<hr>","","",2,
+"none","default","快速删除","unvs_delete?p_uri=show_status&p_id=0&t_name=proj&condition=p_id"+encodeURI("=")+"$P_ID","main",2,
+"none","default","快速恢复","unvs_edit_html?p_id=0&t_name=proj&op=I&condition=p_id=$P_ID","main",2,
+"none","default","快速停用","doc_delete?p_id=1&p_cname="+encodeURI("系统项目")+"&t_name=website_structure&t_id=12&d_id=$PNODE_D_ID","main",2,
+"none","default","快速启用","doc_new_face?p_id=1&p_cname="+encodeURI("系统项目")+"&t_id=12&poly=1&t_name=website_structure&audit_mask=4&fieldvalues=parent:cmsroot;map_poly:1;default_audit_mask:4&op_publish=0","main",2
+);
+
+
+
+OutBarFolder2=new Array(
+"新建(<U>N</U>)",
+"none","default","挂入项目...","doc_new_face?p_id=1&p_cname="+encodeURI("系统项目")+"&t_id=12&poly=1&t_name=website_structure&audit_mask=4&fieldvalues=parent:cmsroot;map_poly:1;default_audit_mask:4&op_publish=0","main",2,
+"none","default","<hr>","","",2,
+"none","default","功能块新建...",encodeURI("var modulename=window.prompt('请输入模块名','englishname');if(modulename && modulename.length>0){var myurl='tmpl?p_id=")+"$P_ID"+encodeURI("&p_cname=")+"$P_CNAME"+encodeURI("&op=I&ename='+modulename+'_';window.open(myurl,'main','');}"),"main",7,
+"none","default","功能块复制...","","main",2,
+"none","default","功能块导入...","","main",2,
+"none","default","<hr>","","",2,
+"none","default","项目新建...","unvs_edit_html?t_name=proj&op=I&p_id=0&p_uri="+encodeURI("doc_new_face?p_id=1&p_cname=系统项目&t_id=12&poly=1&t_name=website_structure&audit_mask=4&fieldvalues=parent:cmsroot;map_poly:1;default_audit_mask:4&op_publish=0"),"main",2,
+"none","default","项目快建...","unvs_edit_html?copy_all_data=3&t_name=proj&op=C&p_id=-1&p_uri=proj_list","main",2,
+"none","default","项目复制...","unvs_edit_html?t_name=proj&op=C&p_id=$P_ID&p_uri=proj_list","main",2,
+"none","default","项目导入...","vrsn.html?p_id=","main",2,
+"none","default","项目映射...","unvs_edit_html?copy_all_data=5&t_name=proj&op=C&p_id=$P_ID&p_uri=proj_list","main",2,
+"none","default","项目速建...",escape("var fname=window.prompt('仅建立项目框架请输入0，建立项目带基础数据请输入1','仅建立项目框架请输入0，建立项目带数据请输入1');var myurl; if(fname == '0'){ myurl='unvs_edit_html?copy_all_data=3&t_name=proj&op=C&p_id=")+"$P_ID"+escape("&p_uri=proj_list'; }else if(fname == '1'){ myurl='unvs_edit_html?copy_all_data=4&t_name=proj&op=C&p_id=")+"$P_ID"+escape("&p_uri=proj_list';}else { if(fname){ alert('仅建立项目框架请输入0，建立项目带数据请输入1');}}if(myurl){window.open(myurl,'main','');}"),"main",7,
+"none","default","<hr>","","",2,
+"none","default","群新建...","","main",2,
+"none","default","群复制...","","main",2,
+"none","default","群导入...","vrsn.html?p_id=0","main",2,
+"none","default","<hr>","","",2,
+"none","default","项目维护","unvs_list?p_id=0&t_name=proj","main",2
+);
+
+OutBarFolder3=new Array(
+"配置(<U>C</U>)",
+"none","default","样式配置","unvs_list?p_id=$P_ID&p_cname=$P_CNAME&t_name=polymorphic","main",2,
+"none","default","地址簿","unvs_list?p_id=$P_ID&p_cname=$P_CNAME&t_name=addressbook","main",2,
+"none","default","全局变量","unvs_list?p_id=$P_ID&p_cname=$P_CNAME&t_name=global","main",2,
+"none","default","页面集配置","doc_list?p_id=1&p_cname="+encodeURI("系统项目")+"&t_id=86&t_name=html_style_sets&audit_mask=4","main",2,
+"none","default","模板维护","unvs_list?p_id=$P_ID&p_cname=$P_CNAME&t_name=temp","main",2,
+"none","default","<hr>","","",2,
+"none","default","权限配置","rothrz?role_pid=$P_ID&p_cname="+encodeURI("当前项目")+"&role_tid=$T_ID","main",2,
+"none","default","逻辑删除","doc_list?p_id=1&p_cname="+encodeURI("系统项目")+"&t_id=148&t_name=idelete_config&fieldvalues=set_p_id:$P_ID;set_t_id:$T_ID","main",2,
+"none","default","定时任务","skdul_list?p_id=$P_ID","main",2,
+"none","default","<hr>","","",2,
+"none","default","能力授权","srv_license_step2?src_pid=$P_ID","main",2,
+"none","default","索引配置","unvs_list?p_id=0&t_name=index_type&condition=datasum_t_name"+escape("='")+"datasum_of_$P_ID_pid"+escape("'"),"main",2,
+"none","default","SSO配置","unvs_list?p_id=-1&t_name=method","main",2,
+"none","default","<hr>","","",2,
+"none","default","rsync配置","doc_list?p_id=1&p_cname="+encodeURI("系统项目")+"&t_id=144&t_name=rsync_manage&audit_mask=4","main",2,
+"none","default","upload配置","doc_list?p_id=1&p_cname="+encodeURI("系统项目")+"&t_id=-1&t_name=upload_cfg&audit_mask=4","main",2,
+"none","default","<hr>","","",2,
+"none","default","文档版本...","docvrsn_list?p_id=&t_id=&d_id=","main",2
+
+);
+
+OutBarFolder4=new Array(
+"开发(<U>D</U>)",
+"none","default","新建模板","tmpl?p_id=$P_ID&p_cname=$P_CNAME&op=I&p_uri=unvs_list"+escape("?p_id=")+"$P_ID"+escape("&p_cname=")+"$P_CNAME"+escape("&t_name=temp"),"main",2,
+"none","default","修改模板","tmpl?p_id=$P_ID&p_cname=$P_CNAME&t_id=$T_ID&op=U&p_uri=unvs_list"+escape("?p_id=")+"$P_ID"+escape("&p_cname=")+"$P_CNAME"+escape("&t_name=temp"),"main",2,
+"none","default","调试组件","mdul?p_id=$P_ID&p_cname=$P_CNAME&t_id=$T_ID&op=I&f_id=0","main",2,
+"none","default","修改文档","this_doc?p_id=$P_ID&p_cname=$P_CNAME&t_id=$T_ID&d_id=$D_ID&op=U","main",2,
+"none","default","<hr>","","",2,
+"none","default","导入模板","vrsn.html?p_id=$P_ID&p_cname=$P_CNAME","main",2,
+"none","default","直接导入","tmpl_wiz?p_id=$P_ID&p_cname=$P_CNAME","main",2,
+"none","default","<hr>","","",2,
+"none","default","复制模板","tmpl_cp_step1?dest_pid=$P_ID&dest_pcname=$P_CNAME&p_uri=unvs_list"+escape("?p_id=")+"$P_ID"+escape("&p_cname=")+"$P_CNAME"+escape("&t_name=temp"),"main",2,
+"none","default","直接复制",escape("var my_tname=window.prompt('请输入目标模板表英文名','');var my_pid=window.prompt('请输入源项目号','1');var my_tid=window.prompt('请输入源模板号','0');if(my_tname && my_pid && my_pid.length>0 && my_tid && my_tid.length>0){var myurl='tmpl_copy?dest_pid=")+"$P_ID"+escape("&src_pid='+my_pid+'&src_tid='+my_tid+'&p_uri=tmpl_list%3Fp_id%3D")+"$P_ID"+escape("%26p_cname%3D%u5F53%u524D%u9879%u76EE&t_name='+my_tname;alert(myurl);window.open(myurl,'main','');}"),"main",7,
+"none","default","<hr>","","",2,
+"none","default","公共内容文件","tmpl_copy?dest_pid=$P_ID&src_pid=1&src_tid=16&imode=1&p_uri=tmpl_list%3Fp_id%3D$P_ID%26p_cname%3D%u5F53%u524D%u9879%u76EE","main",2,
+"none","default","公共模板文件","tmpl_copy?dest_pid=$P_ID&src_pid=1&src_tid=13&imode=1&p_uri=tmpl_list%3Fp_id%3D$P_ID%26p_cname%3D%u5F53%u524D%u9879%u76EE","main",2,
+"none","default","源码文件库","tmpl_copy?dest_pid=$P_ID&src_pid=1&src_tid=18&imode=1&p_uri=tmpl_list%3Fp_id%3D$P_ID%26p_cname%3D%u5F53%u524D%u9879%u76EE","main",2,
+"none","default","通用资源文件","tmpl_copy?dest_pid=$P_ID&src_pid=1&src_tid=15&imode=1&p_uri=tmpl_list%3Fp_id%3D$P_ID%26p_cname%3D%u5F53%u524D%u9879%u76EE","main",2,
+"none","default","<hr>","","",2,
+"none","default","典型架构",escape("var my_tname=window.prompt('请输入目标模板表英文名','');var my_tid=window.prompt('请选择源模板号(数字部分)','41(栏目结构表)|42(栏目结构表AUTOKEY)|90(信息结构表)|91(多维子信息结构表)|102(自动结构表)|103(介绍类结构表)|104(功能结构表)|');if(my_tname && my_tid && my_tid.length>0){var myurl='tmpl_copy?dest_pid=")+"$P_ID"+escape("&src_pid=1&src_tid='+my_tid+'&p_uri=tmpl_list?p_id%3D")+"$P_ID"+escape("%26p_cname%3D")+"$P_CNAME"+escape("&t_name='+my_tname;window.open(myurl,'main','');}"),"main",7,
+"none","default","典型内容",escape("var my_tname=window.prompt('请输入目标模板表英文名','');var my_tid=window.prompt('请选择源模板号(数字部分)','43(文档正文页)|');if(my_tname && my_tid && my_tid.length>0){var myurl='tmpl_copy?dest_pid=")+"$P_ID"+escape("&src_pid=1&src_tid='+my_tid+'&p_uri=tmpl_list%3Fp_id%3D")+"$P_ID"+escape("%26p_cname%3D%u5F53%u524D%u9879%u76EE&t_name='+my_tname;window.open(myurl,'main','');}"),"main",7,
+"none","default","典型列表",escape("var my_tname=window.prompt('请输入目标模板表英文名','');var my_tid=window.prompt('请选择源模板号(数字部分)','-1');if(my_tname && my_tid && my_tid.length>0){var myurl='tmpl_copy?dest_pid=")+"$P_ID"+escape("&src_pid=1&src_tid='+my_tid+'&p_uri=tmpl_list%3Fp_id%3D")+"$P_ID"+escape("%26p_cname%3D%u5F53%u524D%u9879%u76EE&t_name='+my_tname;window.open(myurl,'main','');}"),"main",7,
+"none","default","典型首页",escape("var my_tname=window.prompt('请输入目标模板表英文名','');var my_tid=window.prompt('请选择源模板号(数字部分)','');if(my_tname && my_tid && my_tid.length>0){var myurl='tmpl_copy?dest_pid=")+"$P_ID"+escape("&src_pid=1&src_tid='+my_tid+'&p_uri=tmpl_list%3Fp_id%3D")+"$P_ID"+escape("%26p_cname%3D%u5F53%u524D%u9879%u76EE&t_name='+my_tname;window.open(myurl,'main','');}"),"main",7,
+"none","default","横式导航",escape("var my_tname=window.prompt('请输入目标模板表英文名','');var my_tid=window.prompt('请选择源模板号(数字部分)','37(内容模块-菜单)|');if(my_tname && my_tid && my_tid.length>0){var myurl='tmpl_copy?dest_pid=")+"$P_ID"+escape("&src_pid=1&src_tid='+my_tid+'&p_uri=tmpl_list%3Fp_id%3D")+"$P_ID"+escape("%26p_cname%3D%u5F53%u524D%u9879%u76EE&t_name='+my_tname;window.open(myurl,'main','');}"),"main",7,
+"none","default","纵式巡航","tmpl_copy?dest_pid=$P_ID&src_pid=1&src_tid=&p_uri=unvs_list"+escape("?p_id=")+"$P_ID"+escape("&p_cname=")+"$P_CNAME"+escape("&t_name=temp"),"main",2,
+"none","default","树状结构","tmpl_copy?dest_pid=$P_ID&src_pid=1&src_tid=47&&p_uri=unvs_list"+escape("?p_id=")+"$P_ID"+escape("&p_cname=")+"$P_CNAME"+escape("&t_name=temp"),"main",2,
+"none","default","登录判断","tmpl_copy?dest_pid=$P_ID&src_pid=1&src_tid=44&p_uri=unvs_list"+escape("?p_id=")+"$P_ID"+escape("&p_cname=")+"$P_CNAME"+escape("&t_name=temp"),"main",2,
+"none","default","<hr>","","",2,
+"none","default","url快维...",escape("var myurl=window.prompt('请输入要维护的url','');if(myurl && myurl.length>0){var myurl='doc_preview_maintain?op_mode=8&u='+escape(myurl);window.open(myurl,'main','');}"),"main",7
+);
+
+OutBarFolder5=new Array(
+"功能(<U>F</U>)",
+"none","default","专栏专题参考","tmpl_copy?dest_pid=$P_ID&src_pid=1&src_tid=49&p_uri=unvs_list"+escape("?p_id=")+"$P_ID"+escape("&p_cname=")+"$P_CNAME"+escape("&t_name=temp"),"main",2,
+"none","default","场景导航参考","tmpl_copy?dest_pid=$P_ID&src_pid=1&src_tid=55&p_uri=unvs_list"+escape("?p_id=")+"$P_ID"+escape("&p_cname=")+"$P_CNAME"+escape("&t_name=temp"),"main",2,
+"none","default","缺省全文检索",escape("var my_tname=window.prompt('请输入模板表英文名','');if(my_tname){var myurl='tmpl_copy?dest_pid=")+"$P_ID"+escape("&src_pid=1&src_tid=38&p_uri=tmpl_list%3Fp_id%3D")+"$P_ID"+escape("%26p_cname%3D%u5F53%u524D%u9879%u76EE&t_name='+my_tname;window.open(myurl,'main','');}"),"main",7,
+"none","default","高级全文检索",escape("var my_tname=window.prompt('请输入模板表英文名','');if(my_tname){var myurl='tmpl_copy?dest_pid=")+"$P_ID"+escape("&src_pid=1&src_tid=-1&p_uri=tmpl_list%3Fp_id%3D")+"$P_ID"+escape("%26p_cname%3D%u5F53%u524D%u9879%u76EE&t_name='+my_tname;window.open(myurl,'main','');}"),"main",7,
+"none","default","专业计数参考","tmpl_copy?dest_pid=$P_ID&src_pid=1&src_tid=50&p_uri=unvs_list"+escape("?p_id=")+"$P_ID"+escape("&p_cname=")+"$P_CNAME"+escape("&t_name=temp"),"main",2,
+"none","default","工作流程样例","tmpl_copy?dest_pid=$P_ID&src_pid=1&src_tid=36&p_uri=unvs_list"+escape("?p_id=")+"$P_ID"+escape("&p_cname=")+"$P_CNAME"+escape("&t_name=temp"),"main",2,
+"none","default","OFC统计参考","tmpl_copy?dest_pid=$P_ID&src_pid=1&src_tid=56&p_uri=unvs_list"+escape("?p_id=")+"$P_ID"+escape("&p_cname=")+"$P_CNAME"+escape("&t_name=temp"),"main",2,
+"none","default","<hr>","","",2,
+"none","default","独立用户管理","vrsn_result?method=2&p_id=$P_ID&t_id=0&type=1&filepath1=ilogic:1:Usermanage:0","main",2,
+"none","default","系统通知功能","vrsn_result?method=2&p_id=$P_ID&t_id=0&type=1&filepath1=ilogic:1:New_Notices:0","main",2,
+"none","default","即时消息功能","vrsn_result?method=2&p_id=$P_ID&t_id=0&type=1&filepath1=ilogic:1:New_Sms:0","main",2,
+"none","default","独立评论功能","vrsn_result?method=2&p_id=$P_ID&t_id=0&type=1&filepath1=ilogic:1:Comment:0","main",2,
+"none","default","独立调查系统","vrsn_result?method=2&p_id=$P_ID&t_id=0&type=1&filepath1=ilogic:1:Vote:0","main",2,
+"none","default","<hr>","","",2,
+"none","default","全文检索开发",escape("var my_tname=window.prompt('请输入当前模板")+"$T_ID"+escape("对应表名','');if(my_tname){var myurl='search_manager.html?p_id=")+"$P_ID"+escape("&p_cname=当前项目&poly=1&t_id=")+"$T_ID"+escape("&t_name='+my_tname;window.open(myurl,'main','');}"),"main",7,
+"none","default","统计报表开发",escape("var my_tname=window.prompt('请输入当前模板")+"$T_ID"+escape("对应表名','');if(my_tname){var myurl='report_manager.html?p_id=")+"$P_ID"+escape("&p_cname=当前项目&pm_id=1&t_id=")+"$T_ID"+escape("&t_name='+my_tname;window.open(myurl,'main','');}"),"main",7,
+"none","default","<hr>","","",2,
+"none","default","扩展功能块支持",escape("var modulname=window.prompt('请输入功能模块英文名','');if(modulname && modulname.length>0){var myurl='vrsn_result?method=2&p_id=")+"$P_ID"+escape("&t_id=0&type=1&filepath1=ilogic:1:'+modulname+':0&p_uri=tmpl_list%3Fp_id%3D")+"$P_ID"+escape("%26p_cname%3D%u5F53%u524D%u9879%u76EE';window.open(myurl,'main','');}"),"main",7,
+"none","default","软件即服务...","","main",6
+);
+
+OutBarFolder6=new Array(
+"重构(<U>F</U>)",
+"none","default","文档重构",escape("var my_tname=window.prompt('请输入当前模板")+"$T_ID"+escape("对应表名','');if(my_tname){var myurl='search_manager.html?p_id=")+"$P_ID"+escape("&p_cname=当前项目&poly=1&t_id=")+"$T_ID"+escape("&t_name='+my_tname;window.open(myurl,'main','');}"),"main",7,
+"none","default","<hr>","","",2,
+"none","default","软件即服务...","","main",6
+);
+
+OutBarFolder7=new Array(
+"文件(<U>C</U>)",
+"none","default","控件上载","uploaddirfile?p_id=$P_ID&p_cname=$P_CNAME&t_name=file_in_temp","main",2,
+"none","default","zip包上载","uploadzip?p_id=$P_ID&p_cname=$P_CNAME&t_id=$FILE_IN_TEMP_T_ID","main",2,
+"none","default","打开解析","uploadfiles?p_id=$P_ID&t_name=no","main",2,
+"none","default","录入上传","doc_new_face?p_id=$P_ID&p_cname=$P_CNAME&t_name=file_in_temp&t_id=$FILE_IN_TEMP_T_ID&audit_mask=4&poly=1","main",2,
+"none","default","<hr>","","",2,
+"none","default","Logo管理","doc_list?p_id=$P_ID&p_cname=$P_CNAME&t_name=file_in_temp&t_id=$FILE_IN_TEMP_T_ID&audit_mask=4&field=file_name_1;文件&field_val=logo&search_relation=2","main",2,
+"none","default","Banner管理","doc_list?p_id=$P_ID&p_cname=$P_CNAME&t_name=file_in_temp&t_id=$FILE_IN_TEMP_T_ID&audit_mask=4&field=file_name_1;文件&field_val=banner&search_relation=2","main",2,
+"none","default","CSS管理","doc_list?p_id=$P_ID&p_cname=$P_CNAME&t_name=file_in_temp&t_id=$FILE_IN_TEMP_T_ID&audit_mask=4&field=file_name_1;文件&field_val=css&search_relation=2","main",2,
+"none","default","Flash管理","doc_list?p_id=$P_ID&p_cname=$P_CNAME&t_name=file_in_temp&t_id=$FILE_IN_TEMP_T_ID&audit_mask=4&field=file_name_1;文件&field_val=swf&search_relation=2","main",2,
+"none","default","<hr>","","",2,
+"none","default","查找文件",escape("var fname=window.prompt('请输入文件名或其中字','');if(fname){var myurl='doc_list?p_id=")+"$P_ID"+escape("&p_cname=")+"$P_CNAME"+escape("&t_name=file_in_temp&t_id=")+"$FILE_IN_TEMP_T_ID"+escape("&audit_mask=4&field=file_name_1;文件&search_relation=2&field_val='+fname;window.open(myurl,'main','');}"),"main",7
+);
+
+OutBarFolder8=new Array(
+"视图(<U>W</U>)",
+"none","default","多通道整合","unvs_list?p_id=0&t_name=collect_accounts&condition=p_id"+escape("=")+"$P_ID","main",2,
+"none","default","<hr>","","",2,
+"none","default","模板视图","dataview_insert_show_dbs?p_id=$P_ID&p_cname=$P_CNAME&t_id=1","main",2,
+"none","default","文件视图","unvs_list?p_id=0&t_name=fileviews_config&condition=p_id"+escape("=")+"$P_ID","main",2,
+"none","default","邮件视图","","main",2,
+"none","default","网站视图","unvs_list?p_id=0&t_name=WEB_SPIDER_TASK&condition=p_id"+escape("=")+"$P_ID","main",2,
+"none","default","服务视图","","main",2,
+"none","default","<hr>","","",2,
+"none","default","快速反解","docsparse?p_id=$NOW_P_ID&p_cname="+encodeURI("当前项目")+"&t_id=$T_ID","main",2,
+"none","default","大样反解","doc_list?p_id=1&p_cname=系统项目&t_id=139","main",2,
+"none","default","大文件上载","uploadbigfile?p_id=$NOW_P_ID&p_cname="+encodeURI("当前项目")+"&t_id=$T_ID&d_id=$D_ID","main",2,
+"none","default","导入工具","vrsn.html?p_id=1&E&t_id=0","main",2
+);
+
+OutBarFolder9=new Array(
+"OSS扩展构件(<U>S</U>)",
+"none","default","扩展页面算法","http://www.ilogic.cn/myilogic.html?do=oss&type=1&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","扩展算法参考","http://www.ilogic.cn/myilogic.html?do=oss&type=2&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","扩展外挂插件","http://www.ilogic.cn/myilogic.html?do=oss&type=4&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","扩展外挂服务","http://www.ilogic.cn/myilogic.html?do=oss&type=8&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","扩展组件向导","http://www.ilogic.cn/myilogic.html?do=oss&type=16&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","扩展资源片断","http://www.ilogic.cn/myilogic.html?do=oss&type=32&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","扩展内容模块","http://www.ilogic.cn/myilogic.html?do=oss&type=64&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","扩展典型模板","http://www.ilogic.cn/myilogic.html?do=oss&type=128&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","扩展云功能块","http://www.ilogic.cn/myilogic.html?do=oss&type=256&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","扩展云端聚件","http://www.ilogic.cn/myilogic.html?do=oss&type=512&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","扩展产品页面","http://www.ilogic.cn/myilogic.html?do=oss&type=1024&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","扩展软件服务","http://www.ilogic.cn/myilogic.html?do=oss&type=2048&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","扩展同构项目","http://www.ilogic.cn/myilogic.html?do=oss&type=4096&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","扩展异构应用","http://www.ilogic.cn/myilogic.html?do=oss&type=8192&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","其他各种扩展","http://www.ilogic.cn/myilogic.html?do=oss&type=0&cmsuri=develop.xinzuhui.com","main",6,
+"none","default","<hr>","","",2,
+"none","default","扩展构件检索",escape("var searchkey=window.prompt('请输入搜索非数字型关键词且有一定长度:','');if(searchkey && searchkey.length>=2){window.open('http://www.ilogic.cn/myilogic.html?do=oss&cmsuri=develop.xinzuhui.com&type='+searchkey,'main');}"),"main",7,
+"none","default","自定义扩展...",escape("doextendwiz(")+"$P_ID,$T_ID"+escape(",0);"),"main",7
+);
+
+OutBarFolder10=new Array(
+"云工具(<U>T</U>)",
+"none","default","数据快速查询","doc_list?p_id=1&p_cname=系统项目&t_id=153","main",2,
+"none","default","数据统一操作","doc_list?p_id=1&p_cname=系统项目&t_id=31","main",2,
+"none","default","命令执行操作","doc_list?p_id=1&p_cname=系统项目&t_id=33","main",2,
+"none","default","系统升级操作","doc_list?p_id=1&p_cname=系统项目&t_id=32","main",2,
+"none","default","操作审核管理","tmpl_audit?p_id=1&p_cname=系统项目&audit_mask=4","main",2,
+"none","default","快速云打包","doc_list?p_id=1&p_cname=系统项目&t_id=149","main",2,
+"none","default","<hr>","","",2,
+"none","default","云任务分发","doc_list?p_id=1&p_cname=系统项目&t_id=99","main",2,
+"none","default","云模板协作",escape("var my_dids=window.prompt('请输入升级任务号(可基于分发查看):','');if(my_dids){var myurl='ibatch?mode=128&p_id=1&t_name=mysaastask&t_id=29&d_id='+my_dids+'&mode=128';window.open(myurl,'main','');}"),"main",7,
+"none","default","云数据同步",escape("var my_dids=window.prompt('请输入同步任务号(默认依次为paas环境配置,saas同步任务,Faq之同步，可基于分发查看):','-1,-1,-1');if(my_dids){var myurl='ibatch?mode=128&p_id=1&t_name=saas_sync_center&t_id=122&d_id='+my_dids+'&mode=128';window.open(myurl,'main','');}"),"main",7,
+"none","default","云配置更新","doc_list?p_id=1&p_cname="+encodeURI("系统项目")+"&t_id=88&t_name=saas_data_config&audit_mask=4","main",2,
+"none","default","云平台升级",escape("window.open('ibatch?mode=128&p_id=1&t_name=saas_sync_center&t_id=122&d_id=-1','main','');"),"main",7,
+"none","default","云执行递交",escape("var myforms=max.main.document.getElementsByTagName('form'); for(var j=0,leng=myforms.length;j<leng;j++){if(myforms[j].onsubmit()!=false){window.open('', 'tbform'+j);myforms[j].target='tbform'+j;myforms[j].submit();}}"),"main",7,
+"none","default","<hr>","","",2,
+"none","default","云需求原型管理",escape("alert('当前版不支持，仅供开发企业专业版试用');"),"main",7,
+"none","default","<hr>","","",2,
+"none","default","云项目备份",escape("doextendwiz(")+"$P_ID,$T_ID"+escape(",13);"),"main",7,
+"none","default","云项目恢复",escape("alert('当前版不支持，仅供开发企业专业版试用');"),"main",7,
+"none","default","<hr>","","",2,
+"none","default","云聚件配置","unvs_list?p_id=0&t_name=sys_opfunc","main",2,
+"none","default","Escape转义",escape("var nowparam=window.prompt('请输入原始参数:','');if(nowparam && nowparam.length>0){window.prompt('参数转义结果:',escape(nowparam));};"),"max",7,
+"none","default","encodeURI转义",escape("var nowparam=window.prompt('请输入原始参数:','');if(nowparam && nowparam.length>0){window.prompt('参数转义结果:',encodeURI(nowparam));};"),"max",7,
+"none","default","<hr>","","",2,
+"none","default","云永久授权","ilogicman","main",2
+);
+
+OutBarFolder11=new Array(
+"查看(<U>V</U>)",
+"none","default","服务日志","post_read_log?logfile=gcms.log&first_flag=1&rows=200","main",3,
+"none","default","调试日志","post_read_log?logfile=idebug.log&first_flag=1&rows=200","main",3,
+"none","default","其他日志",escape("var logfile=window.prompt('请输入日志名:','../../logs/error_log');if(logfile){var myurl='post_read_log?first_flag=1&rows=200&logfile='+logfile;window.open(myurl,'newwin','');}"),"main",7,
+"none","default","<hr>","","",2,
+"none","default","资源管理模式","icmsframe?funcRoles=MAINTAIN&viewmode=3","max",4,
+"none","default","全屏幕模式","icmsframe?funcRoles=MAINTAIN&viewmode=1","max",4,
+"none","default","关闭刷新",escape("brefreshstop=1;alert('要重新开启请刷新该页面');"),"max",7,
+"none","default","切换强制弹窗",escape("bForcePopWin=!bForcePopWin;"),"max",7,
+"none","default","当前信息",escape("if(max.main && max.main.document.myform && max.main.document.myform.p_id && max.main.document.myform.t_id && max.main.document.myform.p_id.value==p_id) {alert('当前项目号:'+p_id+' 当前模板号:'+max.main.document.myform.t_id.value+' 当前文档号:'+(max.main.document.myform.d_id?max.main.document.myform.d_id.value:0));} else {alert('当前项目号:'+p_id+' 当前模板号:'+t_id+' 当前文档号:'+d_id);}"),"max",7
+);
+
+OutBarFolder12=new Array(
+"帮助(<U>H</U>)",
+"none","default","模组参考手册","/help/index.html","main",3,
+"none","default","iPerl脚本参考","/perl5qjc/index.htm","main",3,
+"none","default","命令行查询...",escape("var cmdname=window.prompt('请输入命令，如imp、exp等:','');if(cmdname && cmdname.length>0){window.open('/syscmd/'+cmdname+'.txt','_blank');};"),"max",7,
+"none","default","<hr>","","",6,
+"none","default","FAQ","/ifaq/faq.html","main",3,
+"none","default","在线求助","http://www.ilogic.cn/myilogic.html?do=helpdesk&cmsuri=develop.xinzuhui.com&set_cookie=FEe8hC8k.X6-","main",6,
+"none","default","在线论坛","http://www.ilogic.cn/myilogic.html?do=bbs&cmsuri=develop.xinzuhui.com&set_cookie=FEe8hC8k.X6-","main",6,
+"none","default","在线沟通","http://www.ilogic.cn/myilogic.html?do=chat&cmsuri=develop.xinzuhui.com&set_cookie=FEe8hC8k.X6-","main",6,
+"none","default","在线建言","http://www.ilogic.cn/myilogic.html?do=leaveword&cmsuri=develop.xinzuhui.com&set_cookie=FEe8hC8k.X6-","main",6,
+"none","default","协同开发白版","http://www.ilogic.cn/myilogic.html?do=leaveword&cmsuri=develop.xinzuhui.com&p_id=$P_ID&set_cookie=FEe8hC8k.X6-","main",6,
+"none","default","系统Bug","http://www.ilogic.cn/myilogic.html?do=bugcenter&cmsuri=develop.xinzuhui.com&set_cookie=FEe8hC8k.X6-&set_cookie=FEe8hC8k.X6-","main",6,
+"none","default","<hr>","","",6,
+"none","default","iLogic项目中心","http://www.ilogic.cn/myilogic.html?do=projmanage&cmsuri=develop.xinzuhui.com&set_cookie=FEe8hC8k.X6-","main",6
+);
+
+    var childActive = null
+    var menuActive = null
+    var lastHighlight = null
+    var active = false
+    function getReal(el) {
+     temp = el
+      while ((temp!=null) && (temp.tagName!="TABLE") && (temp.className!="root") && (temp.id!="menuBar")) {
+        if (temp.tagName=="TD")
+          el = temp
+        temp = temp.parentElement
+      }
+      return el
+    }
+    function raiseMenu(el) {
+      el.style.borderLeft = "1px #ffffff solid"
+      el.style.borderTop = "1px #ffffff solid"
+      el.style.borderRight = "1px #666666 solid"
+      el.style.borderBottom = "1px #666666 solid"
+      el.style.background = "rgb(214,211,206)"
+    }
+    function clearHighlight(el) {
+      if (el==null) return
+      el.style.borderRight = "1px lightgrey solid"
+      el.style.borderBottom = "1px lightgrey solid"
+      el.style.borderTop = "1px lightgrey solid"
+      el.style.borderLeft = "1px lightgrey solid"
+      el.style.background = "rgb(212,208,200)"
+    }
+    function sinkMenu(el) {
+      el.style.borderRight = "1px #EEEEEE solid"
+      el.style.borderBottom = "1px #EEEEEE solid"
+      el.style.borderTop = "1px gray solid"
+      el.style.borderLeft = "1px gray solid"
+      el.style.background = "rgb(212,208,200)"
+    }
+    function menuHandler(menuItem) {
+      return true
+    }
+    function getOffsetPos(which,el,tagName) {
+      var pos = 0
+      while (el.tagName!=tagName) {
+        pos+=el["offset" + which]
+        el = el.offsetParent
+      }
+     return pos
+    }
+
+    function getRootTable(el) {
+      el = el.offsetParent
+      if (el.tagName=="TR")
+        el = el.offsetParent
+      return el
+    }
+
+    function getElement(el,tagName) {
+      while ((el!=null) && (el.tagName!=tagName) )
+        el = el.parentElement
+      return el
+    }
+
+    function processClick() {
+      var el = getReal(event.srcElement)
+      if ((getRootTable(el).id=="menuBar") && (active)) {
+        cleanupMenu(menuActive)
+        clearHighlight(menuActive)
+        active=false
+        lastHighlight=null
+        doHighlight(el)
+      }
+      else {
+        if ((el.className=="root") || (!menuHandler(el)))
+          doMenuDown(el)
+        else {
+          if (el._childItem==null)
+            el._childItem = getChildren(el)
+          if (el._childItem!=null)  return;
+          if ((el.id!="break") && (el.className!="disabled") && (el.className!="disabledhighlight") && (el.className!="clear"))  {
+            if (menuHandler(el)) {
+              cleanupMenu(menuActive)
+              clearHighlight(menuActive)
+              active=false
+              lastHighlight=null
+           }
+          }
+        }
+      }
+    }
+    function getChildren(el) {
+       // var tList = el.children.tags("TABLE")
+  var tList= el.childNodes;		
+      var i = 0
+      while ((i<tList.length) && (tList[i].tagName!="TABLE"))
+        i++
+      if (i==tList.length)
+        return null
+      else
+        return tList[i]
+    }
+    function doMenuDown(el) {
+      if (el._childItem==null)
+        el._childItem = getChildren(el)
+      if ((el._childItem!=null) && (el.className!="disabled") && (el.className!="disabledhighlight")) {
+        ch = el._childItem
+        if (ch.style.display=="block") {
+          removeHighlight(ch.active)
+          return
+        }
+       ch.style.display = "block"
+        if (el.className=="root") {
+          ch.style.pixelTop = el.offsetHeight + el.offsetTop + 2
+          ch.style.pixelLeft = el.offsetLeft + 1
+          if (ch.style.pixelWidth==0)
+            ch.style.pixelWidth = ch.rows[0].offsetWidth+50
+          sinkMenu(el)
+          active = true
+          menuActive = el
+        } else {
+          childActive = el
+          ch.style.pixelTop = getOffsetPos("Top",el,"TABLE") -3
+          ch.style.pixelLeft = el.offsetLeft + el.offsetWidth
+          if (ch.style.pixelWidth==0)
+            ch.style.pixelWidth = ch.offsetWidth+50
+        }
+      }
+    }
+     function doHighlight(el) {
+      el = getReal(el)
+      if ("root"==el.className) {
+        if ((menuActive!=null) && (menuActive!=el)) {
+          clearHighlight(menuActive)
+        }
+        if (!active) {
+          raiseMenu(el)
+        }
+        else
+          sinkMenu(el)
+        if ((active) && (menuActive!=el)) {
+          cleanupMenu(menuActive)
+          doMenuDown(el)
+        }
+        menuActive = el
+        lastHighlight=null
+      }
+      else {
+        if (childActive!=null)
+          if (!childActive.contains(el))
+            closeMenu(childActive, el)
+
+        if (("TD"==el.tagName) && ("clear"!=el.className)) {
+          var ch = getRootTable(el)
+          if (ch.active!=null) {
+            if (ch.active!=el) {
+              if (ch.active.className=="disabledhighlight")
+                ch.active.className="disabled"
+              else
+                ch.active.className=""
+              }
+            }
+          ch.active = el
+          lastHighlight = el
+          if ((el.className=="disabled") || (el.className=="disabledhighlight") || (el.id=="break"))
+            el.className = "disabledhighlight"
+          else {
+            if (el.id!="break") {
+              el.className = "highlight"
+              if (el._childItem==null)
+               el._childItem = getChildren(el)
+              if (el._childItem!=null) {
+                doMenuDown(el)
+              }
+           }
+          }
+        }
+      }
+    }
+    function removeHighlight(el) {
+      if (el!=null)
+        if ((el.className=="disabled") || (el.className=="disabledhighlight"))
+          el.className="disabled"
+        else
+          el.className=""
+    }
+    function cleanupMenu(el) {
+
+     if (el==null) return
+  // add 开始
+  var tList= el.childNodes;
+  for (var i = 0; i < tList.length; i++) {
+      var item = tList[i];
+      if (item.tagName=="TABLE")
+      item.style.display = "";
+      removeHighlight(item.active);
+  }
+  // add 结束
+  /* del ysp
+  for (var i = 0; i < el.all.length; i++) {
+    var item = el.all[i]
+   if (item.tagName=="TABLE")
+     item.style.display = ""
+    removeHighlight(item.active)
+    item.active=null
+  }
+  */
+    }
+    function closeMenu(ch, el) {
+      var start = ch
+      while (ch.className!="root") {
+          ch = ch.parentElement
+          if (((!ch.contains(el)) && (ch.className!="root"))) {
+            start=ch
+          }
+      }
+      cleanupMenu(start)
+    }
+     function checkMenu() {
+      if (document.all.menuBar==null) return
+      if ((!document.all.menuBar.contains(event.srcElement)) && (menuActive!=null)) {
+        clearHighlight(menuActive)
+        closeMenu(menuActive)
+        active = false
+        menuActive=null
+        choiceActive = null
+      }
+    }
+    function doCheckOut() {
+      var el = event.toElement
+      if ((!active) && (menuActive!=null) && (!menuActive.contains(el))) {
+        clearHighlight(menuActive)
+        menuActive=null
+      }
+    }
+
+    function processKey() {
+      if (active) {
+        switch (event.keyCode) {
+         case 13: lastHighlight.click(); break;
+         case 39:
+           if ((lastHighlight==null) || (lastHighlight._childItem==null)) {
+             var idx = menuActive.cellIndex
+             if (idx==getElement(menuActive,"TR").cells.length-2)
+               idx = 0
+             else
+               idx++
+             newItem = getElement(menuActive,"TR").cells[idx]
+           } else
+           {
+             newItem = lastHighlight._childItem.rows[0].cells[0]
+           }
+           doHighlight(newItem)
+           break;
+         case 37:
+           if ((lastHighlight==null) || (getElement(getRootTable(lastHighlight),"TR").id=="menuBar")) {
+             var idx = menuActive.cellIndex
+             if (idx==0)
+               idx = getElement(menuActive,"TR").cells.length-2
+             else
+               idx--
+             newItem = getElement(menuActive,"TR").cells[idx]
+           } else
+           {
+             newItem = getElement(lastHighlight,"TR")
+             while (newItem.tagName!="TD")
+               newItem = newItem.parentElement
+           }
+           doHighlight(newItem)
+           break;
+         case 40:
+            if (lastHighlight==null) {
+              itemCell = menuActive._childItem
+              curCell=0
+              curRow = 0
+            }
+            else {
+              itemCell = getRootTable(lastHighlight)
+              if (lastHighlight.cellIndex==getElement(lastHighlight,"TR").cells.length-1) {
+               curCell = 0
+                curRow = getElement(lastHighlight,"TR").rowIndex+1
+                if (getElement(lastHighlight,"TR").rowIndex==itemCell.rows.length-1)
+                  curRow = 0
+              } else {
+                curCell = lastHighlight.cellIndex+1
+                curRow = getElement(lastHighlight,"TR").rowIndex
+              }
+            }
+            doHighlight(itemCell.rows[curRow].cells[curCell])
+            break;
+         case 38:
+            if (lastHighlight==null) {
+              itemCell = menuActive._childItem
+              curRow = itemCell.rows.length-1
+              curCell= itemCell.rows[curRow].cells.length-1
+            }
+            else {
+              itemCell = getRootTable(lastHighlight)
+              if (lastHighlight.cellIndex==0) {
+                curRow = getElement(lastHighlight,"TR").rowIndex-1
+                if (curRow==-1)
+                  curRow = itemCell.rows.length-1
+                curCell= itemCell.rows[curRow].cells.length-1
+
+              } else {
+                curCell = lastHighlight.cellIndex - 1
+                curRow = getElement(lastHighlight,"TR").rowIndex
+              }
+            }
+            doHighlight(itemCell.rows[curRow].cells[curCell])
+            break;
+           if (lastHighlight==null) {
+              curCell = menuActive._childItem
+              curRow = curCell.rows.length-1
+            }
+            else {
+              curCell = getRootTable(lastHighlight)
+              if (getElement(lastHighlight,"TR").rowIndex==0)
+                curRow = curCell.rows.length-1
+              else
+                curRow = getElement(lastHighlight,"TR").rowIndex-1
+            }
+            doHighlight(curCell.rows[curRow].cells[0])
+            break;
+        }
+     }
+    }
+function make_menu() {
+document.write("<table width='100%' cellpadding='0' cellspacing='0' border='0' style='background=rgb(212,208,200); BACKGROUND: #D6D3CE; BORDER-BOTTOM: buttonshadow 1px solid; BORDER-LEFT: buttonhighlight 1px solid; BORDER-RIGHT: buttonshadow 1px solid; BORDER-TOP: buttonhighlight 1px solid;'>");
+document.write("<tr><TD><SPAN class=handbtn></SPAN></TD><td>");
+
+document.write("<TABLE ID=menuBar ONSELECTSTART='return false' ONCLICK='processClick()' ONMOUSEOVER='doHighlight(event.toElement)' ONMOUSEOUT='doCheckOut()' ONKEYDOWN='processKey()'><TR>");
+
+document.write("<td NOWRAP CLASS=root width=60><font color=red><a href='onlinemng' target=main>曾满平</a></font></td><td NOWRAP CLASS=root width=45><span id=new_sms></span></td><td NOWRAP CLASS=root width=120><span id=daemstatus></span></td>");
+document.write("<td cellpadding='0' cellspacing='0' border='0' style='background=rgb(212,208,200); BACKGROUND: buttonface; BORDER-BOTTOM: buttonshadow 0px solid; BORDER-LEFT: buttonhighlight 0px solid; BORDER-RIGHT: buttonshadow 0px solid; BORDER-TOP: buttonhighlight 0px solid;'><SPAN class=handbtn></SPAN></td>");
+
+		j=1;
+        while(eval("window.OutBarFolder"+j))
+                j++;
+        i=1;
+        while(i<j)
+        {
+                Folder=eval("OutBarFolder"+i)
+        document.write("<TD NOWRAP CLASS=root>"+Folder[0]+"<TABLE CELLSPACING=0 CELLPADDING=0 width='0'>");
+                MakeItems(Folder);
+        document.write("</TABLE>");
+                i++;
+        }
+document.write("</TD>"); 
+document.write("<td cellpadding='0' cellspacing='0' border='0' style='background=rgb(212,208,200); BACKGROUND: buttonface; BORDER-BOTTOM: buttonshadow 0px solid; BORDER-LEFT: buttonhighlight 0px solid; BORDER-RIGHT: buttonshadow 0px solid; BORDER-TOP: buttonhighlight 0px solid;'><SPAN class=handbtn></SPAN></td>");
+document.write("<td NOWRAP CLASS=root><a href='daem_moniter?op=start' target=main>进程状态(<U>S</U>)</A></td>");
+document.write("<td NOWRAP CLASS=root>&nbsp;<a href='logout?p_uri=http://dev.xinzuhui.com:9000/&skey=937147963674277' target=_parent>退出(<U>X</U>)</A>&nbsp;</td>");
+document.write("<td cellpadding='0' cellspacing='0' border='0' style='background=rgb(212,208,200); BACKGROUND: buttonface; BORDER-BOTTOM: buttonshadow 0px solid; BORDER-LEFT: buttonhighlight 0px solid; BORDER-RIGHT: buttonshadow 0px solid; BORDER-TOP: buttonhighlight 0px solid;'><SPAN class=handbtn></SPAN></td>");
+document.write("<td NOWRAP CLASS=root><A HREF='http://www.ilogic.cn/myilogic.html?do=myportal&cmsuri=develop.xinzuhui.com' target=_blank><IMG SRC='/images/icon_home.gif' WIDTH='15' HEIGHT='15' BORDER=0 ALT='我的门户'></A></td>");
+document.write("<td NOWRAP CLASS=root><a href='#' onClick='location.reload()'><IMG SRC='/images/ico-sx.gif' WIDTH='15' HEIGHT='15' BORDER=0 ALT='刷新'></a></td>");
+document.write("<td NOWRAP CLASS=root><a href='javascript:history.go(-1);'><IMG SRC='/images/icon_forward.gif' WIDTH='15' HEIGHT='15' BORDER=0 ALT='返回'></A></td>");
+document.write("<td NOWRAP CLASS=root><A href='modify_userinfo' target=main><IMG SRC='/images/index_logo_bbs.gif' WIDTH='15' HEIGHT='15' BORDER=0 ALT='设定'></A></td>");
+document.write("<td NOWRAP CLASS=root><A href='logout?p_uri=http://dev.xinzuhui.com:9000/&skey=937147963674277' target=_parent><IMG SRC='/images/ico_exit.gif' WIDTH='15' HEIGHT='15' BORDER=0 ALT='退出'></A></td>");
+document.write("</TR></TABLE>");
+
+document.write("</td><td width=50%  ONMOUSEOVER='processClick()'><td><SPAN class=handbtn></SPAN></td>");
+document.write("</td></tr></table>");
+}
+
+function MakeItems(Folder)
+{
+        var items=0;
+        while(Folder[items+1])
+                items+=6;
+        items/=6;
+        for(var i=1;i<items*6;i+=6)
+        {
+document.write("<TR><TD NOWRAP"+((Folder[i+0]=="none")?"":" ID='"+Folder[i+0]+"'")+((Folder[i+3]=="none")?"":" onclick=\"go("+Folder[i+5]+",'"+Folder[i+3]+"')\"")+">"+((Folder[i+1]=="default")?"":"<font color="+Folder[i+1]+">")+Folder[i+2]+((Folder[i+1]=="default")?"":"</font>")+"</TD></TR>");
+        }
+}
+
+make_menu();
+//-->
+</SCRIPT>
+
+
+
+<div style='width:100%;height:96%' ONMOUSEOVER='processClick()'>
+
+</body>
+</html>
