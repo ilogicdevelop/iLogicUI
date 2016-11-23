@@ -1,227 +1,255 @@
-var Vue=require("vue");
-// require("./oldtree");
-require("./createPopup");
+var $=jQuery=require('jquery');
+require("./bootstrap");
 
-var ibreadcrumb = Vue.extend({
-  template:
-        "<table cellSpacing=0 cellPadding=0 border=0 width=\"640\" height=\"50\">" +
-        "<TR>" +
-        "<TD colspan=\"2\">" +
-        "<div align=\"right\">" +
-        "<img src=\"/images/header.gif\" width=\"654\" height=\"26\">" +
-        "</div>" +
-        "</TD>" +
-        "</TR>" +
-        "<TR  bgColor=#000000 height=\"20\" valign=\"top\">" +
-        "<TD align=left>" +
-        "<img height=24 src=\"/images/email.gif\" width=22 align=\"absmiddle\">" +
-        "<font color=\"#FFFFFF\"><slot></slot></font>" +
-        "</TD>" +
-        "<TD align=left>" +
-        "</TD>" +
-        "</TR>" +
-        "</TABLE>",
-  compiled: function () {
-    // console.log('compiled: ' + this.$el.innerHTML);
-  }
-});
-Vue.component('ibreadcrumb', ibreadcrumb);
+require("angular");
 
-var imainframe = Vue.extend({
-  template: 
-        "<table border=\"0\" bgcolor=\"#D6D3CE\" cellspacing=\"1\" align=center> "+
-        "<tr>"+
-        "   <td>"+
-        "       <table border=\"0\" bgcolor=\"#D6D3CE\" cellspacing=\"1\" width=\"100%%\" style=\"font-family: 宋体; font-size: 10.5pt; border: 1px ridge\"> "+
-        "           <tr bgcolor=#adbee7> "+
-        "               <td  background=\"/images/public_top_bg.gif\"><font color=#FFFFFF>{{title}}</font></td><td bgcolor=#adbee7 width=10 valign=center><a href=\"javascript:history.back()\"><img src=\"/images/mainfrm_close.gif\" border=0 width=\"16\" height=\"14\" ></a>"+
-        "               </td>"+
-        "           </tr>"+
-        "       </table>"+
-        "       <table border=\"0\" bgcolor=\"#D6D3CE\" cellspacing=\"1\" style=\"font-family: 宋体; font-size: 10.5pt; border: 1px ridge\"> "+
-        "           <tr>"+
-        "               <td valign=\"top\">&nbsp; </td>"+
-        "               <td align=\"center\" >"+
-        "                   <br>"+
-        "                   <table width=\"640\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" bordercolorlight=\"#7C7C7C\" bordercolordark=\"#FFFFFF\"> "+
-        "                       <tr>"+
-        "                           <td align=\"center\">"+
-        "<slot></slot>"+
-        "                           </td>"+
-        "                       </tr>"+
-        "                   </table>"+
-        "               </td>"+
-        "           </tr>"+
-        "       </table>"+
-        "   </td>"+
-        "</tr>"+
-        "</table>",
-  props: ["title"]
-});
-Vue.component('imainframe', imainframe);
-
-var ibuttongroups=Vue.extend({
-  template: "<table class1=\"{{clsname}}\" width=\"{{width}}\" border=\"0\" bgcolor=\"#D6D3CE\" cellspacing=\"0\" cellpadding=\"0\" bordercolorlight=\"#7C7C7C\" bordercolordark=\"#FFFFFF\">"+
-            "<tr align=\"{{align}}\">"+
-            "<td colspan=2>"+
-            "<slot></slot>"+
-            "</td>"+
-            "</tr>"+
-            "</table>",
-  props: ["clsname","width","align"],
-  compiled: function () {
-    // console.log('compiled: ' + this.$el.innerHTML);
-  }
-});
-Vue.component('ibuttongroups', ibuttongroups);
+window.AppModule = angular.module('app', [
+    // 'ngAnimate',
+    // 'ngCookies',
+    // 'ngResource',
+    // 'ngSanitize',
+    // 'ngTouch',
+    // 'ngStorage',
+    // 'ui.router',
+    // 'ui.bootstrap',
+    // 'ui.load',
+    // 'ui.jq',
+    // 'ui.validate',
+    // 'oc.lazyLoad',
+    // 'pascalprecht.translate'
+]);
 
 
-var icommonstatus=Vue.extend({
-  template: "<table class=\"{{clsname}}\">" +
-            "<tr>" +
-            "<td width=40 height=40><img src=/images/c.gif width=1 height=1></td>" +
-            "<td class=\"{{icsclsname}}\">{{icsname}}</td>" +
-            "<td width=10></td>" +
-            "<td><slot></slot></td>" +
-            "</tr>" +
-            "</table>",
-  props: ["clsname","icsclsname","icsname"]
-});
-Vue.component('icommonstatus', icommonstatus);
-
-
-var itypicallist=Vue.extend({
-  props: {
-    "typdatas":Array,
-    "width":String
-  },
-  template:         
-        "<table width=\"{{width}}\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\" bordercolorlight=\"#7C7C7C\" bordercolordark=\"#FFFFFF\">" +       
-        "<tr class=\"\"  bgcolor=\"#FFFFFF\" v-for=\"item in typdatas\">"+
-        "<td width=\"10\" height=\"20\" bgcolor=\"#D6D3CE\">{{{item.itchk}}}</td>"+
-        "<td class=\"pt2\" width=\"50\" >{{{item.itid}}}</td>"+
-        "<td class=\"pt3\">{{{item.itvalue}}}</td>"+
-        "</tr>"+
-        "</table>"
-});
-Vue.component('itypicallist', itypicallist);
-
-
-var griddatas=[];
-var itchks=document.getElementsByName("itchk");
-var itids=document.getElementsByName("itid");
-var itvalues=document.getElementsByName("itvalue");
-for(i=0;i<itchks.length;i++){
-  griddatas[i]={
-    itchk:itchks[i].innerHTML,
-    itid:itids[i].innerHTML,
-    itvalue:itvalues[i].innerHTML
-  }
+var positions=$("ibreadcrumb")[0].innerHTML.split("&gt;&gt;");
+var ihtml="<li><span class=\"glyphicon glyphicon-th-list\"></span></li>";
+for(i=0;i<positions.length;i++){
+    if(i==0) positions[i]=positions[i].replace(/:/g,"");
+    ihtml+="<li>"+positions[i]+"</li>";
 }
+$("ibreadcrumb")[0].innerHTML=ihtml;
 
-var ifieldintoform=Vue.extend({
-  template: 
-        "<table width=\"{{width}}\" border=\"0\" bgcolor=\"#D6D3CE\" cellspacing=\"1\" style=\"font-family: 宋体; font-size: 10.5pt\">"+
-        "   <tr>"+
-        "       <td width=\"20%%\"  valign=\"center\" class=\"pt1\" height=\"20\"><slot name=\"iffname\"></slot></td>"+
-        "       <td width=\"80%%\"><slot></slot></td>"+
-        "   </tr> "+
-        "</table>",
-  props:["width"],
-  compiled: function () {
-    // console.log('compiled: ' + this.$el.innerHTML);
-  }
+AppModule.directive('ibreadcrumb', function() {
+    return {
+        restrict: 'E',
+        template: 
+            "<ol class=\"breadcrumb\" ng-transclude>"+
+            "</ol>",
+        replace: true,
+        transclude: true,
+        // compile: function(tElem, tAttrs, transcludeX){
+        //     console.log(name + ': compile => ' + tElem.html());
+        //     return {
+        //       pre: function(scope, iElem, iAttrs){
+        //         console.log(name + ': pre link => ' + iElem.html());
+        //       },
+        //       post: function(scope, iElem, iAttrs){
+        //         console.log(name + ': post link => ' + iElem.html());
+        //         transcludeX(scope, function(clone) {
+        //             // var title= element.find('title');
+        //         });
+        //       }
+        //     }
+        // }
+        link: function(scope, iElem, iAttrs){
+            console.log(': link => ' + iElem.html());
+        }
+    };
 });
-Vue.component('ifieldintoform', ifieldintoform);
 
-var ifieldintoformdevidor=Vue.extend({
-  template: 
-  "<table width=\"{{width}}\" border=\"0\" bgcolor=\"#D6D3CE\" cellspacing=\"0\" cellpadding=\"0\" bordercolorlight=\"#7C7C7C\" bordercolordark=\"#FFFFFF\"> "+
-        "<tr height=\"{{height}}\" align=\"{{align}}\" bgcolor=#229AE1>"+
-        "   <td colspan=2><slot></slot></td>"+
-        "</tr> "+
-        "</table>",
-  props:["width","height","align"]
+
+AppModule.directive('imainframe', function() {
+    return {
+        restrict: 'E',
+        scope:{
+          title:'@title'
+        },
+        template: 
+            "<div class=\"container list-group\" ng-transclude>"+
+            "</div>",
+        replace: true,
+        transclude: true
+    };
 });
-Vue.component('ifieldintoformdevidor', ifieldintoformdevidor);
 
-var ipaggrid=Vue.extend({
-  props: ['columns', 'rows', 'colnames',"width"],
-  template: 
-      "<table width=\"{{width}}\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\" bordercolorlight=\"#7C7C7C\" bordercolordark=\"#FFFFFF\">"+
-        '<thead class="panel-heading">'+
-          '<tr>'+
-            '<th v-for="column in colnames">'+
-              '{{{column}}}'+
-            '</th>'+
-          '</tr>'+
-        '</thead>'+
-        '<tbody>'+
-          '<tr v-for="row in rows">'+
-            '<td v-for="column in columns">'+
-              '{{{row[column]}}}'+
-            '</td>'+
-          '</tr>'+
-        '</tbody>'+
-      "</table>"
+AppModule.directive('ibuttongroups', function() {
+    return {
+        restrict: 'E',
+        scope:{
+          clsname:'=clsname'
+        },
+        template: 
+            "<div class=\"btn-group {{clsname}}\" role=\"group\" ng-transclude>"+
+            "</div>",
+        replace: true,
+        transclude: true
+    };
 });
-Vue.component('ipaggrid', ipaggrid);
 
-var pagcolumns=[];
-var pagcolnames=[];
-var pagdatas=[];
-if(document.getElementById("igridheader"))
-{
-  var gridheader=document.getElementById("igridheader").innerHTML;
-  // console.log(gridheader);
-  var gridths=gridheader.match(/<th.+?<\/th>/gi);
-  // console.log(gridths.length);
-  re1=/<th([^>]+?) id=([^>]+?)>(.+?)<\/th>/i;
-  re2=/<th([^>]*?)>(.+?)<\/th>/i;
-  for(i=0;i<gridths.length;i++){
-    // console.log(gridths[i]);
-    var tharray=re1.exec(gridths[i]);
-    if(tharray){
-      pagcolumns[i]=tharray[2];
-      pagcolnames[i]=tharray[3];
-    }
-    else{
-      tharray=re2.exec(gridths[i]);
-      pagcolumns[i]="col"+i;
-      pagcolnames[i]=tharray[2];
-    }
-    
-  }
-  // console.log(pagcolnames);
-  // console.log(pagcolumns);
-  var igriddatas=document.getElementsByName("igriddata");
-  var icolnum=gridths.length;
-  var irownum=igriddatas.length/icolnum;
-  var nData=0;
-  for(i=0;i<irownum;i++){
-    var irowdata={};
-    for(j=0;j<icolnum;j++){
-      irowdata[pagcolumns[j]]=igriddatas[nData++].innerHTML;
-      // console.log(irowdata[pagcolumns[j]]);
-    }
-    pagdatas[i]=irowdata;
-  } 
-  // console.log(pagdatas);
-}
+// var ibuttongroups=Vue.extend({
+//   template: "<div class=\"btn-group {{clsname}}\" role=\"group\">"+
+//             "<slot></slot>"+
+//             "</div>",
+//   props: ["clsname"],
+//   compiled: function () {
+//     // console.log('compiled: ' + this.$el.innerHTML);
+//     console.log("clsname="+this.clsname);
+//     if(this.clsname=="status") this.clsname="status1";
+//     if(this.clsname=="sel") this.clsname="dropdown";
+
+//     btngroupHtml=this.$el.innerHTML;
+//     if (btngroupHtml.indexOf("movePage")<0) {
+//         btngroupHtml=btngroupHtml.replace(/^<hr>/, '');
+//         btngroupHtml=btngroupHtml.replace(/<p><\/p>$/g, '');
+//         btngroupHtml=btngroupHtml.replace(/class="butnsubmit"/g, 'class="butnsubmit btn btn-default btn-danger"');
+//         btngroupHtml=btngroupHtml.replace(/class="butnadd"/g, 'class="btn btn-default"');
+//         btngroupHtml=btngroupHtml.replace(/class="butnreset"/g, 'class="butnsubmit btn btn-default btn-danger"');
+//         btngroupHtml=btngroupHtml.replace(/class="butnback"/g, 'class="butnsubmit btn btn-default btn-danger"');
+//         btngroupHtml=btngroupHtml.replace(/select /g, 'select class="btn btn-default dropdown-toggle"');
+//     } else {
+//         re=/([\d\D]+?)&nbsp;&nbsp;([\d\D]+?)&nbsp;&nbsp;页码：([\d]+) \/ ([\d]+) &nbsp;&nbsp;数目：([\d]+)/i;
+//         var pageInfos=re.exec(btngroupHtml);
+//         console.log(pageInfos);
+//         if(pageInfos && pageInfos.length>5){
+//             var pageUrls=pageInfos[1].split("&nbsp;");
+//             var pageCurrent=parseInt(pageInfos[3]);
+//             var pageTotal=parseInt(pageInfos[4]);
+//             var pageRecnum=parseInt(pageInfos[5]);
+//             btngroupHtml="<nav><ul class='pagination'>";
+//             for(var i=0;i<pageUrls.length;i++){
+// //              if(pageUrls[i].indexOf("上一页")>0)
+// //                  pageUrls[i]=pageUrls[i].replace(/上一页/,"<span aria-hidden='true'>&laquo;</span>");
+//                 if(pageUrls[i].indexOf("下一页")>0)
+//                     pageUrls[i]=pageUrls[i].replace(/下一页/,"<span aria-hidden='true'>&raquo;</span>");
+//                 btngroupHtml+="<li>"+pageUrls[i]+"</li>";
+//             }
+//             btngroupHtml+="</ul></nav>";
+//         }
+//     }
+
+//     this.$el.innerHTML=btngroupHtml;
+//   }
+// });
+// Vue.component('ibuttongroups', ibuttongroups);
+
+AppModule.directive('icommonstatus', function() {
+    return {
+        restrict: 'E',
+        scope:{
+          clsname: '=clsname',
+          icsclsname: '=icsclsname', 
+          icsname:'@icsname'
+        },
+        template: 
+          "<div class=\"list-group-item\"><span class=\"status\">{{icsname}}</span><span class=\"status_td_left\" ng-transclude></span></div>",
+        replace: true,
+        transclude: true
+    };
+});
 
 
-// 创建根实例
-new Vue({
-  el: 'html',
-  data:{
-    griddatas:griddatas,
-    pagdatas:pagdatas,
-    pagcolumns:pagcolumns,
-    pagcolnames:pagcolnames
-  }
+// var itypicallist=Vue.extend({
+//   props: {"typdatas":Array},
+//   template: "<table class=\"table table-bordered table-1\">"+
+//             "<tr v-for=\"item in typdatas\"><td>{{{item.itchk}}}</td><td>{{{item.itid}}}</td><td>{{{item.itvalue}}}</td></tr>"+
+//             "</table>"
+// });
+// Vue.component('itypicallist', itypicallist);
 
-})
+// var griddatas=[];
+// var itchks=document.getElementsByName("itchk");
+// var itids=document.getElementsByName("itid");
+// var itvalues=document.getElementsByName("itvalue");
+// for(i=0;i<itchks.length;i++){
+//   griddatas[i]={
+//     itchk:itchks[i].innerHTML,
+//     itid:itids[i].innerHTML,
+//     itvalue:itvalues[i].innerHTML
+//   }
+// }
+
+// var ifieldintoform=Vue.extend({
+//   template: "<div class=\"input-group\"><div class=\"input-group-addon btn-danger\"><slot name=\"iffname\"></slot></div><slot></slot></div>",
+//   compiled: function () {
+//     ihtml=this.$el.innerHTML;
+//     ihtml=ihtml
+//       .replace(/<input type="text" id="_fieldvalue/, '<input type="text" class="form-control" id="_fieldvalue')
+//       .replace(/<textarea id="_fieldvalue/, '<textarea class="form-control" id="_fieldvalue');
+//     this.$el.innerHTML=ihtml;
+//   }
+// });
+// Vue.component('ifieldintoform', ifieldintoform);
+
+// var ifieldintoformdevidor=Vue.extend({
+//   template: "<div class=\"well well-sm\"><slot></slot></div>"
+// });
+// Vue.component('ifieldintoformdevidor', ifieldintoformdevidor);
+
+// var ipaggrid=Vue.extend({
+//   props: ['columns', 'rows', 'colnames'],
+//   template: 
+//   '<div class="panel panel-default">'+
+//     '<table class="table">'+
+//       '<thead class="panel-heading">'+
+//         '<tr>'+
+//           '<th v-for="column in colnames">'+
+//             '{{{column}}}'+
+//           '</th>'+
+//         '</tr>'+
+//       '</thead>'+
+//       '<tbody>'+
+//         '<tr v-for="row in rows">'+
+//           '<td v-for="column in columns">'+
+//             '{{{row[column]}}}'+
+//           '</td>'+
+//         '</tr>'+
+//       '</tbody>'+
+//     '</table>'+
+//   '</div>'
+// });
+// Vue.component('ipaggrid', ipaggrid);
+
+// var pagcolumns=[];
+// var pagcolnames=[];
+// var pagdatas=[];
+// if(document.getElementById("igridheader"))
+// {
+//   var gridheader=document.getElementById("igridheader").innerHTML;
+//   // var gridths=gridheader.match(/<th[^>]+?>[^<]+?<\/th>/gi);
+//   // re=/<th([^>]+?) id=([^>]+?)>([^<]+?)<\/th>/i;
+//   var gridths=gridheader.match(/<th.+?<\/th>/gi);
+//   re1=/<th([^>]+?) id=([^>]+?)>(.+?)<\/th>/i;
+//   re2=/<th([^>]*?)>(.+?)<\/th>/i;
+//   for(i=0;i<gridths.length;i++){
+//     // console.log(gridths[i]);
+//     var tharray=re1.exec(gridths[i]);
+//     if(tharray){
+//       pagcolumns[i]=tharray[2];
+//       pagcolnames[i]=tharray[3];
+//     }
+//     else{
+//       tharray=re2.exec(gridths[i]);
+//       pagcolumns[i]="col"+i;
+//       pagcolnames[i]=tharray[2];
+//     }
+//   }
+//   // console.log(pagcolnames);
+//   // console.log(pagcolumns);
+//   var igriddatas=document.getElementsByName("igriddata");
+//   var icolnum=gridths.length;
+//   var irownum=igriddatas.length/icolnum;
+//   var nData=0;
+//   for(i=0;i<irownum;i++){
+//     var irowdata={};
+//     for(j=0;j<icolnum;j++){
+//       irowdata[pagcolumns[j]]=igriddatas[nData++].innerHTML;
+//       // console.log(irowdata[pagcolumns[j]]);
+//     }
+//     pagdatas[i]=irowdata;
+//   } 
+//   // console.log(pagdatas);
+// }
 
 
-
+//手动启动！
+angular.bootstrap(document,['app']);
 
