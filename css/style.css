@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url("bootstrap.css"); 
 
 /* 
@@ -5102,3 +5103,199 @@ a.text-#000000:hover {
     background-color: #7266ba;
   }
 }  
+=======
+@import url("amazeui.css"); 
+
+html,body{
+    height: 100%;
+    max-width:1600px;
+}
+hr,br{
+    display: none;
+}
+.hr{
+    width: 100%;
+    height: 1px;
+    background: #dddddd;
+}
+ol{
+    margin: 1.6rem 0 1.6rem 0;
+}
+b{
+    color: #232323;
+    font-weight: 400;
+}
+b div{
+    margin: 0 10px;
+}
+input{
+    line-height: 28px;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+form{
+    width: 100%;
+}
+.am-breadcrumb{
+
+    text-align: left;
+    margin: 0px;
+}
+.z-border{
+    padding: 15px;
+    margin: 20px 0;
+    border: 1px solid #DDDDDD;
+}
+#if-top{
+    position: absolute;
+    width: 100%;
+    /*
+    min-width: 1385px;
+    */
+    height:50px;
+    background-color: transparent;
+    z-index: 99;
+}
+#if-left{
+    position: absolute;
+    top: 50px;
+    left: 0;
+    min-width: 280px;
+    width: 15%;
+}
+#if-main{
+    position: absolute;
+    top: 50px;
+    left: 280px;
+    width: 100%;
+    /*min-width: 1066px ;*/
+    height: 100%;
+    padding-left: 25px;
+    float: right;
+}
+
+.am-selected{
+    width:auto;
+}
+.am-breadcrumb{
+    /*min-width: 1200px;*/
+    padding-left: 0;
+    padding-right: 0;
+    text-align: left;
+}
+.container{
+    text-align: left;
+}
+.flo_left,.butnmode{
+    float: left;
+}
+.z-input-spacing{
+    margin-left:42px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.am-btn-group-xs .am-btn-xs{
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.am-btn-xs span{
+    display: inline-block;
+    margin-right: 3px;
+}
+.z-btn{
+    padding: 9px 18px;
+    margin: 0 15px;
+    box-shadow: 2px 2px 2px 2px #ddd;
+}
+.z-btn:hover{
+    transform: scale(1.1);
+}
+.z-btn:active{
+    transform: scale(1);
+}
+.z-td-left{
+    text-align: left;
+    width: 10%;
+}
+.z-td-right{
+    text-align: left;
+    width: 40%;
+}
+.z-form-el{
+     float: left;
+}
+.postyle{
+    font-size:22px;
+    color:#3388ff;
+}
+.z-page{
+    float: right;
+}
+.z-input-title{
+    width: 20%;
+}
+.am-input-group{
+    width: 100%;
+    margin-bottom: 3px;
+    text-align: justify;
+}
+.am-radio-group,label{
+    float: left;
+    margin-right: 60px;
+    font-weight: 400;
+}
+.z-form{
+    margin: 5px 0;
+    padding: 0;
+    background: #ececec;
+}
+.doc-example button{
+    float: left;
+    height: 40px;
+    border: 1px solid #3bb4f2;
+}
+.doc-example label{
+    float: left;
+}
+.doc-example input[type=button],.doc-example input[type=text]{
+    padding: 5px 10px;
+    height: 35px;
+}
+.doc-example .am-selected{
+    width: 70%;
+}
+.am-selected-list li{
+    overflow: hidden;
+}
+.am-input-group .am-form-field{
+    width: 70%;
+}
+.doc-example span{
+    float: left;
+}
+.z-input-title{
+    display: block;
+    width: 200px;
+    text-align: right;
+    margin-right: 50px;
+}
+.sel{
+    float: right;
+}
+.z-btn-group{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.pageindex{
+    float: left;
+}
+.pagemove{
+    width: 100%;
+    overflow: hidden;
+}
+.am-table{
+    margin: 1.6rem 0;
+}
+>>>>>>> dcff67df2a79940159324331ce132c1c52dba735

@@ -8,7 +8,10 @@ var browserify = require("browserify");
 var sourcemaps = require("gulp-sourcemaps");
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
+<<<<<<< HEAD
 var rename = require("gulp-rename");
+=======
+>>>>>>> dcff67df2a79940159324331ce132c1c52dba735
 var fs = require("fs");
 var argv = require('yargs').argv;
 
@@ -75,6 +78,7 @@ gulp.task('js', function(done) {
     //   .pipe(connect.reload())
     //   .on('end', done);
 
+<<<<<<< HEAD
     // return browserify('./src/components.js')
     // // // .transform(vueify)
     // .bundle()
@@ -94,6 +98,23 @@ gulp.task('js', function(done) {
         .pipe(gulp.dest("./js"))
         .pipe(connect.reload());
 
+=======
+    browserify('./src/components.js')
+    // // .transform(vueify)
+    .bundle()
+    .pipe(fs.createWriteStream("js/components.js"));
+
+    // var b = browserify({
+    //     entries: "./src/components.js",
+    //     debug: true
+    // });
+    // return b.bundle()
+    //     .pipe(source("./src.components.js"))
+    //     .pipe(buffer())
+    //     .pipe(sourcemaps.init({loadMaps: true}))
+    //     .pipe(sourcemaps.write("."))
+    //     .pipe(gulp.dest("./js"));
+>>>>>>> dcff67df2a79940159324331ce132c1c52dba735
 
 });
 
@@ -103,9 +124,13 @@ gulp.task('link', function() {
       sh.exec('rm css/style.css');
       sh.exec('ln css/style.'+argv.ui+'.css css/style.css');
       sh.exec('rm src/components.js');
+<<<<<<< HEAD
       sh.exec('ln src/components.'+argv.ui+'.js src/components.js');    
       sh.exec('rm menu.html');
       sh.exec('ln src/menu.'+argv.ui+'.html menu.html');      
+=======
+      sh.exec('ln src/components.'+argv.ui+'.js src/components.js');      
+>>>>>>> dcff67df2a79940159324331ce132c1c52dba735
     }
     else{
       console.log("use --ui=xxx to set ui name")
