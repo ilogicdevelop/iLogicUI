@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<HTML xmlns="">
+<HEAD>
+<TITLE>TITLE2</TITLE>
+<meta http-equiv='Pragma' content='no-cache'>
+<META HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=utf-8'>
+<style type=text/css>
+a:link {font-size: 9pt;color: #ffffff;text-decoration: none;} 
+a:visited {font-size: 9pt;color: #ffffff;text-decoration: none;}
+a:hover {font-size: 9pt;color: #999999;text-decoration: underline;}
+td {font-size: 9pt;line-height: 150%;text-decoration: none;}
+body {font-size: 9pt;line-height: 150%;text-decoration: none;}
+</style>
+<script language='JavaScript'>bulCookie=false;var popHandler=parent;</script>
+<script type="text/javascript" src="js/components.js"></script>
+<script type="text/javascript" src="js/oldtree.js"></script>
+<script language='JavaScript'>
+function my_do(opUrl, status, main_pid, main_tid, main_did, main_pcname)
+{
+	if(main_pid>0){parent.parent.p_id=main_pid;}
+	if(main_tid>0){parent.parent.t_id=main_tid;}
+	if(main_did>0){parent.parent.d_id=main_did;}
+	if(main_pcname.length>0){parent.parent.p_cname=main_pcname;}
+	change_flag=1;
+
+	if(opUrl && (status==0))
+	{
+		window.open(opUrl, 'main', '');
+	}
+
+	if(opUrl && (status==1))
+	{
+		alert('第一次新增该节点的主体内容，新增完毕并发布后等待1分钟后刷新该树，如果还需要新增请直接修改该节点手动变更...')
+		window.open(opUrl, 'main', '');
+	}
+
+	if(opUrl && (status==2))
+	{
+		alert('独立节点中的主体d_id未指定，指定、发布后再次刷新...')
+		window.open(opUrl, 'popupWin', '');
+
+		op=window.prompt('主窗口程序执行完毕?','yes');
+		if(op=='yes') 
+		{	
+			window.location.reload();
+			popupWin.close();
+		}
+	}
+
+	if(opUrl && (status==3))
+	{
+		alert('存在未发布变量可能修改导致，发布后再次刷新...')
+		window.open(opUrl, 'popupWin', '');
+
+		op=window.prompt('主窗口程序执行完毕?','yes');
+		if(op=='yes') 
+		{	
+			window.location.reload();
+			popupWin.close();
+		}
+	}
+
+	if(opUrl && (status==4))
+	{
+		alert('未发布，请手动发布后再次刷新...')
+		window.open(opUrl, 'popupWin', '');
+
+		op=window.prompt('主窗口程序执行完毕?','yes');
+		if(op=='yes') 
+		{	
+			window.location.reload();
+			popupWin.close();
+		}
+	}
+
+	if(!opUrl && (status==0))
+	{
+		alert('操作未配置，一般为主体PTD未指定，可以右键查查看主体模板设置...');
+	}
+}
+
+function my_load(prodName)
+{
+	myfunc.productName.value=prodName;
+	myfunc.submit();
+}
+
+function showMenu(key, frame_ptd, expNode, main_ptd, content_ptd, tmpUrl, frame_parent, setlastorder_ptd, setorder_ptd, setnextorder_ptd,node_did,column_ptd,children_ptd)
+{
+	myfunc.node_did.value=node_did;
+	myfunc.key.value=key;
+	myfunc.frame_ptd.value=frame_ptd;
+	myfunc.main_ptd.value=main_ptd;
+	myfunc.content_ptd.value=content_ptd;
+	myfunc.column_ptd.value=column_ptd;
+	myfunc.children_ptd.value=children_ptd;
+	myfunc.expNode.value=expNode;
+	myfunc.tmpUrl.value=tmpUrl;
+	myfunc.frame_parent.value=frame_parent;
+	myfunc.setlastorder_ptd.value=setlastorder_ptd;
+	myfunc.setorder_ptd.value=setorder_ptd;
+	myfunc.setnextorder_ptd.value=setnextorder_ptd;
+
+	popMenu(itemMenu,120, '111111100001100111111111111');
+	event.returnValue=false;
+	event.cancelBubble=true;
+	return false;
+}
+
+function popMenu(menuDiv,width,rowControlString)
+{
+    var pop=window.createPopup();
+    pop.document.body.innerHTML=menuDiv.innerHTML;
+    var rowObjs=pop.document.body.children[0].rows;
+    var rowCount=rowObjs.length;
+    for(var i=0;i<rowObjs.length;i++)
+    {
+        var hide=rowControlString.charAt(i)!='1';
+        if(hide){
+            rowCount--;
+        }
+        rowObjs[i].style.display=(hide)?"none":"";
+        rowObjs[i].cells[0].onmouseover=function()
+        {
+            this.style.background='#818181';
+            this.style.color='white';
+        }
+
+        rowObjs[i].cells[0].onmouseout=function(){
+            this.style.background='#cccccc';
+            this.style.color='black';
+        }
+    }
+
+    pop.document.oncontextmenu=function()
+   {
+            pop.hide();
+            return false;
+   }
+
+	pop.document.onclick=function()
+	{
+	        pop.hide();
+	}
+   pop.document.onmouseleave=function()
+   {
+	        pop.hide();
+	}
+	var popHeight=rowCount*14;
+	var popX,popY;
+	//if(popHandler==parent){
+		popX=event.clientX;
+		popY=event.clientY+getScrollTop();
+		if(popY>popHeight*1.5)
+		{
+			popY=popY-popHeight;
+		}
+	//}else{
+	//	popX=event.pageX;
+	//	popY=event.pageY+getScrollTop();
+	//	if(popY>popHeight)
+	//	{
+	//		popY=popY-popHeight;
+	//	}
+	//	popY=50;
+	//}
+	pop.show(popX-1,popY,width,rowCount*28,document.body); 
+	return true;
+}
+function getScrollTop(){
+			    var scrollTop=0;
+			    if(document.documentElement&&document.documentElement.scrollTop){
+			        scrollTop=document.documentElement.scrollTop;
+			    }else if(document.body){
+			        scrollTop=document.body.scrollTop;
+			    }
+			    return scrollTop;
+}
+
+function loadtree()
+{
+	if(myfunc.expNode.value)
+	{
+		var myhref=window.location.href;
+		myhref=myhref.replace('#_', '');
+		if(myhref.indexOf('?')>0 && myhref.indexOf(myfunc.expNode.value)<0)
+		{
+			opUrl=myhref+'&'+myfunc.expNode.value+'='+myfunc.key.value;
+		}
+		else
+		{
+			opUrl='unvs_sys_memu3?u_name='+myfunc.u_name.value+'&funcRoles='+myfunc.funcRoles.value+'&funcRole='+myfunc.funcRole.value+'&productName='+myfunc.productName.value+'&'+myfunc.expNode.value+'='+myfunc.key.value;
+		}
+		window.open(opUrl, '_self', '');
+	}
+	else
+	{
+		opurl='this_doc?op_publish=0&p_id=1&p_cname='+encodeURI('系统项目')+'&t_id=12&poly=1&t_name=website_structure&audit_mask=4&op=U&f_list=67,73,79&d_id='+myfunc.node_did.value+'&p_uri=javascript:parent.left.location.reload();';
+		window.open(opurl, 'main', '');
+	}
+}
+
+function checkcategory()
+{
+	if(myfunc.tmpUrl.value)
+	{
+		window.open(myfunc.tmpUrl.value, 'main', '');
+	}
+	else
+	{
+		alert('本节点未配置该功能！')
+	}
+}
+
+function auditself(auditmask)
+{
+	if(myfunc.main_ptd.value)
+	{
+		var opurl='doc_audit?'+myfunc.main_ptd.value+'&auditmask='+auditmask;
+		window.open(opurl, 'main', '');
+	}
+}
+
+function rothrz()
+{
+	var current_ptd=myfunc.content_ptd.value;
+	if(!current_ptd){current_ptd=myfunc.main_ptd.value};
+	if(current_ptd)
+	{
+		current_ptd=current_ptd.replace('p_id', 'role_pid').replace('t_id', 'role_tid').replace('fieldvalues', 'by_condition');
+		var opurl='rothrz?'+current_ptd+'&enditem=-1';
+		window.open(opurl, 'main', '');
+	}
+}
+
+function groupview()
+{
+	if(myfunc.content_ptd.value)
+	{
+		pos1=myfunc.frame_ptd.value.indexOf("&t_name=");
+		pos2=myfunc.frame_ptd.value.indexOf("&", pos1+1);
+		my_frame_tname=myfunc.frame_ptd.value.substr(pos1+8, pos2-pos1-8);
+		pos1=myfunc.frame_ptd.value.indexOf("&t_id=");
+		pos2=myfunc.frame_ptd.value.indexOf("&", pos1+1);
+		my_frame_tid=myfunc.frame_ptd.value.substr(pos1+6, pos2-pos1-6);
+		var opurl='group_view?'+myfunc.content_ptd.value.replace('p_id', 'role_pid').replace('t_id', 'role_tid').replace('fieldvalues', 'by_condition')+'&frame_tname='+my_frame_tname+'&frame_tid='+my_frame_tid+'&frame_key='+myfunc.key.value;
+		window.open(opurl, 'main', '');
+	}
+}
+
+function vrsncontrol()
+{
+	if(myfunc.main_ptd.value)
+	{
+		var opurl='vrsn.html?'+myfunc.main_ptd.value;
+		window.open(opurl, 'main', '');
+	}
+}
+
+function contentcontrol()
+{
+	if(myfunc.content_ptd.value)
+	{
+		var opurl='vrsn.html?'+myfunc.content_ptd.value;
+		window.open(opurl, 'main', '');
+	}
+}
+
+function fastmakeup()
+{
+	if(myfunc.main_ptd.value && myfunc.main_ptd.value.indexOf('&d_id=0')<0)
+	{
+		var opurl='doc_makeup?'+myfunc.main_ptd.value;
+		window.open(opurl, 'main', '');
+	}
+	else
+	{
+		alert('无主体模板或主体文档页，请手动设置主体模板以及主体文档！');
+	}
+}
+
+function auditcontent()
+{
+	if(myfunc.content_ptd.value)
+	{
+		var opurl='doc_audit?'+myfunc.content_ptd.value;
+		window.open(opurl, 'main', '');
+	}
+	else
+	{
+		alert('无内容指定，请检查配置！');
+	}
+
+}
+
+function doclist()
+{
+	if(myfunc.content_ptd.value)
+	{
+		var opurl='doc_list?'+myfunc.content_ptd.value;
+		window.open(opurl, 'main', '');
+	}
+	else
+	{
+		alert('无内容指定，请检查配置！');
+	}
+
+}
+
+function columnlist()
+{
+	if(myfunc.column_ptd.value)
+	{
+		var opurl='doc_list?'+myfunc.column_ptd.value;
+		window.open(opurl, 'main', '');
+	}
+	else
+	{
+		alert('无专栏指定，请检查配置！');
+	}
+
+}
+
+function addnode()
+{
+	if(myfunc.expNode.value)
+	{
+		alert('由于存在挂接点，增加节点方式发生改变！');
+	}
+	else if(myfunc.frame_ptd.value)
+	{
+		var opurl;
+		if(myfunc.frame_parent.value)
+		{
+			if(myfunc.frame_parent.value.indexOf(':')<0)
+			{
+				opurl='doc_new_face?op_publish=0&'+myfunc.frame_ptd.value+'&fieldvalues='+myfunc.frame_parent.value+':'+myfunc.key.value+'&p_uri=javascript:parent.left.location.reload();';
+			}
+			else
+			{
+				opurl='doc_new_face?op_publish=0&'+myfunc.frame_ptd.value+'&fieldvalues='+myfunc.frame_parent.value+'&p_uri=javascript:parent.left.location.reload();';
+			}
+		}
+		else
+		{
+			opurl='doc_new_face?op_publish=0&'+myfunc.frame_ptd.value+'&p_uri=javascript:parent.left.location.reload();';
+		}
+		window.open(opurl, 'main', '');
+	}
+	else
+	{
+		var opselect=window.prompt('未设定架构模板，可以单独开发，也可选择不同操作数字:?','1-检查模板 2-复制架构 3-设定架构');
+		if(opselect==1)
+		{
+			opurl='unvs_list?t_name=temp&p_id='+current_pid+'&p_cname='+encodeURI(current_pcname);
+		}
+		else if(opselect==2)
+		{
+			my_p_uri='tmpl_list?p_id='+current_pid+'&p_cname='+encodeURI(current_pcname);
+			opurl='tmpl_cp_step1?dest_pid='+current_pid+'&dest_pcname='+encodeURI(current_pcname)+'&p_uri='+escape(my_p_uri);
+		}
+		else
+		{
+			opurl='this_doc?op_publish=0&p_id=1&p_cname='+encodeURI('系统项目')+'&t_id=12&poly=1&t_name=website_structure&audit_mask=4&op=U&f_list=67,73,69,74,70,81&d_id='+myfunc.node_did.value+'&p_uri=javascript:parent.left.location.reload();';
+		}
+		window.open(opurl, 'main', '');
+	}
+}
+
+function editnode()
+{
+	if(myfunc.frame_ptd.value && myfunc.frame_ptd.value.indexOf('&d_id=0&')<0)
+	{
+		var opurl='this_doc?op_publish=0&'+myfunc.frame_ptd.value+'&op=U'+'&p_uri=javascript:parent.left.location.reload();';
+		window.open(opurl, 'main', '');
+	}
+	else
+	{
+		var opurl='this_doc?op_publish=0&p_id=1&p_cname='+encodeURI('系统项目')+'&t_id=12&poly=1&t_name=website_structure&audit_mask=4&op=U&d_id='+myfunc.node_did.value+'&p_uri=javascript:parent.left.location.reload();';
+		window.open(opurl, 'main', '');
+	}
+}
+
+function checknode()
+{
+	var op=window.prompt('直接查看该节点还是刷新节点状态?','1-查看 2-刷新');
+	var opurl;
+	if(op==1){
+		opurl='this_doc?op=S&p_id=1&p_cname='+encodeURI('系统项目')+'&t_id=12&poly=1&t_name=website_structure&audit_mask=4&op=U&d_id='+myfunc.node_did.value;
+	} else if(op==2){
+		opurl='doc_publish?p_id=1&p_cname='+encodeURI('系统项目')+'&t_id=12&poly=1&t_name=website_structure&audit_mask=4&d_id='+myfunc.node_did.value+'&p_uri=javascript:parent.left.location.reload();';
+	} else {return;}
+	window.open(opurl, 'main', '');
+}
+
+function setframeptd()
+{
+	var opurl1='this_doc?op_publish=0&p_id=1&p_cname='+encodeURI('系统项目')+'&t_id=12&poly=1&t_name=website_structure&audit_mask=4&op=U&f_list=67,73,69,74,70,81&d_id='+myfunc.node_did.value+'&p_uri=javascript:parent.left.location.reload();';
+	if(!myfunc.frame_ptd.value)
+	{
+		window.open(opurl1, 'main', '');
+	}
+	else
+	{
+		var opurl;
+		var op=window.prompt('已指定架构模板，选择模板属性维护(0)、模板快速制作(1)、关联增加规则定制(2)或调整架构设置(3)？', '0');
+		if(op==0){
+			opurl='tmpl?'+myfunc.frame_ptd.value;
+		}else if(op==1){
+			opurl='tmpl_design?'+myfunc.frame_ptd.value;
+		}else if(op==2){
+			opurl='rule_manage?'+myfunc.frame_ptd.value+'&key='+myfunc.key.value;
+		}
+		else{
+			opurl=opurl1;
+		}
+		window.open(opurl, 'main', '');
+	}
+}
+
+function setmainptd()
+{
+	var op=0;
+	var opurl;
+	if(!myfunc.main_ptd.value){
+		op=window.prompt('确认主体模板是否初始化？缺省已经初始化=0，没有初始化=1', '0');
+		if(op==2) op=1;
+	}
+	else if(myfunc.main_ptd.value.indexOf('&d_id=0')>0)
+	{
+		op=window.prompt('确认主体文档是否初始化？缺省已经初始化=0，没有初始化=2', '0');
+	}
+	var seturl='this_doc?op_publish=0&p_id=1&p_cname='+encodeURI('系统项目')+'&t_id=12&poly=1&t_name=website_structure&audit_mask=4&op=U&f_list=67,73,64,75,68&d_id='+myfunc.node_did.value+'&p_uri=javascript:parent.left.location.reload();';
+	if(op==1){
+		if(myfunc.frame_ptd.value){
+			opurl='tmpl?op=I&if_article=y&'+myfunc.frame_ptd.value+'&p_uri='+escape(seturl);
+		}else{
+			opurl='tmpl?op=I&if_article=y&p_id='+current_pid+'&p_cname='+encodeURI(current_pcname)+'&p_uri='+escape(seturl);
+		}
+	}else if(op==2){
+		opurl='doc_list?'+myfunc.main_ptd.value;
+	}else{
+		opurl=seturl;
+	}
+	window.open(opurl, 'main', '');
+}
+
+function setcontentptd()
+{
+	var op=0;
+	var opurl;
+	if(!myfunc.content_ptd.value)
+	{
+		op=window.prompt('确认内容模板是否初始化？缺省已经初始化=0，没有初始化=1', '0');
+		if(op==2) op=1;
+	}
+	else if(myfunc.content_ptd.value.indexOf('fieldvalues')>0)
+	{
+		op=window.prompt('内容模板(包括栏标条件)已经设置，需要调整相关属性吗？缺省不调整=0，调整=2', '0');
+	}
+	var	seturl='this_doc?op_publish=0&p_id=1&p_cname='+encodeURI('系统项目')+'&t_id=12&poly=1&t_name=website_structure&audit_mask=4&op=U&f_list=67,73,59,71,76,72&d_id='+myfunc.node_did.value+'&p_uri=javascript:parent.left.location.reload();';
+	if(op==1)
+	{
+		if(myfunc.frame_ptd.value){
+			opurl='tmpl?op=I&if_article=y&'+myfunc.frame_ptd.value+'&p_uri='+encodeURI(seturl);
+		}else{
+			opurl='tmpl?op=I&if_article=y&p_id='+current_pid+'&p_cname='+encodeURI(current_pcname)+'&p_uri='+escape(seturl);
+		}
+	}
+	else if(op==2)
+	{
+		opurl='tmpl?'+myfunc.content_ptd.value+'&op=U';
+	}
+	else
+	{
+		opurl=seturl;
+	}
+	window.open(opurl, 'main', '');
+}
+
+function setchildrenptd()
+{
+	if(!myfunc.children_ptd.value)
+	{
+		alert('直接配置节点的子体模板...');
+		var opurl='this_doc?op_publish=0&p_id=1&p_cname='+encodeURI('系统项目')+'&t_id=12&poly=1&t_name=website_structure&audit_mask=4&op=U&f_list=67,73,83,84,85&d_id='+myfunc.node_did.value+'&p_uri=javascript:parent.left.location.reload();';
+		window.open(opurl, 'main', '');
+	}
+	else
+	{
+		alert('已指定子体模板，直接进行模板维护!');
+		var opurl='tmpl?'+myfunc.children_ptd.value;
+		window.open(opurl, 'main', '');
+	}
+}
+
+function setcolumnptd()
+{
+	var op;
+	if(!myfunc.column_ptd.value)
+	{
+		op=window.prompt('确认专栏模板是否初始化？缺省已经初始化=0，没有初始化=-1', '0');
+		if(op!=0) op=-1;
+	}
+	else if(myfunc.column_ptd.value.indexOf('fieldvalues')<=0)
+	{
+		op=window.prompt('专栏模板设置好像不正确如无栏标设定，需要重新初始化吗？缺省初始化=0，不需要初始化=1', '0');
+		if(op!=0) op=1;
+	}
+	else
+	{
+		op=window.prompt('已指定专栏模板，再次修改设置(0)还是直接进行模板属性维护(1)还是模板快速制作(2)?', '0');
+	}
+	if(op<=-1){
+		window.open('tmpl?op=I&if_article=y&p_id='+current_pid+'&p_cname='+encodeURI(current_pcname), 'main', '');
+	}else if(op==0){
+		window.open('this_doc?op_publish=0&p_id=1&p_cname='+encodeURI('系统项目')+'&t_id=12&poly=1&t_name=website_structure&audit_mask=4&op=U&f_list=288&d_id='+myfunc.node_did.value+'&p_uri=javascript:parent.left.location.reload();', 'main', '');
+	}else if(op==1){
+		window.open('tmpl?op=U&'+myfunc.column_ptd.value, 'main', '');
+	}else if(op==2){
+		window.open('tmpl_design?'+myfunc.column_ptd.value, 'main', '');
+	}else{
+		alert('未定义操作指令.');
+	}
+}
+
+function delnode()
+{
+	var op;
+	op=window.prompt('确认删除?','no');
+	if(op=='yes') 
+	{
+		if(myfunc.frame_ptd.value && myfunc.frame_ptd.value.indexOf('&d_id=0&')<0)
+		{
+			var opurl='doc_delete?'+myfunc.frame_ptd.value.replace('&d_id=', '&delete_d_id=');
+			window.open(opurl, 'main', '');
+			op=window.prompt('主窗口程序执行完毕?','yes');
+			if(op=='yes') 
+			{
+				window.location.reload();
+			}
+		}
+		else
+		{
+			var opurl='doc_delete?p_id=1&p_cname='+encodeURI('系统项目')+'&t_id=12&poly=1&t_name=website_structure&audit_mask=4&delete_d_id='+myfunc.node_did.value;
+			window.open(opurl, 'main', '');
+			op=window.prompt('主窗口程序执行完毕?','yes');
+			if(op=='yes')
+			{
+				window.location.reload();
+			}
+		}
+	}
+}
+
+function moveup()
+{
+	//alert('test:'+myfunc.frame_ptd.value+' set field order '+ myfunc.setorder_ptd.value+'->'+myfunc.setlastorder_ptd.value);
+	if(myfunc.frame_ptd.value && myfunc.setlastorder_ptd.value && myfunc.setorder_ptd.value) 
+	{
+		stringArray1=myfunc.setorder_ptd.value.split('&');
+		stringArray2=myfunc.setlastorder_ptd.value.split('&');
+		tmpReg='&'+stringArray1[1];
+		nowptd=myfunc.frame_ptd.value.replace(tmpReg, '');
+
+		opUrl1='doc_update?'+nowptd+'&'+stringArray2[1]+'&_fieldvalue_'+stringArray1[0];
+		opUrl2='doc_update?'+nowptd+'&'+stringArray1[1]+'&_fieldvalue_'+stringArray2[0];
+		opurl='multi_agent?opUrl1='+escape(opUrl1)+'&opUrl2='+escape(opUrl2);
+		window.open(opurl, 'popupWin', '');
+
+		op=window.prompt('主窗口程序执行完毕?','yes');
+		if(op=='yes') 
+		{
+			window.location.reload();
+			popupWin.close();
+		}
+	}
+}
+
+function movedown()
+{
+	if(myfunc.frame_ptd.value && myfunc.setnextorder_ptd.value && myfunc.setorder_ptd.value) 
+	{
+		stringArray1=myfunc.setorder_ptd.value.split('&');
+		stringArray2=myfunc.setnextorder_ptd.value.split('&');
+		tmpReg='&'+stringArray1[1];
+		nowptd=myfunc.frame_ptd.value.replace(tmpReg, '');
+		
+		opUrl1='doc_update?'+nowptd+'&'+stringArray2[1]+'&_fieldvalue_'+stringArray1[0];
+		opUrl2='doc_update?'+nowptd+'&'+stringArray1[1]+'&_fieldvalue_'+stringArray2[0];
+		opurl='multi_agent?opUrl1='+escape(opUrl1)+'&opUrl2='+escape(opUrl2);
+		window.open(opurl, 'popupWin', '');
+
+		op=window.prompt('主窗口程序执行完毕?','yes');
+		if(op=='yes') 
+		{	
+			window.location.reload();
+			popupWin.close();
+		}
+	}
+}
+
+var current_uname='曾满平';
+var current_pid=210;
+var current_pcname='信租会官网';
+var current_pnode_did=4015;
+parent.parent.p_id=current_pid;
+parent.parent.p_cname=current_pcname;
+if(parent.parent.pnode_d_id){parent.parent.pnode_d_id=current_pnode_did;}
+var change_flag=1;
+
+function newnode()
+{
+	var map_poly=1;
+	var default_audit_mask=4;
+	var map_pid=0;
+	var map_pcname='';
+	if(myfunc.frame_ptd.value)
+	{
+		stringArray1=myfunc.frame_ptd.value.split('&');
+		for(i=0;stringArray1[i];i++)
+		{
+			stringArray2=stringArray1[i].split('=');
+			if(stringArray2[0]=='poly') map_poly=stringArray2[1];
+			else if(stringArray2[0]=='p_id') map_pid=stringArray2[1];
+			else if(stringArray2[0]=='p_cname') map_pcname=stringArray2[1];
+			else if(stringArray2[0]=='audit_mask') default_audit_mask=stringArray2[1];
+		}
+	}
+	else
+	{
+		map_pid=current_pid;
+		map_pcname=current_pcname;
+	}
+	var opurl='doc_new_face?op_publish=0&p_id=1&p_cname='+encodeURI('系统项目')+'&t_id=12&poly=1&t_name=website_structure&audit_mask=4&fieldvalues=parent'+
+		':'+myfunc.key.value+';map_poly:'+map_poly+';default_audit_mask:'+default_audit_mask+';map_pid:'+map_pid+';map_pcname:'+myfunc.productName.value+'&p_uri=javascript:parent.left.location.reload();';
+
+	window.open(opurl, 'main', '');
+}
+
+function insertnode(parentkey, nodeName, insOrder)
+{
+	var map_poly=1;
+	var default_audit_mask=4;
+	var map_pid=current_pid;
+	var map_pcname=current_pcname;
+	alert('suggest child_order:'+insOrder);
+	var opurl='doc_list?p_id=1&p_cname='+encodeURI('系统项目')+'&t_id=12&poly=1&t_name=website_structure&audit_mask=4&fieldvalues=parent'+':'+parentkey+';map_poly:'+map_poly+';default_audit_mask:'+default_audit_mask+';map_pid:'+map_pid+';map_pcname:'+myfunc.productName.value+';child:'+nodeName;
+
+	window.open(opurl, 'main', '');
+}
+
+function fasttmpl()
+{
+	if(myfunc.main_ptd.value)
+	{
+		var opurl='tmpl?'+myfunc.main_ptd.value;
+		window.open(opurl, 'main', '');
+	}
+	else
+	{
+		alert('先配置节点的主体模板...');
+	}
+}
+
+function tmplcontrol()
+{
+	var opurl='unvs_list?u_name='+current_uname+'&p_id='+current_pid+'&p_cname='+encodeURI(current_pcname)+'&t_name=temp';
+	window.open(opurl, 'main', '');
+}
+
+function logrevoke()
+{
+	var opurl='updatelog_list?u_name='+current_uname+'&p_id='+current_pid+'&p_cname='+encodeURI(current_pcname)+'&t_name=temp';
+	window.open(opurl, 'main', '');
+}
+
+</script><script>
+cmsroot = gFld("<select name=root onchange='myfunc.funcRole.value=this.options[this.selectedIndex].value;myfunc.submit();'><option value=MAINTAIN selected>快速维护</option></select>", "");foldersTree=cmsroot;
+ fld1 = insFld(cmsroot, gFld("<font color=gray>基准项目</font>", "my_load(\"基准项目^96\")"));
+ fld1 = insFld(cmsroot, gFld("<font color=gray>壹壹客户端</font>", "my_load(\"壹壹客户端^118\")"));
+ fld1 = insFld(cmsroot, gFld("<font color=gray>壹壹服务端</font>", "my_load(\"核心服务端^195\")"));
+ fld1 = insFld(cmsroot, gFld("<font color=gray>壹壹监控端</font>", "my_load(\"汽车监控端^196\")"));
+ fld1 = insFld(cmsroot, gFld("<font color=gray>壹壹主网站</font>", "my_load(\"壹壹主网站^198\")"));
+ fld1 = insFld(cmsroot, gFld("<font color=gray>壹壹内网门户</font>", "my_load(\"壹壹内门户^199\")"));
+ fld1 = insFld(cmsroot, gFld("<font color=gray>壹壹微信端</font>", "my_load(\"壹壹微信端^206\")"));
+ fld1 = insFld(cmsroot, gFld("<font color=gray>壹壹分时服务端</font>", "my_load(\"分时服务端^207\")"));
+ fld1 = insFld(cmsroot, gFld("<font color=gray>信租会主系统</font>", "my_load(\"信租会主系统^208\")"));
+ fld1 = insFld(cmsroot, gFld("<span oncontextmenu=showMenu(\"xzhnewweb\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"4015\",\"\",\"\")>信租会官网</span>", "my_do(\"\", 0, 0, 0, 0, \"\")"));
+  fld2 = insFld(fld1, gFld("<span oncontextmenu=showMenu(\"newscontent\",\"\",\"\",\"\",\"p_id=210&p_cname=信租会官网&t_id=3&&poly=1&t_name=newscontent_t&audit_mask=4\",\"\",\"\",\"\",\"\",\"\",\"4018\",\"\",\"\")>新闻内容</span>", "my_do(\"\", 0, 0, 0, 0, \"\")"));
+   insDoc(fld2, gLnk(2, "内容", "my_do(\"doc_preview_maintain?--key--=Ve4Ftpil-cQ-g0swE0.1te8xNAJsrX-h3XKx.bMtEmZT5klaYN-QfexOguMLBhZLx-KqaitHTyrQKI0CdlhZd03Aw2XM96fu1nGv4ku95Xn030wSxw4OQBE2CFQj14fsaxkQI2wDwynaZUIxkTJeWHcff8HoL5BdeqNBLrNvPx7xN7--20wEse6-\", 0, 210, 3, 0, \"信租会官网\")"));
+  fld2 = insFld(fld1, gFld("<span oncontextmenu=showMenu(\"orgindex\",\"\",\"\",\"p_id=210&p_cname=信租会官网&t_id=4&op=U&poly=1&t_name=sp_t4&audit_mask=4&is_edit=1&d_id=0&&op_publish=0\",\"p_id=210&p_cname=信租会官网&t_id=16&&poly=1&t_name=indexcontent&audit_mask=4\",\"\",\"\",\"\",\"\",\"\",\"4020\",\"\",\"\")>企业站首页</span>", "my_do(\"doc_preview_maintain?--key--=pV2BOfEBpNA-chkSGEFwS9H1uqMvYr299oxD.jqTZRbrz8KAoSh9yXFRI2Il3M6COEt8LCOFYCnLTX-zqyl2-79MB9-nFnZ4XhyxRHwgUMPXBWf3nPtqgbNQ7zDJnnjhmK.UwNfa7P2IdwZWEM-AWm8reNAlmQf1xnX.QaWz-6n3moSm3lr7t-AVGS5JGIY6sINaKsoLlYhp4BqwifnPoBJO8CF9HRg.M4A9TNkzRZeYo42YnXr5xTJonCQn4f-QFeyDPl2f7upzxXoxlXJtn5OLhMBQuzKCxNroRtp9XrBO30cP0l0cEDM-\", 0, 210, 4, 0, \"信租会官网\")"));
+   fld3 = insFld(fld2, gFld("<span oncontextmenu=showMenu(\"图片轮播\",\"\",\"\",\"\",\"p_id=210&p_cname=信租会官网&t_id=16&&poly=1&t_name=indexcontent&audit_mask=4\",\"\",\"\",\"\",\"\",\"\",\"4052\",\"\",\"\")>图片轮播</span>", "my_do(\"\", 0, 0, 0, 0, \"\")"));
+    insDoc(fld3, gLnk(2, "内容", "my_do(\"doc_preview_maintain?--key--=fgTHnHrClGQ-whBzMNdegnUelbl6945eh424poUKGqfAMKxERZrLJg-qPzQ47hVi2m.2Y2gE4CZMjiEDw7beWGS.fOx9vI9fI2pEF32ioX8df6Iq4hWwR202sBww4QwBJoVGNYQ-al5Z9iAbBM2v4MCChnSWw1x7b04xypDlBHByrqkU.P-cvuc-\", 0, 210, 16, 0, \"信租会官网\")"));
+   fld3 = insFld(fld2, gFld("<span oncontextmenu=showMenu(\"左侧导航\",\"\",\"\",\"\",\"p_id=210&p_cname=信租会官网&t_id=18&&poly=1&t_name=leftnav&audit_mask=4\",\"\",\"\",\"\",\"\",\"\",\"4053\",\"\",\"\")>左侧导航</span>", "my_do(\"\", 0, 0, 0, 0, \"\")"));
+    insDoc(fld3, gLnk(2, "内容", "my_do(\"doc_preview_maintain?--key--=soZ2CIe6zc6-vDYdkOUFlGYtiIuEBILg83oORvaQH.BlsqDo8yhuY-UzsFnqHjU4aRuuv4CgB5ig9Ovudt52Hv8nex5gFIz4pbvQAjC.BULCTFuRLLl4hExsQR67D5H96C8qnGQ5yUxSabp4ep202JzeJ3F8DpGwInZm1xKACWAu1oPSzuzyuq6-\", 0, 210, 18, 0, \"信租会官网\")"));
+   fld3 = insFld(fld2, gFld("<span oncontextmenu=showMenu(\"右侧广告\",\"\",\"\",\"\",\"p_id=210&p_cname=信租会官网&t_id=19&&poly=1&t_name=rightad&audit_mask=4\",\"\",\"\",\"\",\"\",\"\",\"4054\",\"\",\"\")>右侧广告</span>", "my_do(\"\", 0, 0, 0, 0, \"\")"));
+    insDoc(fld3, gLnk(2, "内容", "my_do(\"doc_preview_maintain?--key--=9pCxiuCm07U-sY9s-WiahnYYAsM2Mt-w66t0OtGKPg.nzLJtS2bCiCF5IAqXBPLeE6VmBjPZtKfFiABewzxukgKunpospGAj.yhbqXG2-C7mAkQen-L24Bp8t7oGdRjHaifx.kmYt7HE78uOyjmcTSoLB2TQyH1JBNlaGEmMWJe8H9qTHfxKUJ6-\", 0, 210, 19, 0, \"信租会官网\")"));
+  fld2 = insFld(fld1, gFld("<span oncontextmenu=showMenu(\"newslist\",\"\",\"\",\"p_id=210&p_cname=信租会官网&t_id=5&op=U&poly=1&t_name=newslist&audit_mask=4&is_edit=1&d_id=0&&op_publish=0\",\"\",\"\",\"\",\"\",\"\",\"\",\"4021\",\"\",\"\")>新闻列表</span>", "my_do(\"doc_preview_maintain?--key--=mqY5dqEzuvc-xi2AnzEJ3SAKsbn7zipcqazgMhPplqtyeXUv.rc0vuNh7tdW39-A.5BdOUCPeCjCiKQeKFElLaTO1BePMhcCYCgOG8NseTHG1TfX1V7TgNVomN3rDnaZKH.Sb7kwvj85ebMC60CxQb-hDIan.sCN9PD19drObuLh65TdS-g6bplpLhp61fN5MfA69AeXLG-zyZQNdcVM3UF3sdcllmESZqJdrSKdA2h2XcG0dRHCSELTDICJlfGm.---\", 0, 210, 5, 0, \"信租会官网\")"));
+  fld2 = insFld(fld1, gFld("<span oncontextmenu=showMenu(\"服务中心\",\"\",\"\",\"p_id=210&p_cname=信租会官网&t_id=6&op=U&poly=1&t_name=sp_t6&audit_mask=4&is_edit=1&d_id=0&&op_publish=0\",\"\",\"\",\"\",\"\",\"\",\"\",\"4038\",\"\",\"\")>服务中心</span>", "my_do(\"doc_preview_maintain?--key--=3N3EyBTZKh--Bf-dJMCPmRh34-cMUmIPPP8hW41Azdb-MY6r0ddM5f02bjsV8d09AEbuchRoMu8BRJ-oJJJaW0jkH9HiQyFul9UBYm.dbMunj5N4QHL5ePmosXugjBUQqS2TzyuN-dERdDeRtFNxOs3hyjjq95FeKhYFP6FBW.jhztc.6BCSCp9gKSixDT8OhdeCx0C1XJiWt8Me8vIGMCCIWyXUweMbEieSra8sM8EJMG1Ju8WowccUwpI6Ieel9zexeFBNx9cv\", 0, 210, 6, 0, \"信租会官网\")"));
+  fld2 = insFld(fld1, gFld("<span oncontextmenu=showMenu(\"下载中心\",\"\",\"\",\"p_id=210&p_cname=信租会官网&t_id=7&op=U&poly=1&t_name=sp_t7&audit_mask=4&is_edit=1&d_id=0&&op_publish=0\",\"\",\"\",\"\",\"\",\"\",\"\",\"4039\",\"\",\"\")>下载中心</span>", "my_do(\"doc_preview_maintain?--key--=zLx7aYbOo---3RFej3GROJzT1H.IltmxoMzHdlZPW3R8BPILvEvmwYZ4JeAiye-tm0lVxkuCb8VqWYm64epBw66f7Futqmhtp57OYLc8g2Yd7ynSRUqbNlluIBnovTrCaYfsWQY1KJXKvg4c.SI3BOyOl9LmC6TfvLNGWQ-9-XVDehQRquBOxwJYc7OSSB8YNrh8rPWXq-2AU9iGe7Tp2ZfIyJ1ocDnO8Eu8YCDfCT5ZlSGdCQCZpHCPgzJ8F65c9-ajD8U12ZiA\", 0, 210, 7, 0, \"信租会官网\")"));
+  fld2 = insFld(fld1, gFld("<span oncontextmenu=showMenu(\"信租简介\",\"\",\"\",\"p_id=210&p_cname=信租会官网&t_id=8&op=U&poly=1&t_name=sp_t8&audit_mask=4&is_edit=1&d_id=0&&op_publish=0\",\"\",\"\",\"\",\"\",\"\",\"\",\"4040\",\"\",\"\")>信租简介</span>", "my_do(\"doc_preview_maintain?--key--=zd2eedoFwXI-VXK4ud4yyEqRvpX7areFbfgR5a.5WPdvmfOkddlbfVKrsn4i-9Lt8HykrMO31oAqcqrEKbkuesa3iRv.RHp-giatN07O-JZA7NnOU8eIo5fQ8-WwAxa8OOyZcsHi.bye3WqNwkvXOaEgO5rWSPi7U9uCS-3jIsFY4H1dLXd3DSbZfsH7DR34OiueuloS.ElmNEcHRmfmJat1mBFn-iTlIZtW1HIgXiEesZRi-8NwmSsF9GCDnyK8SEhn7NVXRLHh\", 0, 210, 8, 0, \"信租会官网\")"));
+  fld2 = insFld(fld1, gFld("<span oncontextmenu=showMenu(\"发展历程\",\"\",\"\",\"p_id=210&p_cname=信租会官网&t_id=9&op=U&poly=1&t_name=sp_t9&audit_mask=4&is_edit=1&d_id=0&&op_publish=0\",\"p_id=210&p_cname=信租会官网&t_id=20&&poly=1&t_name=growcon&audit_mask=4\",\"\",\"\",\"\",\"\",\"\",\"4041\",\"\",\"\")>发展历程</span>", "my_do(\"doc_preview_maintain?--key--=WNk0mZH9jW6-XaMjQbi.BmfS63fctjJZY4fItzFkEN5baYgFLdOzrdO3yAkJTK4UIESoaZYZLonWCISyIsyQcudsHChVY8PVzTnd.4u2pTJ6Q3JM92IVKnHseuZkYw.E8Hi.Exq52AJCqv9iC-BTjycTypjN9WlJe2jhrdNSf29VPItczvdvBxAePdrRO57JqS64CjvB2rpbjdykxmA.N5rOYQPyNP-VSnIiUpsW76fTwfQLo.jDd1k7Cevqlt3Slqo8dMRF1k1sDyAOkTJBwv.NE-b7SN.i9k7-aHScbhoMVVm8bCwbH-x.QdJsl-0h-U--\", 0, 210, 9, 0, \"信租会官网\")"));
+   insDoc(fld2, gLnk(2, "内容", "my_do(\"doc_preview_maintain?--key--=5sVm8Afn726-DbDhm.DQwcxdm9h4dx.HixxKChuXhB8gvh4Io3uuUMNhAaUDpih4bOu5l87x0e1YQbTTHaryMwwyXTXigvbbBGl4RtXi9oIVQLpY44sl.4NZ9-F9xWAH0taNjvn7Pb1KEw-be6Ac5MEhe-ISEtsziIa-gf1qNPXNc57ujc2ogzg-\", 0, 210, 20, 0, \"信租会官网\")"));
+  fld2 = insFld(fld1, gFld("<span oncontextmenu=showMenu(\"帮助中心\",\"\",\"\",\"p_id=210&p_cname=信租会官网&t_id=11&op=U&poly=1&t_name=sp_t11&audit_mask=4&is_edit=1&d_id=0&&op_publish=0\",\"p_id=210&p_cname=信租会官网&t_id=17&&poly=1&t_name=helpcontent&audit_mask=4\",\"\",\"\",\"\",\"\",\"\",\"4042\",\"\",\"\")>帮助中心</span>", "my_do(\"doc_preview_maintain?--key--=qoeCv5rU6D2-6d1QxScsHLtU81QvpoT0aq5qDETCTA440m8pm9SG8rne-Ct0p6SSux6TBjuLS1tqkFW23IcwvONBYKMbnnn29hWNGMfncaBwYeoWpmj09u8GbNEUBRtGPZ5Ls4aPIsSagQxNyz1WCKr3NoHQlnXXTP1Kw3AXRmLBCrzsnLmg628pZKXyGdVQPg8g2wX1.zrJKXHcBR-z25oPxDAzgWdo.5Kvlw1zzs4Oyi5LpsysBVpxWMJWbNkeId7sRsN5V4U-C.Ps9K9hEbuLeC7DJOBdPd-MQjTmQvl1fRGVPhebunfBQgGqE-q3WU--\", 0, 210, 11, 0, \"信租会官网\")"));
+   insDoc(fld2, gLnk(2, "内容", "my_do(\"doc_preview_maintain?--key--=miH49BZjts2-UUdtIRPA8A8KhL0TCHE9mbapDRzA50BEx4US7Y2sWnQlU4320H.EocNMnSWkk1ZN.1yllLKxKqk2.Bo7OGksNaovISPBbiEUxjI8ykASX4DVSa3qBiStpCv4jTAMKw.mp0i88WgK1hZ0e5FQgkK45OVZcAbjDeMa8NvF5tZqz-M-\", 0, 210, 17, 0, \"信租会官网\")"));
+  fld2 = insFld(fld1, gFld("<span oncontextmenu=showMenu(\"联系信租\",\"\",\"\",\"p_id=210&p_cname=信租会官网&t_id=12&op=U&poly=1&t_name=sp_t12&audit_mask=4&is_edit=1&d_id=0&&op_publish=0\",\"\",\"\",\"\",\"\",\"\",\"\",\"4043\",\"\",\"\")>联系信租</span>", "my_do(\"doc_preview_maintain?--key--=GdP8BEfp0Ms-ATvAP3-tYL1yxTP501BuisLFyhceKLnMxlqjRMzD3GC.OLPBO-4s3c1U13HKWCZECVRsNWNSsGITPLI8.fqsbCxjGUXEuiJxI4wRTckKkvmbixTKBM2nNJ49JGYAtIYzqU-AAEUhzNFCPri19399BUWvqlV540nj-NyKPOxi37VXlkKXafsqYmKwWjAPj.zfAjq.dbpvohvKTphUppEW84aNu-hfCK7cjEIJE.yhbfQgFbVJLVYcVozLoIJ8Or4S\", 0, 210, 12, 0, \"信租会官网\")"));
+  fld2 = insFld(fld1, gFld("<span oncontextmenu=showMenu(\"加入信租\",\"\",\"\",\"p_id=210&p_cname=信租会官网&t_id=13&op=U&poly=1&t_name=sp_t13&audit_mask=4&is_edit=1&d_id=0&&op_publish=0\",\"p_id=210&p_cname=信租会官网&t_id=14&&poly=1&t_name=sp_t14&audit_mask=4\",\"\",\"\",\"\",\"\",\"\",\"4044\",\"\",\"\")>加入信租</span>", "my_do(\"doc_preview_maintain?--key--=854dvSLqdME-zWuZNzdwhlOOfOfC6Ok8TIzigFP6v9zDAnSJbNPPM.2CROPBn4SWo7g4Ki2YBN0E8oluM3AVPIOgb-uw8hFvJvOqDLP3XRPwyDnCBsgJuAMoPe735mHv8OWo1WE1p5nIGQjtVIlR7yETRzrDHqqhtUi.yS67WtHp2VYa5YDwRhRPF.KckqLTPuFgNl1W-t6DvbGIjYPIL3OO4or.28RQq9jxu2ThCg7j9tAZG-f9qmRtQmE4sgVx93koMwiaBx7la-iknTdVZmmbddqYDgR46BG9nQgDdTn-j-nUOj.Nux9Ni2sAsPWJSk--\", 0, 210, 13, 0, \"信租会官网\")"));
+   insDoc(fld2, gLnk(2, "内容", "my_do(\"doc_preview_maintain?--key--=.aQtH3xdt.2-GC-SPd9xPzoaFHWEIw7mPDTkNUUm1tu-BPYRYlCZrnFYSm.5.tFTfC-5gTw9VDQ1.RqZ0ZEFZPSbXHTTi3PmwihNt-.Yu3yPtHqeax9xO3DK9A5Mds4TndBjlHSJTS3Q8OfVmwwuyT1gf3XiMQaWDwOCCI9SAvkE0NXmoGreciE-\", 0, 210, 14, 0, \"信租会官网\")"));
+</script>
+<script>
+ofolder="10-";
+initializeDocument();
+var mynodes=null;
+if(bulCookie==true) mynodes=getCookie(ofolder);
+if(mynodes)
+{
+	var opennodes=mynodes.split("-");
+	var ii=0;
+	while(opennodes[ii])
+	{
+		clickOnNode(opennodes[ii]);
+		ii++;
+	}
+}
+else
+{
+	clickOnNode(10);
+}
+</script>
+</head>
+<BODY BGCOLOR=#666666 TOPMARGIN=0 MARGINHEIGHT=0 LEFTMARGIN=0 MARGINWIDTH=0 ONLOAD="window.location.hash='folder10';">
+<form name=myfunc>
+<input type=hidden name=u_name value='曾满平'>
+<input type=hidden name=funcRoles value='MAINTAIN'>
+<input type=hidden name=funcRole value=''>
+<input type=hidden name=productName value='信租会官网^210'>
+<input type=hidden name=p_idList value=''>
+<input type=hidden name=p_idGroup value=''>
+<input type=hidden name=moduleList value=''>
+<input type=hidden name=node_did value=0>
+<input type=hidden name=key value=''>
+<input type=hidden name=expNode value=''>
+<input type=hidden name=frame_ptd value=''>
+<input type=hidden name=main_ptd value=''>
+<input type=hidden name=content_ptd value=''>
+<input type=hidden name=children_ptd value=''>
+<input type=hidden name=column_ptd value=''>
+<input type=hidden name=tmpUrl value=''>
+<input type=hidden name=frame_parent value=''>
+<input type=hidden name=setorder_ptd value=''>
+<input type=hidden name=setlastorder_ptd value=''>
+<input type=hidden name=setnextorder_ptd value=''>
+</form>
+<hr color=red>&nbsp;<font color=red>智能向导和自我引导区</font><hr color=red><br>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick='alert("新建并合成出向导功能页后，请回到此处刷新该树导航点击新产品向导提示继续操作...");' href='doc_new_face?p_id=1&p_cname=%E7%B3%BB%E7%BB%9F%E9%A1%B9%E7%9B%AE&t_id=34&poly=1&t_name=paas_wizard&audit_mask=4' target=main>新建产品化向导</a><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<font color=yellow>可以进行集成开发</font><br><script language=javascript>if(parent.parent.file_in_temp_t_id){parent.parent.file_in_temp_t_id=15;}</script>
+</body>
+<div id='itemMenu' style='display:none'>
+      <table border='1' width='100%' height='100%' bgcolor='#cccccc' style='FONT-SIZE: 9pt;border:thin' cellspacing='0'>
+
+              <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).addnode();'>
+                  新增
+                  </td>
+              </tr>
+              <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).editnode();'>
+                  修改
+                  </td>
+              </tr>
+             <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).delnode();'>
+                  删除
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).moveup();'>
+                  上移
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).movedown();'>
+                  下移
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).loadtree();'>
+                  载入子树
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).checkcategory();'>
+                  无归属检查
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).auditself(4);'>
+                  一级自审
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).auditself(8);'>
+                  二级自审
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).auditself(16);'>
+                 三级自审
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).auditcontent();'>
+                  内容统一审核
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).doclist();'>
+                  内容列表
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).columnlist();'>
+                  专栏制作
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).rothrz();'>
+                  内容角色控制
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).groupview();'>
+                  内容组控制
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).vrsncontrol();'>
+                  版级控制
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).contentcontrol();'>
+                  内容操作
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).newnode();'>
+                  新建节点
+                  </td>
+              </tr>
+			  <tr>
+                 <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).checknode();'>
+                  查看刷新节点
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).setframeptd();'>
+                  架构模板设置
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).setmainptd();'>
+                  主体模板文档设置
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).setcontentptd();'>
+                  内容模板栏标设置
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).setchildrenptd();'>
+                  子体模板设置
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).setcolumnptd();'>
+                  专题模板设置
+                  </td>
+              </tr>
+			  <tr>
+                 <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).fasttmpl();'>
+                  主体模板维护
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).fastmakeup();'>
+                  快速合成
+                  </td>
+              </tr>
+			  <tr>
+                  <td style='cursor:default;border:outset 1;' align='center' onclick='(typeof(popHandler)!="undefined"?popHandler:parent).logrevoke();'>
+                  修改回退
+                  </td>
+             </tr>
+       </table>
+</div>
+
+</html>

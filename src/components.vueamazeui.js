@@ -1,14 +1,48 @@
+<<<<<<< HEAD
+var $=jQuery=require('jquery');
+require("./amazeui");
+var Vue=require("vue");
+
+var positions=$("ibreadcrumb")[0].innerHTML.split("&gt;&gt;");
+
+var postyle= positions;
+postyle[0]="<span class='postyle'>"+postyle[0]+"</span>";
+ihtml="<li><span class=\"glyphicon glyphicon-th-list\"></span></li>";
+for(i=0;i<positions.length;i++){
+    if(i==0) positions[i]=positions[i].replace(/:/g,"");
+    ihtml+="<li>"+positions[i]+"</li>";
+}
+ihtml+="<br><br><div class='hr'></div>"
+$("ibreadcrumb")[0].innerHTML=ihtml;
+
+=======
 // window.jQuery = window.$ = require('./jquery');
 // var $=jQuery=jquery=require('./jquery');
 require("./amazeui");
 var Vue=require("vue");
 
+>>>>>>> dcff67df2a79940159324331ce132c1c52dba735
 var ibreadcrumb = Vue.extend({
   template: "<ol class=\"am-breadcrumb\">"+
             "<slot></slot>"+
             "</ol>",
   compiled: function () {
     // console.log('compiled: ' + this.$el.innerHTML);
+<<<<<<< HEAD
+    // ihtml=this.$el.innerHTML;
+    // var positions=this.$el.innerHTML.split("&gt;&gt;");
+    //   //console.log(positions)
+    //   var postyle= positions;
+    //   postyle[0]="<span class='postyle'>"+postyle[0]+"</span>"
+    // ihtml="<li><span class=\"glyphicon glyphicon-th-list\"></span></li>";
+    // for(i=0;i<positions.length;i++){
+    //     if(i==0) positions[i]=positions[i].replace(/:/g,"");
+    //     ihtml+="<li>"+positions[i]+"</li>";
+    // }
+    // ihtml+="<br><br><div class='hr'></div>"
+    //   //console.log(ihtml)
+    //   this.$el.innerHTML=ihtml;
+=======
     ihtml=this.$el.innerHTML;
     var positions=this.$el.innerHTML.split("&gt;&gt;");
       //console.log(positions)
@@ -22,6 +56,7 @@ var ibreadcrumb = Vue.extend({
     ihtml+="<br><br><div class='hr'></div>"
       //console.log(ihtml)
       this.$el.innerHTML=ihtml;
+>>>>>>> dcff67df2a79940159324331ce132c1c52dba735
   }
 });
 Vue.component('ibreadcrumb', ibreadcrumb);

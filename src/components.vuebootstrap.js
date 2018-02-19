@@ -2,11 +2,34 @@ var $=jQuery=require('jquery');
 require("./bootstrap");
 var Vue=require("vue");
 
+<<<<<<< HEAD
+
+var positions=$("ibreadcrumb")[0].innerHTML.split("&gt;&gt;");
+var ihtml="<li><span class=\"glyphicon glyphicon-th-list\"></span></li>";
+for(i=0;i<positions.length;i++){
+    if(i==0) positions[i]=positions[i].replace(/:/g,"");
+    ihtml+="<li>"+positions[i]+"</li>";
+}
+$("ibreadcrumb")[0].innerHTML=ihtml;
+
+
+=======
+>>>>>>> dcff67df2a79940159324331ce132c1c52dba735
 var ibreadcrumb = Vue.extend({
   template: "<ol class=\"breadcrumb\">"+
             "<slot></slot>"+
             "</ol>",
   compiled: function () {
+<<<<<<< HEAD
+    // ihtml=this.$el.innerHTML;
+    // var positions=this.$el.innerHTML.split("&gt;&gt;");
+    // ihtml="<li><span class=\"glyphicon glyphicon-th-list\"></span></li>";
+    // for(i=0;i<positions.length;i++){
+    //     if(i==0) positions[i]=positions[i].replace(/:/g,"");
+    //     ihtml+="<li>"+positions[i]+"</li>";
+    // }
+    // this.$el.innerHTML=ihtml;
+=======
     // console.log('compiled: ' + this.$el.innerHTML);
     ihtml=this.$el.innerHTML;
     var positions=this.$el.innerHTML.split("&gt;&gt;");
@@ -16,10 +39,15 @@ var ibreadcrumb = Vue.extend({
         ihtml+="<li>"+positions[i]+"</li>";
     }
     this.$el.innerHTML=ihtml;
+>>>>>>> dcff67df2a79940159324331ce132c1c52dba735
   }
 });
 Vue.component('ibreadcrumb', ibreadcrumb);
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> dcff67df2a79940159324331ce132c1c52dba735
 var imainframe = Vue.extend({
   template: "<div class=\"container list-group\">"+
             "<slot></slot>"+
